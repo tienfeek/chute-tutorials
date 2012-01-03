@@ -107,7 +107,7 @@ public class UserAvatarActivity extends Activity {
 	    intent.putExtra("aspectY", height);
 	    intent.putExtra("scale", true);
 	    intent.putExtra("noFaceDetection", true);
-	    intent.putExtra("image-path", data.getData().getPath());
+
 	    intent.putExtra("output", Uri.fromFile(tempFileForCroppedImage));
 	    startActivityForResult(intent, REQUEST_CROP_IMAGE);
 	    return;
@@ -116,8 +116,8 @@ public class UserAvatarActivity extends Activity {
 	    String imagePath = data.getStringExtra("imagePath");
 	    Bitmap croppedImage = data.getParcelableExtra("image");
 	    thumb.setImageBitmap(croppedImage);
-	    path.setText(imagePath);
-	    uploadPhoto(imagePath);
+	    path.setText(data.getData().toString());
+	    uploadPhoto(data.getData().getPath());
 	}
     }
 

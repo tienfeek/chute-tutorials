@@ -113,9 +113,9 @@ public class CropImage extends MonitoredActivity {
 		mAspectY = 1;
 	    }
 
-	    mImagePath = extras.getString("image-path");
+	    mImagePath = intent.getData().getPath();
 
-	    mSaveUri = getImageUri(mImagePath);
+	    mSaveUri = extras.getParcelable("output");
 	    mBitmap = getBitmap(mImagePath);
 
 	    mAspectX = extras.getInt("aspectX");
@@ -345,6 +345,7 @@ public class CropImage extends MonitoredActivity {
 		Util.closeSilently(outputStream);
 	    }
 	    Intent intent = new Intent();
+	    intent.setData(mSaveUri);
 	    intent.putExtra("image", croppedImage);
 	    intent.putExtra("imagePath", mImagePath);
 	    setResult(RESULT_OK, intent);
