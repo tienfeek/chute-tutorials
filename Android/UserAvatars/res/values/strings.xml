@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="hello">Hello World, GCUserAvatarActivity!</string>
-    <string name="app_name">GCUserAvatar</string>
     <string name="choose_photo">Choose photo</string>
     <string name="save_photo">Save photo</string>
     
