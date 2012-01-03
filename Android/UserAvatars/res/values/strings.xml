@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, GCUserAvatarActivity!</string>
+    <string name="app_name">GCUserAvatar</string>
+    <string name="choose_photo">Choose photo</string>
+    <string name="save_photo">Save photo</string>
+    
+    <string name="summary">User Avatar, call the photo crop</string>
+    <string name="app_name">User Avatar</string>
+    <string name="photoPickerNotFoundText">We did not find a User Avatar Gallery</string>
+    <string name="no_photo_picked">No photo was selected from the User Avatar Gallery</string>
+    <string name="fileIOIssue">File IO issue, can\'t write temp file on this system</string>
+    <string name="crop_label">cropLabel</string>
+    <string name="save">Save</string>
+    <string name="discard">Discard</string>
+    <string name="parsing_exception">Invalid response format</string>
+	<string name="http_exception">Check your internet connection and try again
+	</string>
+	<string name="http_error">Server Problem, Try again</string>
+
+</resources>
