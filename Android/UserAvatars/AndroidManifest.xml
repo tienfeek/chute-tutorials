@@ -25,9 +25,6 @@
         </activity>
         <activity android:name=".app.SingleImagePickerActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".app.DisplayAvatarActivity"
-            android:screenOrientation="portrait" >
-            </activity>
             <activity
             android:name=".imagemanipulation.CropImage"
             android:process=":CropImage"
