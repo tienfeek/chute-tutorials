@@ -2,6 +2,8 @@
 
 This tutorial will show you how to use a chute for storing user avatars.  It will show you how to upload an avatar and attach the userID as metadata, as well as how to retrieve an asset using the metadata property.  It will also discuss using the admin panel to set up a chute and find the access token and API keys for your app.  This tutorial was written using version 5.0 of the iOS SDK and version 4.2 of Xcode.  Some changes may need to be made for other software versions.
 
+![CAT_Demo1](https://github.com/chute/chute-tutorials/raw/master/iOS/User%20Avatars/screenshots/CAT_Demo1.png)![CAT_Demo2](https://github.com/chute/chute-tutorials/raw/master/iOS/User%20Avatars/screenshots/CAT_Demo2.png)![CAT_Demo3](https://github.com/chute/chute-tutorials/raw/master/iOS/User%20Avatars/screenshots/CAT_Demo3.png)
+
 ###Preparation
 1. Download the Chute SDK from https://github.com/chute/Chute-SDK
 2. Download the GCImageGrid component from https://github.com/chute/chute-ios-components
@@ -10,8 +12,14 @@ This tutorial will show you how to use a chute for storing user avatars.  It wil
 ###Create A Chute
 After you have created an app you will need to create a chute in it to hold your avatars.  This can be done from the chute's online admin panel.  Select your app in the list on the chute site and go to the publisher panel.  Create a chute with any name that you would like, I called mine Avatars.  You can then go to the chutes section of the explorer tab and get the id for the chute you just created.  You will need this id later.  The settings tab in the admin panel also has information you will need in order to use the SDK.  I will go into more detail about that in the next section.
 
+![CAT_Demo4](https://github.com/chute/chute-tutorials/raw/master/iOS/User%20Avatars/screenshots/CAT_Demo4.png)
+
+![CAT_Demo5](https://github.com/chute/chute-tutorials/raw/master/iOS/User%20Avatars/screenshots/CAT_Demo5.png)![CAT_Demo6](https://github.com/chute/chute-tutorials/raw/master/iOS/User%20Avatars/screenshots/CAT_Demo6.png)
+
 ###Create A New Project
 Start by creating a new Xcode project.  A single view application will be easiest to modify for this tutorial.  You can choose whatever name you like, I'll call it ChuteAvatars.  Be sure that “Use Automatic Reference Counting” is unchecked as the SDK does not currently support ARC.
+
+![CAT_Demo7](https://github.com/chute/chute-tutorials/raw/master/iOS/User%20Avatars/screenshots/CAT_Demo7.png)
 
 ###Add The SDK And Dependancies
 1. Add the SDK and GCImageGrid component to the project
@@ -24,6 +32,8 @@ Start by creating a new Xcode project.  A single view application will be easies
    * MobileCoreServices
    * Security
    * SystemConfiguration
+
+![CAT_Demo8](https://github.com/chute/chute-tutorials/raw/master/iOS/User%20Avatars/screenshots/CAT_Demo8.png)
 	
 At this point you may want to try running the project to make sure that everything is added ok.  You will get a few warnings, but if there are no errors then everything should be correctly added and linked.
 
@@ -136,6 +146,8 @@ viewController.m
 
 ###Set Up The Main Screen UI
 Finally open the viewController.xib file and place a textField and two buttons.  I'm going to use “Enter User ID” for the placeholder text on the text field and “Upload” and “View” for the text on the buttons, but you can use whatever you want.  Don't forget to connect the button press methods to the touchUpInside actions for the buttons, connect the text field to it's object and set the file owner as the delegate for the text field.  Your view should look something like the following.
+
+![CAT_Demo9](https://github.com/chute/chute-tutorials/raw/master/iOS/User%20Avatars/screenshots/CAT_Demo9.png)
 
 ###Avatar Selection Screen Overview
 The avatar selection view will be a subclass of the GCImageGrid class.  This class normally has a grid of GCAssets and tapping on one displays it full screen.  We will overwrite the objecctTappedAtIndex: method in our subclass to instead upload the image to a chute and add the user id as a metadata object then exit the screen.  Our subclass will need objects for the chute to upload to, the user id it needs to save and the asset that will be uploaded.  We will also need to supply it with the assets from the device's camera roll.
