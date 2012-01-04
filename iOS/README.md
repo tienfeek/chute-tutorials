@@ -28,4 +28,4 @@ A container for assets. Chutes can be nested inside of each other.
 A container for uploading a set of Assets to a set of Chutes.
 
 ## Component
-Pre-made drop in classes to simplify writing Chute enabled applications.
+A Pre-made drop in class to simplify performing common tasks in a Chute enabled application.
