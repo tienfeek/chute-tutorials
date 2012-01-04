@@ -2,14 +2,19 @@
 
 This tutorial will walk you through setting up the chute SDK and uploading images from your iOS device to chute.  I will also show you how to track the progress of the uploads and add a gallery to your app for viewing the photos added to a chute.  This tutorial was written using version 5.0 of the iOS SDK and version 4.2 of Xcode.  Some changes may need to be made for other software versions.
 
+![CIUT_Demo1](https://github.com/chute/chute-tutorials/raw/master/iOS/Chute%20Image%20Uploader/screenshots/CIUT_Demo1.png)![CIUT_Demo2](https://github.com/chute/chute-tutorials/raw/master/iOS/Chute%20Image%20Uploader/screenshots/CIUT_Demo2.png)![CIUT_Demo3](https://github.com/chute/chute-tutorials/raw/master/iOS/Chute%20Image%20Uploader/screenshots/CIUT_Demo3.png)
+
 
 ###Before We Get Started...
 First you will need to download the chute iOS SDK and a couple components.  You can get the SDK at https://github.com/chute/Chute-SDK.  There are several components available for the chute platform to make your apps even easier to implement.  We will be using the GCMultiImagePicker and the GCCloudGallery components available at https://github.com/chute/chute-ios-components.
 You will also need a chute developer account.  You can register for an account at http://www.getchute.com/oauth_clients/new if you don't already have one.
 ###Creating a new project
 Start by creating a new Xcode project.  A single view application will be easiest to modify for this tutorial.  You can choose whatever name you like, I'll call it ChuteImageUploader.  Be sure that “Use Automatic Reference Counting” is unchecked as the SDK does not currently support ARC.
+![CIUT_Demo4](https://github.com/chute/chute-tutorials/raw/master/iOS/Chute%20Image%20Uploader/screenshots/CIUT_Demo4.png)
 
 Next add the iOS SDK and the two components to the project.  The SDK also has eight framework dependancies that must be linked to the project.  They are AssetsLibrary, CFNetwork, EventKit, libz.dylib, MessageUI, MobileCoreServices, Security and SystemConfiguration.  At this point you may want to try running the project to make sure that everything is added ok.  You will get a few warnings, but if there are no errors then everything should be correctly added and linked.
+
+![CIUT_Demo5](https://github.com/chute/chute-tutorials/raw/master/iOS/Chute%20Image%20Uploader/screenshots/CIUT_Demo5.png)
 
 The next step is to enter your chute client information in the GCConstants.h file.  This file can be found in SDK/Classes/Core directory.  Make sure that you enter all of your credentials as they appear on your account page.  You need to set your client ID and secret, your redirect URL, relative URL and the permissions that your app has.  You can also set which service you would like users to log in with from this file.
 Next we'll modify the app to use a navigationController.  You will need to define a UINavigationController in the appDelegate.h file.  Then in the appDelegate.m file you will synthesize the controller and release it in the dealloc method.  You will also need to initialize it with your viewController and set it as your window's rootViewController in the application:didFinishLaunchingWithOptions: method.  Those changes look like this:
@@ -99,6 +104,8 @@ viewController.m
 
 Next we will add a progress bar.  We will do this in interface builder with a couple of long skinny views.  One for the background and one for the foreground of the indicator.  First create two IBOutlet UIView objects in your viewController.h file, one called PBForeground and the other PBBackground.  Then open the viewController.xib file and add one UIView near the top that is 302px wide by 22 px high.  Connect this to the PBBackground object then create another centered on top of it that is 300px by 20px and connect it to PBForeground.  Set the background color of these views to whatever you would like.
 
+![CIUT_Demo6](https://github.com/chute/chute-tutorials/raw/master/iOS/Chute%20Image%20Uploader/screenshots/CIUT_Demo6.png)
+
 We will need three methods for controlling the progress bar.  One for when it appears, one for when it disappears and one to update the progress.  Use the following code to define these three methods
 
 ```objective-c
@@ -176,6 +183,7 @@ Next we need to write the upload method.  First we'll do some error checking to 
 
 The only thing left for the upload picker class is the user interface.  Open the .xib file and add a UITableView over the entire area.  Then connect it to the file owner's imageTable outlet.
 
+![CIUT_Demo6](https://github.com/chute/chute-tutorials/raw/master/iOS/Chute%20Image%20Uploader/screenshots/CIUT_Demo6.png)
 
 Finally we need to put an upload button on the main view and show the upload picker when it's pressed.  First import the UploadPicker.h file then add a showUploader method to the viewController.h file with an IBAction return type.  In the viewController.m file we will write this method.  The method will initialize the UploadPicker, assign the chute to it and push it to the navigation controller.  Here is the code for it
 
