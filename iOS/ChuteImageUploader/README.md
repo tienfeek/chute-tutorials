@@ -15,10 +15,13 @@ The next step is to enter your chute client information in the GCConstants.h fil
 Next we'll modify the app to use a navigationController.  You will need to define a UINavigationController in the appDelegate.h file.  Then in the appDelegate.m file you will synthesize the controller and release it in the dealloc method.  You will also need to initialize it with your viewController and set it as your window's rootViewController in the application:didFinishLaunchingWithOptions: method.  Those changes look like this:
 
 appDelegate.h
+
 ```
     @property (strong, nonatomic) UINavigationController *navController;
 ```
+
 appDelegate.m
+
 ```
     @synthesize navController = _navController;
 
@@ -46,6 +49,7 @@ appDelegate.m
 The first thing we will do is login the user when the app first runs.  Import GetChute.h in your viewController.h file to access the Chute SDK.  Then simply call the login screen from your viewDidAppear: method.  The code for that will look like:
 
 viewController.m
+
 ```
     [GCLoginViewController presentInController:self];
 ```
@@ -54,6 +58,7 @@ viewController.m
 We will need a chute to upload our images to.  For this tutorial we will create a chute named Uploads.  We will need to set up a GCChute object in our viewController.h file as well as synthesizing and releasing it in the viewController.m file.  To make sure that it isn't created multiple times we will save it's id to user defaults and check if it's already created.  We also need to make sure the user is already logged in before trying to create the chute.  If the chute has been created already we will update the chute object with the latest data.  We will also be adding this code to the viewDidAppear: method  so it now looks like the following.
 
 viewController.m
+
 ```
     - (void)viewDidAppear:(BOOL)animated
     {
@@ -135,6 +140,7 @@ The SDK posts a notification when the upload progress updates.  So in the viewDi
 Next we will add the upload view.  We will be subclassing the GCMultiImagePicker for this.  Add a new class to the project called UploadPicker based on a UIViewController.  Be sure that the option for including a xib file is checked.  Then modify the UploadPicker.h file to import GCMultiImagePicker.h and inherit from the class.  Next we need to add a GCChute object and an upload method.  Be sure to synthesize the chute object in your UploadPicker.m file.  Once you do this the header file should look like this
 
 UploadPicker.h
+
 ```
     #import <UIKit/UIKit.h>
     #import "GCMultiImagePicker.h"
