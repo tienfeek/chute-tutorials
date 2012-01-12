@@ -13,6 +13,7 @@ Setup
   [here](https://github.com/chute/chute-tutorials/tree/master/Android/ProjectSetup).
   
 * Register the activities into the AndroidManifest.xml file:
+
     ```
         <activity
             android:label="@string/app_name"

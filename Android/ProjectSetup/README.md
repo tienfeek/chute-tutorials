@@ -36,6 +36,7 @@ Android manifest setup
 * Open the AndroidManifest.xml file 
 
 * Add the following permissions:
+
     ```
         <uses-permission android:name="android.permission.INTERNET" />
         <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -47,6 +48,7 @@ Android manifest setup
     ```
 
 * Register the activities:
+
     ```
         <activity
             android:name=".NewProjectActivity"
@@ -60,12 +62,14 @@ Android manifest setup
     ```
  
 * Register the GCHttpService from ChuteSDK:
+
     ```
         <service android:name="com.chute.sdk.api.GCHttpService" >
         </service> 
     ```
  
 * Register the AccountAuthenticatorActivity from ChuteSDK:
+
     ```
         <activity android:name="android.accounts.AccountAuthenticatorActivity" >
         </activity> 
