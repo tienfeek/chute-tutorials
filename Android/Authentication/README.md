@@ -8,12 +8,13 @@ This tutorial will help you successfully log into your Facebook or Twitter accou
 Setup
 ====
 
-* Follow the ProjectSetup tutorial that can be found and downloaded at 
-  [example link](https://github.com/chute/chute-tutorials/tree/master/Android/ProjectSetup).
+* Follow the ProjectSetup tutorial that can be found and downloaded 
+  [here](https://github.com/chute/chute-tutorials/tree/master/Android/ProjectSetup).
   
 * Register the activity into the AndroidManifest.xml file
- ```
-    <activity
+
+    ```
+       <activity
             android:name=".LoginActivity"
             android:label="@string/app_name" >
             <intent-filter>
@@ -22,7 +23,7 @@ Setup
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
- ```
+    ```
  
 
 Login Activity  
@@ -45,7 +46,7 @@ and secret in the LoginActivity:
 </code></pre> 
 
 If the login fails, some error has occurred: 
-- HTTP Exception, shows that the login failed due to Internet connection issues.
-- HTTP Error, shows that the login failed due to sever problems.
-- Parser Exception, shows that the login failed due to invalid response format. 
+* HTTP Exception, shows that the login failed due to Internet connection issues.
+* HTTP Error, shows that the login failed due to sever problems.
+* Parser Exception, shows that the login failed due to invalid response format. 
        

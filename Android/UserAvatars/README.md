@@ -4,14 +4,14 @@ Introduction
 
 UserAvatars is an Android application which demonstrates how to create an avatar and upload it into a chute. This app includes Chute SDK library, searches for images on the device, displays the images in a grid view, crops the selected image from the grid, uploads it in a chute and displays it. 
 
-![alt text](/home/ola/user_avatar1.png) ![alt text](/home/ola/user_avatar2.png) ![alt text](/home/ola/user_avatar3.png) ![alt text](/home/ola/user_avatar4.png)
+          ![alt text](/home/ola/user_avatar1.png) ![alt text](/home/ola/user_avatar2.png) ![alt text](/home/ola/user_avatar3.png) ![alt text](/home/ola/user_avatar4.png)
 
 
 Setup
 ====
 
-* Follow the ProjectSetup tutorial that can be found and downloaded at 
-  [example link](https://github.com/chute/chute-tutorials/tree/master/Android/ProjectSetup).
+* Follow the ProjectSetup tutorial that can be found and downloaded  
+  [here](https://github.com/chute/chute-tutorials/tree/master/Android/ProjectSetup).
   
 * Copy the resources into your project.
 
@@ -56,7 +56,7 @@ SingleImagePicker Activity is called when the "Choose Photo" button is clicked. 
 ## SingleImagePicker Activity
 This Activity consists of GridView filled with images that can be found on the device. When one of the images is clicked, the intent for launching the CropImage activity is defined which does the image manipulation.
 <pre><code>
-          if (requestCode == SingleImagePickerIntentWrapper.ACTIVITY_REQUEST_CODE) {
+        if (requestCode == SingleImagePickerIntentWrapper.ACTIVITY_REQUEST_CODE) {
 	    final int width = 200;
 	    final int height = 200;
 

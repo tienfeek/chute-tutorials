@@ -9,12 +9,12 @@ PhotoUpload is an Android application which gets an image from the assets folder
 Setup
 ====
 
-* Follow the ProjectSetup tutorial that can be found and downloaded at 
-  [example link](https://github.com/chute/chute-tutorials/tree/master/Android/ProjectSetup).
+* Follow the ProjectSetup tutorial that can be found and downloaded 
+  [here](https://github.com/chute/chute-tutorials/tree/master/Android/ProjectSetup).
   
 * Register the activities into the AndroidManifest.xml file:
     ```
-    <activity
+       <activity
             android:label="@string/app_name"
             android:name=".PhotoUploadActivity" >
             <intent-filter >
