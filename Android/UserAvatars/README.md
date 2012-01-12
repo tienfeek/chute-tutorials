@@ -4,27 +4,20 @@ Introduction
 
 UserAvatars is an Android application which demonstrates how to create an avatar and upload it into a chute. This app includes Chute SDK library, searches for images on the device, displays the images in a grid view, crops the selected image from the grid, uploads it in a chute and displays it. 
 
+![alt text](/home/ola/user_avatar1.png) ![alt text](/home/ola/user_avatar2.png) ![alt text](/home/ola/user_avatar3.png) ![alt text](/home/ola/user_avatar4.png)
+
 
 Setup
 ====
 
-- Create a new Android project or open an existing one.
-- Copy the classes and resources into your project.
-- Add the required permissions to the manifest:
+* Follow the ProjectSetup tutorial that can be found and downloaded at 
+  [example link](https://github.com/chute/chute-tutorials/tree/master/Android/ProjectSetup).
+  
+* Copy the resources into your project.
 
- ```
-  <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
- ```
-- Register the activities into the manifest:
+* Register the activities into the AndroidManifest.xml file:
   
     ```
-       
         <activity
             android:name=".app.UserAvatarActivity"
             android:label="@string/app_name"
@@ -45,32 +38,8 @@ Setup
             android:process=":CropImage" >
         </activity>
     ```
-- Register the service into the manifest:
-
-  ```
-  <service android:name="com.chute.sdk.api.GCHttpService" />
-  ```
-  
+    
       
-Key Concepts
-========
-
-## GCLocalAssetCollection
-Collection of GCLocalAssetModel.
-
-## GCLocalAssetModel
-Asset model which consists of: name, asset ID, file, asset status and fileMD5.
-
-## GCChuteCollection
-Collection of GCChuteModel.
-
-## GCChuteModel
-Model containing all the characteristics for a given chute.
-
-## GCUserModel
-Model containing all the characteristics for the user: id, name and url where the avatar image is located.
-
-
 Usage
 ========
 
@@ -124,7 +93,7 @@ if (requestCode == REQUEST_CROP_IMAGE) {
 	}
 </code></pre>
 
-When the upload is finished sucessfully the uploaded image is pulled from the server and displayed on screen using the ImageLoader component.
+When the upload is finished successfully the uploaded image is pulled from the server and displayed on screen using the ImageLoader component.
 <pre><code>	
         loader.displayImage(GCUtils.getCustomSizePhotoURL(url, 75, 75), thumb);
 </code></pre>
