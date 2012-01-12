@@ -37,18 +37,18 @@ Android manifest setup
 
 * Add the following permissions:
     ```
-     <uses-permission android:name="android.permission.INTERNET" />
-     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-     <uses-permission android:name="android.permission.WAKE_LOCK" />
+        <uses-permission android:name="android.permission.INTERNET" />
+        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+        <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+        <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+        <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+        <uses-permission android:name="android.permission.WAKE_LOCK" />
     ```
 
 * Register the activities:
     ```
-       <activity
+        <activity
             android:name=".NewProjectActivity"
             android:label="@string/app_name" >
             <intent-filter>
@@ -61,13 +61,13 @@ Android manifest setup
  
 * Register the GCHttpService from ChuteSDK:
     ```
-      <service android:name="com.chute.sdk.api.GCHttpService" >
+        <service android:name="com.chute.sdk.api.GCHttpService" >
         </service> 
     ```
  
 * Register the AccountAuthenticatorActivity from ChuteSDK:
     ```
-      <activity android:name="android.accounts.AccountAuthenticatorActivity" >
+        <activity android:name="android.accounts.AccountAuthenticatorActivity" >
         </activity> 
     ```
  

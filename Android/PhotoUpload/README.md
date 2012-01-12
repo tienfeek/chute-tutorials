@@ -14,7 +14,7 @@ Setup
   
 * Register the activities into the AndroidManifest.xml file:
     ```
-       <activity
+        <activity
             android:label="@string/app_name"
             android:name=".PhotoUploadActivity" >
             <intent-filter >
