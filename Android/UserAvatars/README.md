@@ -4,7 +4,7 @@ Introduction
 
 UserAvatars is an Android application which demonstrates how to create an avatar and upload it into a chute. This app includes Chute SDK library, searches for images on the device, displays the images in a grid view, crops the selected image from the grid, uploads it in a chute and displays it. 
 
-          ![alt text](/home/ola/user_avatar1.png) ![alt text](/home/ola/user_avatar2.png) ![alt text](/home/ola/user_avatar3.png) ![alt text](/home/ola/user_avatar4.png)
+   ![user_avatar1](https://github.com/chute/chute-tutorials/blob/master/Android/UserAvatars/screenshots/user_avatar1.png) ![user_avatar2](https://github.com/chute/chute-tutorials/blob/master/Android/UserAvatars/screenshots/user_avatar2.png) ![user_avatar3](https://github.com/chute/chute-tutorials/blob/master/Android/UserAvatars/screenshots/user_avatar3.png) ![user_avatar4](https://github.com/chute/chute-tutorials/blob/master/Android/UserAvatars/screenshots/user_avatar4.png)
 
 
 Setup

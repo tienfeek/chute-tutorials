@@ -12,22 +12,22 @@ Basic Setup
 * Open Eclipse and create new Android project by selecting File->New->Android Project.
 * Type the name of the project, it can be anything you like, I'll name it NewProject.
 
-                    ![alt text](/home/ola/newandroidproject.png)
+                    ![newandroidproject](https://github.com/chute/chute-tutorials/blob/master/Android/ProjectSetup/screenshots/newandroidproject.png)
   
 * Select build target. I'll use Android 2.1 API Level 7.  
  
-                    ![alt text](/home/ola/selectbuildtarget.png)
+                    ![selectbuildtarget](https://github.com/chute/chute-tutorials/blob/master/Android/ProjectSetup/screenshots/selectbuildtarget.png)
   
 * Add a package name. The package name I added is: com.android.newproject
 
-                    ![alt text](/home/ola/addpackagename.png)
+                    ![addpackagename](https://github.com/chute/chute-tutorials/blob/master/Android/ProjectSetup/screenshots/addpackagename.png)
   
 * After successfully creating a new Android project, the next thing that needs to be done
   is adding the Chute SDK as a library project.
 * Chute SDK project can be found and downloaded [here](https://github.com/chute/Chute-SDK).
 * Select Project->Properties and add ChuteSDK as a library project.
 
-                    ![alt text](home/ola/projectproperties.png)
+                    ![projectproperties](https://github.com/chute/chute-tutorials/blob/master/Android/ProjectSetup/screenshots/projectproperties.png)
   
     
 Android manifest setup
