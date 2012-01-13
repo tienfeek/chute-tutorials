@@ -4,7 +4,7 @@ Introduction
 
 PhotoUpload is an Android application which gets an image from the assets folder and uploads the image in a chute. It includes Chute SDK library.
 
-                  ![photo_upload](https://github.com/chute/chute-tutorials/tree/master/Android/screenshots/photo_upload.png)
+            ![IMGG_Photoupload1](https://github.com/chute/chute-tutorials/tree/master/Android/screenshots/IMGG_Photoupload1.png)
                   
 Setup
 ====
