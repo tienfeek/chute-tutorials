@@ -17,7 +17,7 @@ Basic SDK Setup
 * Download the SDK 
 * In Eclipse click File -> Import -> Existing Projects into Workspace
 
-![IMG_SDK_1](https://github.com/chute/chute-tutorials/raw/master/Android/ProjectSetup/screenshots/IMG_SDK_1.png)
+![IMG_SDK_1](https://github.com/chute/chute-tutorials/raw/master/Android/ProjectSetup/screenshots/IMG_SDK_1.PNG)
 
 * Browse to the downloaded root directory of the downloaded sdk.
 * Check the SDK project and click Finish.
