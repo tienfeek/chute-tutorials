@@ -23,6 +23,7 @@ Basic SDK Setup
 * Check the SDK project and click Finish.
 
 Troubleshooting:
+----
 
 * If after importing the project there are errors in the build path try cleaning the project to rebuild the R.java file.
 * Make sure the SDK is set as a library project by right clicking the project -> properties -> Android -> Check Is Library
