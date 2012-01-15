@@ -27,8 +27,6 @@ Troubleshooting:
 * If after importing the project there are errors in the build path try cleaning the project to rebuild the R.java file.
 * Make sure the SDK is set as a library project by right clicking the project -> properties -> Android -> Check Is Library
 
-
-
 If you are creating a new project with the Chute SDK go over Basic New Project Setup, otherwise skip to the next step in the tutorial.
 
 Basic New Project Setup
