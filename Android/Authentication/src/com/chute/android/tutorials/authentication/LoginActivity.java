@@ -12,7 +12,6 @@ import com.chute.sdk.api.authentication.GCAuthenticationFactory.AccountType;
 import com.chute.sdk.model.GCAccount;
 
 public class LoginActivity extends Activity {
-    /** Called when the activity is first created. */
     public static final String TAG = LoginActivity.class.getSimpleName();
 
     private Button facebookLogin;
@@ -32,8 +31,6 @@ public class LoginActivity extends Activity {
 	twitterLogin.setOnClickListener(loginClickListener);
 
 	if (GCAccount.getInstance(getApplicationContext()).isTokenValid()) {
-	    facebookLogin.setVisibility(View.GONE);
-	    twitterLogin.setVisibility(View.GONE);
 	    launchMainAppActivity();
 	} else {
 	    facebookLogin.setVisibility(View.VISIBLE);
@@ -41,7 +38,7 @@ public class LoginActivity extends Activity {
 	}
     }
 
-    private final class OnLoginClickListener implements OnClickListener {
+    public class OnLoginClickListener implements OnClickListener {
 	@Override
 	public void onClick(final View v) {
 	    final AccountType accountType = (AccountType) v.getTag();
@@ -52,7 +49,7 @@ public class LoginActivity extends Activity {
 	}
     }
 
-    public void launchMainAppActivity() {
+    protected void launchMainAppActivity() {
 	NotificationUtil.makeToast(getApplicationContext(), "TODO Launch Main Activity of the app");
 	// This method will be responsible for handling the authentication
 	// success or if the user was previously authenticated sucessfully.
