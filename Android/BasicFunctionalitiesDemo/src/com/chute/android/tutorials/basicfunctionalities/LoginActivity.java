@@ -17,5 +17,4 @@ public class LoginActivity extends BaseLoginActivity {
 	startActivity(intent);
 	LoginActivity.this.finish();
     }
-
 }

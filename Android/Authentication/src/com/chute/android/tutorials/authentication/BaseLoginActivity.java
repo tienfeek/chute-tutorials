@@ -12,6 +12,14 @@ import com.chute.sdk.api.authentication.GCAuthenticationFactory.AccountType;
 import com.chute.sdk.model.GCAccount;
 
 public abstract class BaseLoginActivity extends Activity {
+
+    // Fill with values from your chute developer account
+
+    private static final String CLIENT_SECRET = "replace with client secret";
+    private static final String CLIENT_ID = "replace with client id";
+    private static final String CALLBACK_URL = "replace with your predefined callback url";
+    private static final String PERMISSIONS_SCOPE = "replace with profile permissions scope";
+
     public static final String TAG = BaseLoginActivity.class.getSimpleName();
 
     private Button facebookLogin;
@@ -40,7 +48,7 @@ public abstract class BaseLoginActivity extends Activity {
 	}
     }
 
-    public class OnLoginClickListener implements OnClickListener {
+    private class OnLoginClickListener implements OnClickListener {
 	@Override
 	public void onClick(final View v) {
 	    final AccountType accountType = (AccountType) v.getTag();
@@ -51,11 +59,9 @@ public abstract class BaseLoginActivity extends Activity {
     public abstract void launchMainAppActivity();
 
     protected void launchAuthenticationActivity(AccountType accountType) {
-	// Add the credentials for your app from Chute
 	GCAccount.getInstance(getApplicationContext()).startAuthenticationActivity(
-		BaseLoginActivity.this, accountType, "replace with profile permissions scope",
-		"replace with your predefined callback url", "replace with client id",
-		"replace with client secret");
+		BaseLoginActivity.this, accountType, PERMISSIONS_SCOPE, CALLBACK_URL, CLIENT_ID,
+		CLIENT_SECRET);
     }
 
     @Override
