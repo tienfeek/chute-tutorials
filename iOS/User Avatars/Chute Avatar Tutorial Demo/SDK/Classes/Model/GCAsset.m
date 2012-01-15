@@ -22,6 +22,9 @@ NSString * const GCAssetUploadComplete = @"GCAssetUploadComplete";
 @synthesize status;
 @synthesize parentID;
 
+// Public: Checks whether or not the asset has been hearted
+//
+// Returns YES if the asset is hearted and NO if it isn't.
 - (BOOL) isHearted {
     if([[GCAccount sharedManager] heartedAssets])
         return [[[GCAccount sharedManager] heartedAssets] containsObject:self];
@@ -29,6 +32,9 @@ NSString * const GCAssetUploadComplete = @"GCAssetUploadComplete";
 }
 
 #pragma mark - Heart Method
+// Public: toggles the hearted state of an asset
+//
+// Returns the hearted state of the asset after toggling it.
 - (BOOL) toggleHeart {
     if ([self isHearted]) {
         //unheart
@@ -47,10 +53,19 @@ NSString * const GCAssetUploadComplete = @"GCAssetUploadComplete";
     return [self isHearted];
 }
 
+// Public: Same as isHearted method except it runs on a background thread and executes
+// a block of code after it finishes
+//
+// aBoolBlock - A block of code to run when the method is done
+//
+// No return value.
 - (void) toggleHeartInBackgroundWithCompletion:(GCBoolBlock) aBoolBlock {
     DO_IN_BACKGROUND_BOOL([self toggleHeart], aBoolBlock);
 }
 
+// Public: Hearts the asset
+//
+// Returns a GCResponse with the result of the heart request.
 - (GCResponse *) heart {
     NSString *_path              = [[NSString alloc] initWithFormat:@"%@%@/%@/heart", API_URL, [[self class] elementName], [self objectID]];
     GCRequest *gcRequest         = [[GCRequest alloc] init];
@@ -60,10 +75,19 @@ NSString * const GCAssetUploadComplete = @"GCAssetUploadComplete";
     return [_response autorelease];
 }
 
+// Public: Same as heart except it runs on a background thread and executes
+// a block of code after the request is completed
+//
+// aBoolErrorBlock - A block of code to run when the method finishes
+//
+// No return value.
 - (void) heartInBackgroundWithCompletion:(GCBoolErrorBlock) aBoolErrorBlock {
     DO_IN_BACKGROUND_BOOL_ERROR([self heart], aBoolErrorBlock);
 }
 
+// Public: Unhearts the asset
+//
+// Returns a GCResponse with the result of the unheart request.
 - (GCResponse *) unheart {
     NSString *_path              = [[NSString alloc] initWithFormat:@"%@%@/%@/unheart", API_URL, [[self class] elementName], [self objectID]];
     GCRequest *gcRequest         = [[GCRequest alloc] init];
@@ -73,21 +97,38 @@ NSString * const GCAssetUploadComplete = @"GCAssetUploadComplete";
     return [_response autorelease];
 }
 
+// Public: Same as unheart except it runs on a background thread and executes
+// a block of code after the request is completed
+//
+// aBoolErrorBlock - A block of code to run when the method finishes
+//
+// No return value.
 - (void) unheartInBackgroundWithCompletion:(GCBoolErrorBlock) aBoolErrorBlock {
     DO_IN_BACKGROUND_BOOL_ERROR([self unheart], aBoolErrorBlock);
 }
 
+// Public: Uses the asset's alAsset data to determine if the Asset exists on the server
+// and whether or not it has already been uploaded
+//
+// Returns a GCResponse with it's object set to an array of dictionaries with info for each matching asset.
 -(GCResponse*)verify{
+    if(![self alAsset]){
+        GCResponse *response = [[GCResponse alloc] init];
+        NSMutableDictionary *_errorDetail = [NSMutableDictionary dictionary];
+        [_errorDetail setValue:@"No asset info to to send" forKey:NSLocalizedDescriptionKey];
+        [response setError:[GCError errorWithDomain:@"GCError" code:401 userInfo:_errorDetail]];
+        return [response autorelease];
+    }
     NSString *_path              = [[NSString alloc] initWithFormat:@"%@%@/verify", API_URL, [[self class] elementName]];
     GCRequest *gcRequest         = [[GCRequest alloc] init];
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObject:[[NSArray arrayWithObject:[self uniqueRepresentation]] JSONRepresentation] forKey:@"files"];
     GCResponse *_response        = [[gcRequest postRequestWithPath:_path andParams:params] retain];
     [gcRequest release];
     [_path release];
-    return [_response autorelease];}
+    return [_response autorelease];
+}
 
 #pragma mark - Comment Methods
-
 - (GCResponse *) comments {
     if (IS_NULL([self parentID])) {
         return nil;
