@@ -50,9 +50,11 @@ public class LoginActivity extends Activity {
     }
 
     protected void launchMainAppActivity() {
-	NotificationUtil.makeToast(getApplicationContext(), "TODO Launch Main Activity of the app");
 	// This method will be responsible for handling the authentication
 	// success or if the user was previously authenticated sucessfully.
+	final Intent intent = new Intent(getApplicationContext(), MainAppActivity.class);
+	startActivity(intent);
+	LoginActivity.this.finish();
     }
 
     @Override
