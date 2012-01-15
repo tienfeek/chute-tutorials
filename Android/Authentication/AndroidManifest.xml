@@ -30,7 +30,7 @@
         <service android:name="com.chute.sdk.api.GCHttpService" >
         </service>
 
-        <activity android:name="android.accounts.AccountAuthenticatorActivity" >
+        <activity android:name="com.chute.sdk.api.authentication.GCAuthenticationActivity" >
         </activity>
     </application>
 
