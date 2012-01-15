@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.chute.android.tutorials.authentication"
+    package="com.chute.android.tutorials.basicfunctionalities"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -18,7 +18,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" >
         <activity
-            android:name="AuthenticationActivity"
+            android:name=".BasicFunctionalitiesDemoActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,13 +26,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <service android:name="com.chute.sdk.api.GCHttpService" >
-        </service>
-
-        <activity android:name="com.chute.sdk.api.authentication.GCAuthenticationActivity" >
-        </activity>
-        <activity android:name="MainAppActivity"></activity>
     </application>
+
+    <service android:name="com.chute.sdk.api.GCHttpService" >
+    </service>
+
+    <activity android:name="com.chute.sdk.api.authentication.GCAuthenticationActivity" >
+    </activity>
 
 </manifest>

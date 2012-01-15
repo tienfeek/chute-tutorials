@@ -11,8 +11,8 @@ import com.chute.sdk.api.authentication.GCAuthenticationActivity;
 import com.chute.sdk.api.authentication.GCAuthenticationFactory.AccountType;
 import com.chute.sdk.model.GCAccount;
 
-public class LoginActivity extends Activity {
-    public static final String TAG = LoginActivity.class.getSimpleName();
+public abstract class BaseLoginActivity extends Activity {
+    public static final String TAG = BaseLoginActivity.class.getSimpleName();
 
     private Button facebookLogin;
     private Button twitterLogin;
@@ -31,6 +31,8 @@ public class LoginActivity extends Activity {
 	twitterLogin.setOnClickListener(loginClickListener);
 
 	if (GCAccount.getInstance(getApplicationContext()).isTokenValid()) {
+	    facebookLogin.setVisibility(View.GONE);
+	    twitterLogin.setVisibility(View.GONE);
 	    launchMainAppActivity();
 	} else {
 	    facebookLogin.setVisibility(View.VISIBLE);
@@ -42,20 +44,13 @@ public class LoginActivity extends Activity {
 	@Override
 	public void onClick(final View v) {
 	    final AccountType accountType = (AccountType) v.getTag();
-	    GCAccount.getInstance(getApplicationContext()).startAuthenticationActivity(
-		    LoginActivity.this, accountType, "replace with profile permissions scope",
-		    "replace with your predefined callback url", "replace with client id",
-		    "replace with client secret");
+	    launchAuthenticationActivity(accountType);
 	}
     }
 
-    protected void launchMainAppActivity() {
-	// This method will be responsible for handling the authentication
-	// success or if the user was previously authenticated sucessfully.
-	final Intent intent = new Intent(getApplicationContext(), MainAppActivity.class);
-	startActivity(intent);
-	LoginActivity.this.finish();
-    }
+    public abstract void launchMainAppActivity();
+
+    public abstract void launchAuthenticationActivity(AccountType accountType);
 
     @Override
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
