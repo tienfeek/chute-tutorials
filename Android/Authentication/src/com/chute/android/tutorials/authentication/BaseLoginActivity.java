@@ -50,7 +50,13 @@ public abstract class BaseLoginActivity extends Activity {
 
     public abstract void launchMainAppActivity();
 
-    public abstract void launchAuthenticationActivity(AccountType accountType);
+    protected void launchAuthenticationActivity(AccountType accountType) {
+	// Add the credentials for your app from Chute
+	GCAccount.getInstance(getApplicationContext()).startAuthenticationActivity(
+		BaseLoginActivity.this, accountType, "replace with profile permissions scope",
+		"replace with your predefined callback url", "replace with client id",
+		"replace with client secret");
+    }
 
     @Override
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
