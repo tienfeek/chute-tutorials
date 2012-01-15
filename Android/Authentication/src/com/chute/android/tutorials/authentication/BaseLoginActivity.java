@@ -15,10 +15,10 @@ public abstract class BaseLoginActivity extends Activity {
 
     // Fill with values from your chute developer account
 
-    private static final String CLIENT_SECRET = "replace with client secret";
-    private static final String CLIENT_ID = "replace with client id";
-    private static final String CALLBACK_URL = "replace with your predefined callback url";
-    private static final String PERMISSIONS_SCOPE = "replace with profile permissions scope";
+    private static final String CLIENT_SECRET = "06caafe2cf9f718c85a8ccd86f30c7f49bc340f655e7b91a9685248089a09f9f";
+    private static final String CLIENT_ID = "4f13111ef3e3bd43a0000005";
+    private static final String CALLBACK_URL = "http://tutorials.getchute.com/";
+    private static final String PERMISSIONS_SCOPE = "all_resources manage_resources profile resources";
 
     public static final String TAG = BaseLoginActivity.class.getSimpleName();
 
