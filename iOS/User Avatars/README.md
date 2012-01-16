@@ -1,6 +1,6 @@
 #Using Chute to Store User Avatars
 
-This tutorial will show you how to use a chute for storing user avatars.  It will show you how to upload an avatar and attach the userID as metadata, as well as how to retrieve an asset using the metadata property.  It will also discuss using the admin panel to set up a chute and find the access token and API keys for your app.  This tutorial was written using version 5.0 of the iOS SDK and version 4.2 of Xcode.  Some changes may need to be made for other software versions.
+This tutorial will show you how to use a chute for storing user avatars.  It will show you how to upload an avatar and attach the userID as metadata, as well as how to retrieve an asset using the metadata property.  It will also discuss using the admin panel to set up a chute and find the access token and API keys for your app.  This tutorial was written using version 5.0 of the iOS SDK and version 4.2 of Xcode.  Uses Chute SDK version 1.120115 or newer (the version number can be found in the GCConstants.h file).  Some changes may need to be made for other software versions.
 
 ![CAT_Demo1](https://github.com/chute/chute-tutorials/raw/master/iOS/User%20Avatars/screenshots/CAT_Demo1.png)![CAT_Demo2](https://github.com/chute/chute-tutorials/raw/master/iOS/User%20Avatars/screenshots/CAT_Demo2.png)![CAT_Demo3](https://github.com/chute/chute-tutorials/raw/master/iOS/User%20Avatars/screenshots/CAT_Demo3.png)
 
