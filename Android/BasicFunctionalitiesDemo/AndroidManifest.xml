@@ -32,6 +32,7 @@
 
         <activity android:name="com.chute.sdk.api.authentication.GCAuthenticationActivity" >
         </activity>
+        <activity android:name="BasicFunctionalitiesDemoActivity"></activity>
     </application>
 
 </manifest>
