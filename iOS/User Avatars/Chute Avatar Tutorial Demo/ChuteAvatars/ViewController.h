@@ -9,12 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "GetChute.h"
 
-@interface ViewController : UIViewController <UITextFieldDelegate>{
-    GCChute *_chute;
+@interface ViewController : GCUIBaseViewController <UITextFieldDelegate, UIImagePickerControllerDelegate>{
+    GCChute *chute;
+    GCParcel *parcel;
     IBOutlet UITextField *userID;
 }
 
 @property (nonatomic, retain) GCChute *chute;
+@property (nonatomic, retain) GCParcel *parcel;
 
 -(IBAction)chooseAvatarClicked:(id)sender;
 -(IBAction)viewAvatarClicked:(id)sender;

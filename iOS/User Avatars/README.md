@@ -1,13 +1,12 @@
 #Using Chute to Store User Avatars
 
-This tutorial will show you how to use a chute for storing user avatars.  It will show you how to upload an avatar and attach the userID as metadata, as well as how to retrieve an asset using the metadata property.  It will also discuss using the admin panel to set up a chute and find the access token and API keys for your app.  This tutorial was written using version 5.0 of the iOS SDK and version 4.2 of Xcode.  Some changes may need to be made for other software versions.
+This tutorial will show you how to use a chute for storing user avatars.  It will show you how to upload an avatar and attach the userID as metadata, as well as how to retrieve an asset using the metadata property.  It will also discuss using the admin panel to set up a chute and find the access token and API keys for your app.  This tutorial was written using version 5.0 of the iOS SDK and version 4.2 of Xcode.  Uses Chute SDK version 1.120115 or newer (the version number can be found in the GCConstants.h file).  Some changes may need to be made for other software versions.
 
 ![CAT_Demo1](https://github.com/chute/chute-tutorials/raw/master/iOS/User%20Avatars/screenshots/CAT_Demo1.png)![CAT_Demo2](https://github.com/chute/chute-tutorials/raw/master/iOS/User%20Avatars/screenshots/CAT_Demo2.png)![CAT_Demo3](https://github.com/chute/chute-tutorials/raw/master/iOS/User%20Avatars/screenshots/CAT_Demo3.png)
 
 ###Preparation
 1. Download the Chute SDK from https://github.com/chute/Chute-SDK
-2. Download the GCImageGrid component from https://github.com/chute/chute-ios-components
-3. Create a Chute developer account and register your app with Chute
+2. Create a Chute developer account and register your app with Chute at http://apps.getchute.com/
 
 ###Create A Chute
 After you have created an app you will need to create a chute in it to hold your avatars.  This can be done from the chute's online admin panel.  Select your app in the list on the chute site and go to the publisher panel.  Create a chute with any name that you would like, I called mine Avatars.  You can then go to the chutes section of the explorer tab and get the id for the chute you just created.  You will need this id later.  The settings tab in the admin panel also has information you will need in order to use the SDK.  I will go into more detail about that in the next section.
@@ -81,7 +80,7 @@ appDelegate.m
 ```
 
 ###Set Up The Main Screen Objects/Methods
-Will will have a text field to enter a user id, this will simulate retrieving one for your service.  Our main screen will also have two buttons, one will bring up a view for selecting a photo, the other will find the user avatar and display it.  Both of these will be based on the user id entered in the text field.  The main class will also pull the chute that we made in the admin panel.  Start with the viewController.h file.  Import GetChute.h and add a GCChute object and a UITextField object.  The text field should be set up as a IBOutlet and the chute should be retained, synthesized, and released.  You can also create two methods for the button presses right now, however we will not write the code for these until later.  We will also add in the UITextField delegate method textFieldShouldReturn: and resign the first responder of the text field so that the keyboard will disappear when the enter key is pressed.  This should give you the following code:
+The main screen will have a text field to enter a user id, this will simulate retrieving one for your service.  Our main screen will also have two buttons, one will bring up a view for selecting a photo, the other will find the user avatar and display it.  Both of these will be based on the user id entered in the text field.  The main class will also pull the chute that we made in the admin panel.  Start with the viewController.h file.  Import GetChute.h and add a GCChute object, a GCParcel object and a UITextField object.  The text field should be set up as a IBOutlet and the chute and parcel should be retained, synthesized, and released.  We will be using the standard UIImagePickerController in this class so you want to inherit from the UIImagePickerControllerDelegate.  You can also create two methods for the button presses right now, however we will not write the code for these until later.  We will also add in the UITextField delegate method textFieldShouldReturn: and resign the first responder of the text field so that the keyboard will disappear when the enter key is pressed.  This should give you the following code:
 
 viewController.h
 
@@ -89,12 +88,14 @@ viewController.h
 	#import <UIKit/UIKit.h>
 	#import "GetChute.h"
 	
-	@interface ViewController : UIViewController{
-	    GCChute *_chute;
-	    IBOutlet UITextField *userID;
+	@interface ViewController : UIViewController 	<UIImagePickerControllerDelegate> {
+    	GCChute *chute;
+		GCParcel *parcel;
+    	IBOutlet UITextField *userID;
 	}
 	
 	@property (nonatomic, retain) GCChute *chute;
+	@property (nonatomic, retain) GCParcel *parcel;
 	
 	-(IBAction)chooseAvatarClicked:(id)sender;
 	-(IBAction)viewAvatarClicked:(id)sender;
@@ -105,10 +106,12 @@ viewController.h
 viewController.m
 
 ```objective-c
-	@synthesize chute = _chute;
-	
+	@synthesize chute;
+	@synthesize parcel;
+
 	-(void)dealloc{
-	    [_chute release];
+	    [chute release];
+	    [parcel release];
 	    [super dealloc];
 	}
 	
@@ -150,73 +153,9 @@ Finally open the viewController.xib file and place a textField and two buttons. 
 ![CAT_Demo9](https://github.com/chute/chute-tutorials/raw/master/iOS/User%20Avatars/screenshots/CAT_Demo9.png)
 
 ###Avatar Selection Screen Overview
-The avatar selection view will be a subclass of the GCImageGrid class.  This class normally has a grid of GCAssets and tapping on one displays it full screen.  We will overwrite the objecctTappedAtIndex: method in our subclass to instead upload the image to a chute and add the user id as a metadata object then exit the screen.  Our subclass will need objects for the chute to upload to, the user id it needs to save and the asset that will be uploaded.  We will also need to supply it with the assets from the device's camera roll.
-Subclass GCImageGrid
-First create a new class based on a UIViewController.  I called mine imagePicker.  In the imagePicker.h file import GCImageGrid.h and modify the class to inherit from GCImageGrid rather than the UIViewController class.  Then add a NSString object for the user id, a GCChute object for the upload chute and a GCAsset object.  The asset will need to be retained, however you can just set the other objects to assign.  This gives us a header file that looks like this:
-
-imagePicker.h
-
-```objective-c
-	#import <UIKit/UIKit.h>
-	#import "GCImageGrid.h"
-	
-	@interface imagePicker : GCImageGrid
-	
-	@property (nonatomic, assign) NSString *userID;
-	@property (nonatomic, assign) GCChute *chute;
-	@property (nonatomic, retain) GCAsset *asset;
-	
-	@end
-```
-
-###Write Upload And MetaData Functions
-In the imagePicker.m file we need to synthesize our objects and set up a dealloc method to release the parcel.  Then we can overwrite the objectTappedAtIndex method.  This method will create a parcel from the selected asset and the chute.  Since we need custom behavior after uploading we will not be using the GCUploader class to manage the uploads.  Instead we will start the upload directly in the parcel and assign a method to be executed when it's done.  This method will check if there is already an asset with that userID.  If it finds one it will remove it.  It then adds the metadata and pops the view from the navigation controller.  We will display an activity indicator while this is going on that will inform the user that it is updating their avatar.  The GCImageGrid class is based on the GCUIBaseViewController which has a method for easily presenting an indicator to the user.  The code for all this is:
-
-imagePicker.m
-
-```objective-c
-	@synthesize userID, chute, asset;
-	
-	-(void)dealloc{
-	    [asset release];
-	    [super dealloc];
-	}
-	
-	-(void)setMetadata{
-	    [GCAsset searchMetaDataForKey:@"CAT_USER_ID" andValue:[self userID] inBackgroundWithCompletion:^(GCResponse *response){
-	        if([response isSuccessful]){
-	            NSArray *assetArray = [response object];
-	            if([assetArray count] > 0){
-	                for(GCAsset *old in assetArray){
-	                    [old deleteMetaDataForKey:@"CAT_USER_ID"];
-	                }
-	            }
-	        }
-	        NSDictionary *objectData = [[[[self asset] verify] object] objectAtIndex:0];
-	        [self setAsset:[GCAsset objectWithDictionary:objectData]];
-	        [[self asset] setMetaData:[self userID] forKey:@"CAT_USER_ID" inBackgroundWithCompletion:^(BOOL successful){
-	            [self hideHUD];
-	            [[self navigationController] setNavigationBarHidden:NO];
-	            [[self navigationController] popViewControllerAnimated:YES];
-	        }];
-	    }];
-	}
-	
-	-(void)objectTappedAtIndex:(NSInteger)index{
-	    [[self navigationController] setNavigationBarHidden:YES];
-	    [self hideHUD];
-	    [self showHUDWithTitle:@"Uploading Avatar" andOpacity:.7];
-	    [self setAsset:[objects objectAtIndex:index]];
-	    GCParcel *parcel = [GCParcel objectWithAssets:[NSArray arrayWithObject:[self asset]] andChutes:[NSArray arrayWithObject:[self chute]]];
-	    [parcel startUploadWithTarget:self andSelector:@selector(setMetadata)];
-	}
-```
-
-###Set Up ImagePicker UI
-Next we will set up the nib file.  This is extremely easy for this class.  Simply fill the view with a UITableView and hook it up to the objectTable in the file's owner.
-
-###Connect ImagePicker To MainScreen
-Now we only need to fill in the chooseAvatarClicked method and import our imagePicker.h file in viewController.m.  For the method we will first do some error checking to make sure we have a chute and user id.  Then we initialize an imagePicker object and set it's chute and user ID.  Next we set it's objects to our device assets.  Finally we push it to the navigation controller and release our object.    The code for this looks like:
+We will be using the standard UIIMagePickerController for the avatar selection.  We will set it up to allow selection from your images on the device and allow editing to be able to select a square section of the photo for the avatar.  Once the edited image is selected it will be uploaded to chute and have the user's id attached as metadata.
+###Show The ImagePicker
+We will show our image picker in the chooseAvatarClicked method.  We first do some error checking to make sure that there is a valid userID and chute.  Then we initialize a UIImagePickerController object and set self as the delegate.  We set it to allow editing and set the source type to the photo library.  Then we present the controller and release it.  The code for this is:
 
 viewController.m
 
@@ -226,16 +165,94 @@ viewController.m
 	        return;
 	    if([[[userID text] stringByReplacingOccurrencesOfString:@" " withString:@""] length] == 0)
 	        return;
-	    imagePicker *picker = [[imagePicker alloc] init];
-	    [picker setChute:[self chute]];
-	    [picker setUserID:[userID text]];
-	    [picker setObjects:[[GCAccount sharedManager] assetsArray]];
-	    [[self navigationController] pushViewController:picker animated:YES];
+	    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+	    [picker setDelegate:self];
+	    [picker setAllowsEditing:YES];
+	    [picker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+	    [self presentModalViewController:picker animated:YES];
 	    [picker release];
 	}
 ```
 
-At this point you can try running the app to see if everything is working correctly so far.  Please note that retrieving assets from your device requires location services to be enabled due to location data being associated with ALAssets.
+###Picker Delegate Methods
+Next we need to add the UIImagePickerControllerDelegate methods.  These are imagePickerController:didFinishPickingMediaWithInfo: and imagePickerControllerDidCancel:.  The cancel method is simple.  All we need to do is dismiss the picker.  For the success method we need to dismiss the picker, save the edited image to our library, retrieve the ALAsset, add the image to a parcel and begin the upload process.  When we begin the upload process for the parcel we will set self as the delegate and assign a selector called setMetadata that we will create shortly.  We also need to save the parcel to our class' parcel object so that we can access it later.  The code for all this is the following:
+
+viewController.m
+
+```objective-c
+	-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+	    [self dismissModalViewControllerAnimated:YES];
+	    
+	    UIImage *originalImage, *editedImage, *imageToSave;
+	    
+	    editedImage = (UIImage *) [info objectForKey:UIImagePickerControllerEditedImage];
+	    originalImage = (UIImage *) [info objectForKey:UIImagePickerControllerOriginalImage];
+	    
+	    if (editedImage) {
+	        imageToSave = editedImage;
+	    } else {
+        imageToSave = originalImage;
+	    }
+	    if(![[GCAccount sharedManager] assetsLibrary]){
+	        ALAssetsLibrary *temp = [[ALAssetsLibrary alloc] init];
+	        [[GCAccount sharedManager] setAssetsLibrary:temp];
+	        [temp release];
+	    }
+	    ALAssetsLibrary *library = [[GCAccount sharedManager] assetsLibrary];
+	    [self showHUDWithTitle:@"uploading avatar" andOpacity:.75];
+	    [library writeImageToSavedPhotosAlbum:[imageToSave CGImage] metadata:[info objectForKey:UIImagePickerControllerMediaMetadata] completionBlock:^(NSURL *assetURL, NSError *error){
+	        if(assetURL){
+	            [library assetForURL:assetURL resultBlock:^(ALAsset* _alasset){
+	                
+	                GCAsset *_asset = [[GCAsset alloc] init];
+	                [_asset setAlAsset:_alasset];
+	                GCParcel *_parcel = [GCParcel objectWithAssets:[NSArray arrayWithObject:_asset] andChutes:[NSArray arrayWithObject:[self chute]]];
+	                [self setParcel:_parcel];
+	                [[self parcel] startUploadWithTarget:self andSelector:@selector(setMetadata)];
+	                [_asset release];
+	            } failureBlock:^(NSError* error){
+	            }];
+	        }
+	    }];
+	}
+	-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+	    [self dismissModalViewControllerAnimated:YES];
+	}
+```
+
+###Create setMetadata method
+Once the upload is complete the parcel will call the setMetadata method.  This method will first check if the user has an avatar and if so remove it.  Then it will save the user's id to the metadata for the image that was just uploaded.  It will get the image by pulling the server assets for the parcel that was just created.  Here's what the code for this method looks like:
+
+viewController.m
+
+```objective-c
+	-(void)setMetadata{
+	    [GCAsset searchMetaDataForKey:@"CAT_USER_ID" andValue:[userID text] inBackgroundWithCompletion:^(GCResponse *response){
+	        if([response isSuccessful]){
+	            NSArray *assetArray = [response object];
+	            if([assetArray count] > 0){
+	                for(GCAsset *old in assetArray){
+	                    [old deleteMetaDataForKey:@"CAT_USER_ID"];
+	                }
+	            }
+	        }
+	        response = [[self parcel] serverAssets];
+	        if([response isSuccessful]){
+	            NSArray *array = [response object];
+	            if(array.count > 0){
+	                GCAsset *_asset = [array objectAtIndex:0];
+	                [_asset setMetaData:[userID text] forKey:@"CAT_USER_ID" inBackgroundWithCompletion:^(BOOL successful){
+	                    [self hideHUD];
+	                    [[self navigationController] setNavigationBarHidden:NO];
+	                    [[self navigationController] popViewControllerAnimated:YES];
+	                }];
+	            }
+	        }
+	    }];
+	}
+```
+
+At this point you can try running the app to see if everything is working correctly so far.  Please note that your device may ask you to allow location services.  This is required when you access ALAssets due to them having location data for the photo associated with them.  You won't really be able to see if it uploaded ok yet so in the next section we will see how to pull the image from the server and display it.
 
 ###Create Avatar Display Screen
 The last screen will be for pulling and viewing an avatar that was previously assigned.  This screen will just have a UIImageView for the avatar and will be retrieved using the user ID.  First we'll add a new file to the app and call it avatarView.  This class will need a NSString object for the user ID and an IBOutlet UIImageView object.  We also need to import GetChute.h.  This gives us a header file that looks like:

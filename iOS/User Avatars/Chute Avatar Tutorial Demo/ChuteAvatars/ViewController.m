@@ -7,14 +7,15 @@
 //
 
 #import "ViewController.h"
-#import "imagePicker.h"
 #import "avatarView.h"
 
 @implementation ViewController
-@synthesize chute = _chute;
+@synthesize chute;
+@synthesize parcel;
 
 -(void)dealloc{
-    [_chute release];
+    [chute release];
+    [parcel release];
     [super dealloc];
 }
 
@@ -29,18 +30,82 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+-(void)setMetadata{
+    [GCAsset searchMetaDataForKey:@"CAT_USER_ID" andValue:[userID text] inBackgroundWithCompletion:^(GCResponse *response){
+        if([response isSuccessful]){
+            NSArray *assetArray = [response object];
+            if([assetArray count] > 0){
+                for(GCAsset *old in assetArray){
+                    [old deleteMetaDataForKey:@"CAT_USER_ID"];
+                }
+            }
+        }
+        response = [[self parcel] serverAssets];
+        if([response isSuccessful]){
+            NSArray *array = [response object];
+            if(array.count > 0){
+                GCAsset *_asset = [array objectAtIndex:0];
+                [_asset setMetaData:[userID text] forKey:@"CAT_USER_ID" inBackgroundWithCompletion:^(BOOL successful){
+                    [self hideHUD];
+                    [[self navigationController] setNavigationBarHidden:NO];
+                    [[self navigationController] popViewControllerAnimated:YES];
+                }];
+            }
+        }
+    }];
+}
+
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    [self dismissModalViewControllerAnimated:YES];
+    
+    UIImage *originalImage, *editedImage, *imageToSave;
+    
+    editedImage = (UIImage *) [info objectForKey:UIImagePickerControllerEditedImage];
+    originalImage = (UIImage *) [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    if (editedImage) {
+        imageToSave = editedImage;
+    } else {
+        imageToSave = originalImage;
+    }
+    if(![[GCAccount sharedManager] assetsLibrary]){
+        ALAssetsLibrary *temp = [[ALAssetsLibrary alloc] init];
+        [[GCAccount sharedManager] setAssetsLibrary:temp];
+        [temp release];
+    }
+    ALAssetsLibrary *library = [[GCAccount sharedManager] assetsLibrary];
+    [self showHUDWithTitle:@"uploading avatar" andOpacity:.75];
+    [library writeImageToSavedPhotosAlbum:[imageToSave CGImage] metadata:[info objectForKey:UIImagePickerControllerMediaMetadata] completionBlock:^(NSURL *assetURL, NSError *error){
+        if(assetURL){
+            [library assetForURL:assetURL resultBlock:^(ALAsset* _alasset){
+                
+                GCAsset *_asset = [[GCAsset alloc] init];
+                [_asset setAlAsset:_alasset];
+                GCParcel *_parcel = [GCParcel objectWithAssets:[NSArray arrayWithObject:_asset] andChutes:[NSArray arrayWithObject:[self chute]]];
+                [self setParcel:_parcel];
+                [[self parcel] startUploadWithTarget:self andSelector:@selector(setMetadata)];
+                [_asset release];
+            } failureBlock:^(NSError* error){
+            }];
+        }
+    }];
+}
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    [self dismissModalViewControllerAnimated:YES];
+}
+
 #pragma mark - View lifecycle
 
 -(IBAction)chooseAvatarClicked:(id)sender{
-//    if(![self chute])
-//        return;
+    if(![self chute])
+        return;
     if([[[userID text] stringByReplacingOccurrencesOfString:@" " withString:@""] length] == 0)
         return;
-    imagePicker *picker = [[imagePicker alloc] init];
-    [picker setChute:[self chute]];
-    [picker setUserID:[userID text]];
-    [picker setObjects:[[GCAccount sharedManager] assetsArray]];
-    [[self navigationController] pushViewController:picker animated:YES];
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    [picker setDelegate:self];
+    [picker setAllowsEditing:YES];
+    [picker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+    [self presentModalViewController:picker animated:YES];
     [picker release];
 }
 -(IBAction)viewAvatarClicked:(id)sender{
