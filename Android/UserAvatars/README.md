@@ -10,8 +10,8 @@ UserAvatars is an Android application which demonstrates how to create an avatar
 Setup
 ====
 
-* Follow the ProjectSetup tutorial that can be found and downloaded  
-  [here](https://github.com/chute/chute-tutorials/tree/master/Android/ProjectSetup).
+* Follow the ProjectSetup tutorial that can be found and downloaded at  
+  [https://github.com/chute/chute-tutorials/tree/master/Android/ProjectSetup](https://github.com/chute/chute-tutorials/tree/master/Android/ProjectSetup).
   
 * Copy the resources into your project.
 
@@ -41,7 +41,7 @@ Setup
     
       
 Usage
-========
+====
 
 ## Starting the Activity
 SingleImagePicker Activity is called when the "Choose Photo" button is clicked. SingleImagePickerIntentWrapper is called, which represents a class that wraps the parameters needed for the intent.

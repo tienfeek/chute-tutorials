@@ -17,7 +17,7 @@ Setup
 
 * Select Project -> Properties -> Android and add Authentication as a library project.
 
-  ![IMMG_Properties](https://github.com/chute/chute-tutorials/raw/master/Android/BasicFunctionalitiesDemo/screenshots/IMMG_Properties.PNG)
+          ![IMMG_Properties](https://github.com/chute/chute-tutorials/raw/master/Android/BasicFunctionalitiesDemo/screenshots/IMMG_Properties.PNG)
   
 * Register the activity into the AndroidManifest.xml file
 
