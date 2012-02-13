@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp" >
+
+    <Button android:id="@+id/btnSdcard"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Display thumbnails from SDcard"
+        android:textSize="12sp"
+        android:singleLine="true" />
+    <Button android:id="@+id/btnUrl"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Display thumbnails from URL"
+        android:textSize="12sp"
+        android:singleLine="true" />
+    <Button android:id="@+id/btnChutePhotoUrl"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Display thumbnails from Chute photo URL"
+        android:textSize="12sp"
+        android:singleLine="true" />
+</LinearLayout>
