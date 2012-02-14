@@ -21,7 +21,7 @@ import com.chute.sdk.api.asset.GCUploadProgressListener;
 import com.chute.sdk.api.parcel.GCParcel;
 import com.chute.sdk.collections.GCChuteCollection;
 import com.chute.sdk.collections.GCLocalAssetCollection;
-import com.chute.sdk.model.GCAccount;
+import com.chute.sdk.model.GCAccountStore;
 import com.chute.sdk.model.GCChuteModel;
 import com.chute.sdk.model.GCHttpRequestParameters;
 import com.chute.sdk.model.GCLocalAssetModel;
@@ -40,9 +40,9 @@ public class PhotoUploadActivity extends Activity {
 	super.onCreate(savedInstanceState);
 	setContentView(R.layout.main);
 
-	GCAccount.getInstance(this).setUsername("TestUser");
+	GCAccountStore.getInstance(this).setUsername("TestUser");
 	// Token For testing purpouses
-	GCAccount.getInstance(this).setPassword(
+	GCAccountStore.getInstance(this).setPassword(
 		"3115093a84aa3c4b696f9e5e0356826085e6c2810e55931ccd4d227ba70cfdbb");
 
 	final Button startUpload = (Button) findViewById(R.id.buttonStartUpload);
