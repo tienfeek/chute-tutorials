@@ -14,20 +14,24 @@
 
         <activity
             android:label="@string/app_name"
-            android:name=".app.ImageLoaderTutorialActivity" >
+            android:name=".app.ImageLoaderTutorialActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" >
             <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".app.LoadSdCardPhotosActivity" />
         <activity
             android:name="com.chute.sdk.api.authentication.GCAuthenticationActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
-        <activity android:name=".app.LoadChutePhotosActivity" />
-        <activity android:name=".app.LoadImageActivity" />
+        <activity
+            android:name=".app.LoadImageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" >
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
