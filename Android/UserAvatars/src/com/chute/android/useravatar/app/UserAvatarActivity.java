@@ -27,13 +27,12 @@ import com.chute.sdk.api.asset.GCUploadProgressListener;
 import com.chute.sdk.api.parcel.GCParcel;
 import com.chute.sdk.collections.GCChuteCollection;
 import com.chute.sdk.collections.GCLocalAssetCollection;
-import com.chute.sdk.model.GCAccount;
+import com.chute.sdk.model.GCAccountStore;
 import com.chute.sdk.model.GCChuteModel;
 import com.chute.sdk.model.GCHttpRequestParameters;
 import com.chute.sdk.model.GCLocalAssetModel;
 import com.chute.sdk.parsers.GCCreateParcelsUploadsListParser;
 import com.chute.sdk.utils.GCUtils;
-import com.darko.imagedownloader.FileCache;
 import com.darko.imagedownloader.ImageLoader;
 
 public class UserAvatarActivity extends Activity {
@@ -63,9 +62,9 @@ public class UserAvatarActivity extends Activity {
 	Button choosePhoto = (Button) findViewById(R.id.btnChoosePhoto);
 	choosePhoto.setOnClickListener(new ChoosePhotoClickListener());
 
-	GCAccount.getInstance(getApplicationContext()).setPassword(
+	GCAccountStore.getInstance(getApplicationContext()).setPassword(
 		"d3149b3ce0f1bc15a6330df8a8b1c431d2d40a853763022cbf1bb2817a30dbfa");
-	loader = ImageLoader.get(this);
+	loader = ImageLoader.getLoader(this);
 
 	thumb = (ImageView) findViewById(R.id.imageViewThumb);
 	path = (TextView) findViewById(R.id.textViewPath);
@@ -96,7 +95,7 @@ public class UserAvatarActivity extends Activity {
 	    final int width = 200;
 	    final int height = 200;
 
-	    tempFileForCroppedImage = FileCache.getTempFile(data.getData().getPath());
+//	    tempFileForCroppedImage = FileCache.getTempFile(data.getData().getPath());
 	    tempFileForCroppedImage.deleteOnExit();
 	    Log.d(TAG, tempFileForCroppedImage.getPath());
 	    Intent intent = new Intent(this, CropImage.class);

@@ -30,7 +30,7 @@ public class SingleImagePickerAdapter extends CursorAdapter {
     public SingleImagePickerAdapter(Context context, Cursor c) {
 	super(context, c);
 	inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-	loader = ImageLoader.get(context);
+	loader = ImageLoader.getLoader(context);
 	displayMetrics = context.getResources().getDisplayMetrics();
 	dataIndex = c.getColumnIndex(MediaStore.Images.Media.DATA);
     }
