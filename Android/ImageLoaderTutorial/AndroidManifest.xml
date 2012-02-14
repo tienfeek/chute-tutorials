@@ -27,6 +27,7 @@
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
         <activity android:name=".app.LoadChutePhotosActivity" />
+        <activity android:name=".app.LoadImageActivity" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

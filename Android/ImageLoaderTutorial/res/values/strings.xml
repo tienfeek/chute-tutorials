@@ -3,5 +3,8 @@
 
     <string name="hello">Hello World, ImageLoaderTutorialActivity!</string>
     <string name="app_name">ImageLoaderTutorial</string>
+    <string name="imageSdcard">Display image from SDcard</string>
+    <string name="imageUrl">Display image from URL</string>
+    <string name="imageChuteUrl">Display image from Chute URL</string>
 
 </resources>
