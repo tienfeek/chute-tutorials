@@ -9,7 +9,7 @@ import android.widget.Button;
 
 import com.chute.sdk.api.authentication.GCAuthenticationActivity;
 import com.chute.sdk.api.authentication.GCAuthenticationFactory.AccountType;
-import com.chute.sdk.model.GCAccount;
+import com.chute.sdk.model.GCAccountStore;
 
 public abstract class BaseLoginActivity extends Activity {
 
@@ -38,7 +38,7 @@ public abstract class BaseLoginActivity extends Activity {
 	facebookLogin.setOnClickListener(loginClickListener);
 	twitterLogin.setOnClickListener(loginClickListener);
 
-	if (GCAccount.getInstance(getApplicationContext()).isTokenValid()) {
+	if (GCAccountStore.getInstance(getApplicationContext()).isTokenValid()) {
 	    facebookLogin.setVisibility(View.GONE);
 	    twitterLogin.setVisibility(View.GONE);
 	    launchMainAppActivity();
@@ -59,7 +59,7 @@ public abstract class BaseLoginActivity extends Activity {
     public abstract void launchMainAppActivity();
 
     protected void launchAuthenticationActivity(AccountType accountType) {
-	GCAccount.getInstance(getApplicationContext()).startAuthenticationActivity(
+	GCAccountStore.getInstance(getApplicationContext()).startAuthenticationActivity(
 		BaseLoginActivity.this, accountType, PERMISSIONS_SCOPE, CALLBACK_URL, CLIENT_ID,
 		CLIENT_SECRET);
     }
