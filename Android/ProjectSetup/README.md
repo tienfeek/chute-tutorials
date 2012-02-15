@@ -10,7 +10,7 @@ You can download the Chute SDK for android from our github account:
 [https://github.com/chute/Chute-SDK](https://github.com/chute/Chute-SDK)
 
 Additionally you can visit [http://developer.getchute.com/](http://developer.getchute.com/) for more information about creating a new developer account and obtaining chute credentials.
- 
+
 Basic SDK Setup
 ====
 
