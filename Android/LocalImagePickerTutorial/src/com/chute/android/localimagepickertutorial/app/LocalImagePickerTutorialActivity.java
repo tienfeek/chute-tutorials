@@ -3,13 +3,14 @@ package com.chute.android.localimagepickertutorial.app;
 import java.util.ArrayList;
 
 import com.chute.android.localimagepickertutorial.R;
-import com.chute.android.localimagepickertutorial.intent.ChoosePhotosActivityIntentWrapper;
+import com.chute.android.multiimagepicker.intent.ChoosePhotosActivityIntentWrapper;
 import com.chute.sdk.collections.GCLocalAssetCollection;
 import com.chute.sdk.model.GCLocalAssetModel;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
