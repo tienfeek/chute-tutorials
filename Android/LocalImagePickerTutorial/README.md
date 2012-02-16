@@ -4,7 +4,7 @@ Introduction
 LocalImageLoaderTutorial is a tutorial project that shows how to use the GCMultiImagePicker component. It contains Chute SDK library as well as GCMultiImagePicker library. 
 This tutorial demonstrates how to make GCLocalAssetCollection of assets. Asset represents any photo managed by Chute. This app searches for images on the device, displays the images in a grid and creates GCLocalAssetCollection out of the selected images in the grid.
 
-![IMG_LocalImagePickerTutorial1](https://github.com/chute/photo-picker-plus/raw/master/Android/PhotoPickerPlusTutorial/screenshots/IMG_LocalImagePickerTutorial1.png)
+![IMG_LocalImagePickerTutorial1](https://github.com/chute/chute-tutorials/raw/master/Android/LocalImagePickerTutorial/screenshots/IMG_LocalImagePickerTutorial1.png)![IMG_LocalImagePickerTutorial2](https://github.com/chute/chute-tutorials/raw/master/Android/LocalImagePickerTutorial/screenshots/IMG_LocalImagePickerTutorial2.png)![IMG_LocalImagePickerTutorial3](https://github.com/chute/chute-tutorials/raw/master/Android/LocalImagePickerTutorial/screenshots/IMG_LocalImagePickerTutorial3.png)
 
 Setup
 ====
