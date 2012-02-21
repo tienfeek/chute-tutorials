@@ -4,7 +4,6 @@ Introduction
 Photo Comments Tutorial is a tutorial project that shows how to use the Photo Comments component. It contains Chute SDK library as well as Photo Comments library. 
 This tutorial demonstrates how to add comments on an Asset. Asset represents any photo managed by Chute. 
 
-![IMG_LocalImagePickerTutorial1](https://github.com/chute/chute-tutorials/raw/master/Android/LocalImagePickerTutorial/screenshots/IMG_LocalImagePickerTutorial1.png)![IMG_LocalImagePickerTutorial2](https://github.com/chute/chute-tutorials/raw/master/Android/LocalImagePickerTutorial/screenshots/IMG_LocalImagePickerTutorial2.png)![IMG_LocalImagePickerTutorial3](https://github.com/chute/chute-tutorials/raw/master/Android/LocalImagePickerTutorial/screenshots/IMG_LocalImagePickerTutorial3.png)
 
 Setup
 ====
@@ -13,7 +12,7 @@ Setup
   [https://github.com/chute/chute-tutorials/tree/master/Android/Project%20Setup](https://github.com/chute/chute-tutorials/tree/master/Android/Project%20Setup) for a complete guide on how to setup the chute SDK.
   
 * Add the Photo Comments component to your project by either copying all the resources and source code or by adding it as an Android Library project.
-  Photo Comments component can be found and downloaded at [https://github.com/chute/Chute-Android-Kitchen-Sink/tree/master/Components/Multi-Image%20Picker](https://github.com/chute/Chute-Android-Kitchen-Sink/tree/master/Components/Multi-Image%20Picker).
+  Photo Comments component can be found and downloaded at [https://github.com/chute/chute-android-components/tree/master/Photo%20Comments](https://github.com/chute/chute-android-components/tree/master/Photo%20Comments).
 
 * The next thing you need to do is register the activities and the application class into the AndroidManifest.xml file:
 
