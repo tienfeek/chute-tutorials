@@ -10,14 +10,14 @@ Setup
 ====
 
 * Follow the ProjectSetup tutorial that can be found and downloaded at 
-  [https://github.com/chute/chute-tutorials/tree/master/Android/ProjectSetup](https://github.com/chute/chute-tutorials/tree/master/Android/ProjectSetup).
+  [https://github.com/chute/chute-tutorials/tree/master/Android/Project%20Setup](https://github.com/chute/chute-tutorials/tree/master/Android/Project%20Setup).
   
 * Follow the Authentication tutorial that can be found and downloaded at 
   [https://github.com/chute/chute-tutorials/tree/master/Android/Authentication](https://github.com/chute/chute-tutorials/tree/master/Android/Authentication).
 
 * Select Project -> Properties -> Android and add Authentication as a library project.
 
-          ![IMMG_Properties](https://github.com/chute/chute-tutorials/raw/master/Android/BasicFunctionalitiesDemo/screenshots/IMMG_Properties.PNG)
+          ![image1](https://github.com/chute/chute-tutorials/raw/master/Android/BasicFunctionalitiesDemo/screenshots/1.png)
   
 * Register the activity into the AndroidManifest.xml file
 

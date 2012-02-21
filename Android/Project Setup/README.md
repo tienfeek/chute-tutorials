@@ -17,7 +17,7 @@ Basic SDK Setup
 * Download the SDK 
 * In Eclipse click File -> Import -> Existing Projects into Workspace
 
-![IMG_SDK_1](https://github.com/chute/chute-tutorials/raw/master/Android/ProjectSetup/screenshots/IMG_SDK_1.PNG)
+![IMG_SDK_1](https://github.com/chute/chute-tutorials/raw/master/Android/Project%20Setup/screenshots/IMG_SDK_1.PNG)
 
 * Browse to the downloaded root directory of the downloaded sdk.
 * Check the SDK project and click Finish.
@@ -36,15 +36,15 @@ Basic New Project Setup
 * Open Eclipse and create new Android project by selecting File->New->Android Project.
 * Type the name of the project, it can be anything you like, I'll name it NewProject.
 
-       ![IMG_Project1](https://github.com/chute/chute-tutorials/raw/master/Android/ProjectSetup/screenshots/IMG_Project1.png)
+       ![IMG_Project1](https://github.com/chute/chute-tutorials/raw/master/Android/Project%20Setup/screenshots/IMG_Project1.png)
   
 * Select build target. I'll use Android 2.1 API Level 7.  
  
-       ![IMG_Project2](https://github.com/chute/chute-tutorials/raw/master/Android/ProjectSetup/screenshots/IMG_Project2.png)
+       ![IMG_Project2](https://github.com/chute/chute-tutorials/raw/master/Android/Project%20Setup/screenshots/IMG_Project2.png)
   
 * Add a package name. The package name I added is: com.android.newproject
 
-       ![IMG_Project3](https://github.com/chute/chute-tutorials/raw/master/Android/ProjectSetup/screenshots/IMG_Project3.png)
+       ![IMG_Project3](https://github.com/chute/chute-tutorials/raw/master/Android/Project%20Setup/screenshots/IMG_Project3.png)
   
 Adding the SDK library to your project
 ====
@@ -55,7 +55,7 @@ Adding the SDK library to your project
 
 * Select Project -> Properties -> Android and add ChuteSDK as a library project.
 
-       ![IMG_Project4](https://github.com/chute/chute-tutorials/raw/master/Android/ProjectSetup/screenshots/IMG_Project4.png)
+       ![IMG_Project4](https://github.com/chute/chute-tutorials/raw/master/Android/Project%20Setup/screenshots/IMG_Project4.png)
   
     
 Android manifest setup

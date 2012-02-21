@@ -8,8 +8,8 @@ This tutorial will help you successfully log into your Facebook or Twitter accou
 Setup
 ====
 
-* Follow the ProjectSetup tutorial that can be found and downloaded 
-  [here](https://github.com/chute/chute-tutorials/tree/master/Android/ProjectSetup).
+* Follow the ProjectSetup tutorial that can be found and downloaded at  
+  [https://github.com/chute/chute-tutorials/tree/master/Android/Project%20Setup](https://github.com/chute/chute-tutorials/tree/master/Android/Project%20Setup).
   
 * Register the activity into the AndroidManifest.xml file
 

@@ -5,14 +5,14 @@ Introduction
 ImageLoader tutorial is a tutorial project that shows how to use the SDK ImageLoader. 
 This tutorial displays an image from SDcard, URL and Chute photo URL using the SDK ImageLoader.
 
-![IMG_IMAGELOADER1](https://github.com/chute/chute-tutorials/raw/master/Android/ImageLoaderTutorial/screenshots/IMG_ImageLoader1.png)![IMG_IMAGELOADER2](https://github.com/chute/chute-tutorials/raw/master/Android/ImageLoaderTutorial/screenshots/IMG_ImageLoader2.png)
+![IMG_IMAGELOADER1](https://github.com/chute/chute-tutorials/raw/master/Android/Image%20Loader%20Tutorial/screenshots/IMG_ImageLoader1.png)![IMG_IMAGELOADER2](https://github.com/chute/chute-tutorials/raw/master/Android/Image%20Loader%20Tutorial/screenshots/IMG_ImageLoader2.png)
 
 
 Setup
 ====
 
 * Follow the ProjectSetup tutorial that can be found and downloaded at  
-  [https://github.com/chute/chute-tutorials/tree/master/Android/ProjectSetup](https://github.com/chute/chute-tutorials/tree/master/Android/ProjectSetup) for a complete guide on how to setup the chute SDK.
+  [https://github.com/chute/chute-tutorials/tree/master/Android/Project%20Setup](https://github.com/chute/chute-tutorials/tree/master/Android/Project%20Setup) for a complete guide on how to setup the chute SDK.
   
 * Register the activities, services and the application class into the AndroidManifest.xml file:
 

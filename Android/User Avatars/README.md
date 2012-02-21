@@ -4,14 +4,14 @@ Introduction
 
 UserAvatars is an Android application which demonstrates how to create an avatar and upload it into a chute. This app includes Chute SDK library, searches for images on the device, displays the images in a grid view, crops the selected image from the grid, uploads it in a chute and displays it. 
 
-![IIMG_Useravatar1](https://github.com/chute/chute-tutorials/raw/master/Android/UserAvatars/screenshots/IIMG_Useravatar1.png)![IIMG_Useravatar2](https://github.com/chute/chute-tutorials/raw/master/Android/UserAvatars/screenshots/IIMG_Useravatar2.png)![IIMG_Useravatar3](https://github.com/chute/chute-tutorials/raw/master/Android/UserAvatars/screenshots/IIMG_Useravatar3.png)![IIMG_Useravatar4](https://github.com/chute/chute-tutorials/raw/master/Android/UserAvatars/screenshots/IIMG_Useravatar4.png)
+![IIMG_Useravatar1](https://github.com/chute/chute-tutorials/raw/master/Android/User%20Avatars/screenshots/IIMG_Useravatar1.png)![IIMG_Useravatar2](https://github.com/chute/chute-tutorials/raw/master/Android/User%20Avatars/screenshots/IIMG_Useravatar2.png)![IIMG_Useravatar3](https://github.com/chute/chute-tutorials/raw/master/Android/User%20Avatars/screenshots/IIMG_Useravatar3.png)![IIMG_Useravatar4](https://github.com/chute/chute-tutorials/raw/master/Android/User%20Avatars/screenshots/IIMG_Useravatar4.png)
 
 
 Setup
 ====
 
 * Follow the ProjectSetup tutorial that can be found and downloaded at  
-  [https://github.com/chute/chute-tutorials/tree/master/Android/ProjectSetup](https://github.com/chute/chute-tutorials/tree/master/Android/ProjectSetup).
+  [https://github.com/chute/chute-tutorials/tree/master/Android/Project%20Setup](https://github.com/chute/chute-tutorials/tree/master/Android/Project%20Setup).
   
 * Copy the resources into your project.
 
