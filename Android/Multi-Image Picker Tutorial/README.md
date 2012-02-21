@@ -10,7 +10,7 @@ Setup
 ====
 
 * Follow the ProjectSetup tutorial that can be found and downloaded at  
-  [https://github.com/chute/chute-tutorials/tree/master/Android/ProjectSetup](https://github.com/chute/chute-tutorials/tree/master/Android/ProjectSetup) for a complete guide on how to setup the chute SDK.
+  [https://github.com/chute/chute-tutorials/tree/master/Android/Project%20Setup](https://github.com/chute/chute-tutorials/tree/master/Android/Project%20Setup) for a complete guide on how to setup the chute SDK.
   
 * Add the Multi-Image Picker component to your project by either copying all the resources and source code or by adding it as an Android Library project.
   Multi-Image Picker component can be found and downloaded at [https://github.com/chute/Chute-Android-Kitchen-Sink/tree/master/Components/Multi-Image%20Picker](https://github.com/chute/Chute-Android-Kitchen-Sink/tree/master/Components/Multi-Image%20Picker).

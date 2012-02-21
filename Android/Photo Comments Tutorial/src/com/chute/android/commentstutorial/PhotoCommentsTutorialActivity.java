@@ -1,7 +1,7 @@
 package com.chute.android.commentstutorial;
 
 import com.chute.android.comments.util.Constants;
-import com.chute.android.comments.util.intent.CommentsActivityIntentWrapper;
+import com.chute.android.comments.util.intent.PhotoCommentsActivityIntentWrapper;
 import com.chute.android.comments.util.intent.MainActivityIntentWrapper;
 import com.chute.sdk.model.GCAccountStore;
 
@@ -13,9 +13,9 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class CommentsTutorialActivity extends Activity implements OnClickListener{
+public class PhotoCommentsTutorialActivity extends Activity implements OnClickListener{
 	 @SuppressWarnings("unused")
-	    private static final String TAG = CommentsTutorialActivity.class.getSimpleName();
+	    private static final String TAG = PhotoCommentsTutorialActivity.class.getSimpleName();
 
 	    @Override
 	    protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +32,7 @@ public class CommentsTutorialActivity extends Activity implements OnClickListene
 
 	    @Override
 	    public void onClick(View v) {
-		CommentsActivityIntentWrapper wrapper = new CommentsActivityIntentWrapper(this);
+		PhotoCommentsActivityIntentWrapper wrapper = new PhotoCommentsActivityIntentWrapper(this);
 		wrapper.setChuteId("1946"); // Replace with chute id
 		wrapper.setAssetId("5867"); // Replace with asset id for which to enter
 					    // and
