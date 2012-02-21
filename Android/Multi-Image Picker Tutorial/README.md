@@ -4,7 +4,7 @@ Introduction
 Multi-Image Picker Tutorial is a tutorial project that shows how to use the Multi-Image Picker component. It contains Chute SDK library as well as Multi-Image Picker library. 
 This tutorial demonstrates how to make GCLocalAssetCollection of assets. Asset represents any photo managed by Chute. This app searches for images on the device, displays the images in a grid and creates GCLocalAssetCollection out of the selected images in the grid.
 
-![IMG_LocalImagePickerTutorial1](https://github.com/chute/chute-tutorials/raw/master/Android/LocalImagePickerTutorial/screenshots/IMG_LocalImagePickerTutorial1.png)![IMG_LocalImagePickerTutorial2](https://github.com/chute/chute-tutorials/raw/master/Android/LocalImagePickerTutorial/screenshots/IMG_LocalImagePickerTutorial2.png)![IMG_LocalImagePickerTutorial3](https://github.com/chute/chute-tutorials/raw/master/Android/LocalImagePickerTutorial/screenshots/IMG_LocalImagePickerTutorial3.png)
+![image1](https://github.com/chute/chute-tutorials/raw/master/Android/Multi-Image%20Picker%20Tutorial/screenshots/1.png)![image2](https://github.com/chute/chute-tutorials/raw/master/Android/Multi-Image%20Picker%20Tutorial/screenshots/2.png)![image3](https://github.com/chute/chute-tutorials/raw/master/Android/Multi-Image%20Picker%20Tutorial/screenshots/3.png)
 
 Setup
 ====
@@ -13,7 +13,7 @@ Setup
   [https://github.com/chute/chute-tutorials/tree/master/Android/Project%20Setup](https://github.com/chute/chute-tutorials/tree/master/Android/Project%20Setup) for a complete guide on how to setup the chute SDK.
   
 * Add the Multi-Image Picker component to your project by either copying all the resources and source code or by adding it as an Android Library project.
-  Multi-Image Picker component can be found and downloaded at [https://github.com/chute/Chute-Android-Kitchen-Sink/tree/master/Components/Multi-Image%20Picker](https://github.com/chute/Chute-Android-Kitchen-Sink/tree/master/Components/Multi-Image%20Picker).
+  Multi-Image Picker component can be found and downloaded at [https://github.com/chute/chute-android-components/tree/master/Multi-Image%20Picker](https://github.com/chute/chute-android-components/tree/master/Multi-Image%20Picker).
 
 * The next thing you need to do is register the activities and the application class into the AndroidManifest.xml file:
 
@@ -44,9 +44,9 @@ Setup
 Usage
 ====
 
-##LocalImagePickerTutorialApp.java 
+##MultiImagePickerTutorialApp.java 
 This class is the extended Application class. It is registered inside the "application" tag in the manifest and is used for initializing the utility classes used in the component.
-LocalImagePickerTutorialApp can extend MultiImagePickerApp like shown in this tutorial:
+MultiImagePickerTutorialApp can extend MultiImagePickerApp like shown in this tutorial:
 
 <pre><code>
 public class MultiImagePickerTutorialApp extends MultiImagePickerApp {
@@ -89,7 +89,7 @@ public class MultiImagePickerTutorialApp extends Application {
 
 MultiImagePickerTutorialApp can also be neglected by registering MultiImagePickerApp into the manifest instead of MultiImagePickerTutoiralApp if the developer doesn't have the need for extending the Application class.
  
-##LocalImagePickerTutorialActivity.java 
+##MultiImagePickerTutorialActivity.java 
 This class is an Activity class that contains a "Select Photos" button. When the button is clicked, ChoosePhotosActivityIntentWrapper starts MultiImagePickerActivity. ChoosePhotosActivityIntentWrapper is a wrapper class that wraps the parameters needed for the intent.
 
 <pre><code>
