@@ -37,7 +37,7 @@ public class CommentsTutorialActivity extends Activity implements OnClickListene
 		wrapper.setAssetId("5867"); // Replace with asset id for which to enter
 					    // and
 					    // view comments
-		wrapper.setChuteName("Sample Name"); // Name of the chute
+		wrapper.setChuteName("Chute Name"); // Name of the chute
 		wrapper.startActivityForResult(this, Constants.ACTIVITY_FOR_RESULT_KEY);
 	    }
 

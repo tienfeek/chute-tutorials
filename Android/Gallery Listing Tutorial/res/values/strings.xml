@@ -3,6 +3,6 @@
 
     <string name="hello">Hello World, ChuteListingTutorialActivity!</string>
     <string name="app_name">ChuteListingTutorial</string>
-    <string name="show_list">Show GCChuteList</string>
+    <string name="show_list">Show Gallery List</string>
 
 </resources>

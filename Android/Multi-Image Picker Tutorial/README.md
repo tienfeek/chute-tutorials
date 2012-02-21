@@ -1,7 +1,7 @@
 Introduction
 ====
 
-LocalImageLoaderTutorial is a tutorial project that shows how to use the GCMultiImagePicker component. It contains Chute SDK library as well as GCMultiImagePicker library. 
+Multi-Image Picker Tutorial is a tutorial project that shows how to use the Multi-Image Picker component. It contains Chute SDK library as well as Multi-Image Picker library. 
 This tutorial demonstrates how to make GCLocalAssetCollection of assets. Asset represents any photo managed by Chute. This app searches for images on the device, displays the images in a grid and creates GCLocalAssetCollection out of the selected images in the grid.
 
 ![IMG_LocalImagePickerTutorial1](https://github.com/chute/chute-tutorials/raw/master/Android/LocalImagePickerTutorial/screenshots/IMG_LocalImagePickerTutorial1.png)![IMG_LocalImagePickerTutorial2](https://github.com/chute/chute-tutorials/raw/master/Android/LocalImagePickerTutorial/screenshots/IMG_LocalImagePickerTutorial2.png)![IMG_LocalImagePickerTutorial3](https://github.com/chute/chute-tutorials/raw/master/Android/LocalImagePickerTutorial/screenshots/IMG_LocalImagePickerTutorial3.png)
@@ -12,8 +12,8 @@ Setup
 * Follow the ProjectSetup tutorial that can be found and downloaded at  
   [https://github.com/chute/chute-tutorials/tree/master/Android/ProjectSetup](https://github.com/chute/chute-tutorials/tree/master/Android/ProjectSetup) for a complete guide on how to setup the chute SDK.
   
-* Add the GCMultiImagePicker component to your project by either copying all the resources and source code or by adding it as an Android Library project.
-  GCMultiImagePicker component can be found and downloaded at [https://github.com/chute/Chute-Android-Kitchen-Sink/tree/master/Components/MultiImagePicker](https://github.com/chute/Chute-Android-Kitchen-Sink/tree/master/Components/MultiImagePicker).
+* Add the Multi-Image Picker component to your project by either copying all the resources and source code or by adding it as an Android Library project.
+  Multi-Image Picker component can be found and downloaded at [https://github.com/chute/Chute-Android-Kitchen-Sink/tree/master/Components/Multi-Image%20Picker](https://github.com/chute/Chute-Android-Kitchen-Sink/tree/master/Components/Multi-Image%20Picker).
 
 * The next thing you need to do is register the activities and the application class into the AndroidManifest.xml file:
 
@@ -49,7 +49,7 @@ This class is the extended Application class. It is registered inside the "appli
 LocalImagePickerTutorialApp can extend MultiImagePickerApp like shown in this tutorial:
 
 <pre><code>
-public class LocalImagePickerTutorialApp extends MultiImagePickerApp {
+public class MultiImagePickerTutorialApp extends MultiImagePickerApp {
 
 }
 </code></pre>
@@ -59,7 +59,7 @@ This way the developer can use his own methods and code inside the Application c
 If the developer decides to extend the Application class instead of MultiImagePickerApp he must copy the all the code below:
 
 <pre><code>
-public class LocalImagePickerTutorialApp extends Application {
+public class MultiImagePickerTutorialApp extends Application {
     private static ImageLoader createImageLoader(Context context) {
 	ImageLoader imageLoader = new ImageLoader(context, R.drawable.placeholder);
 	imageLoader.setRequiredSize((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
@@ -87,7 +87,7 @@ public class LocalImagePickerTutorialApp extends Application {
 }
 </code></pre>
 
-LocalImagePickerTutorialApp can also be neglected by registering MultiImagePickerApp into the manifest instead of LocalImagePickerTutoiralApp if the developer doesn't have the need for extending the Application class.
+MultiImagePickerTutorialApp can also be neglected by registering MultiImagePickerApp into the manifest instead of MultiImagePickerTutoiralApp if the developer doesn't have the need for extending the Application class.
  
 ##LocalImagePickerTutorialActivity.java 
 This class is an Activity class that contains a "Select Photos" button. When the button is clicked, ChoosePhotosActivityIntentWrapper starts MultiImagePickerActivity. ChoosePhotosActivityIntentWrapper is a wrapper class that wraps the parameters needed for the intent.
