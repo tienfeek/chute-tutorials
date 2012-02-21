@@ -1,6 +1,6 @@
 package com.chute.android.chutelistingtutorial;
 
-import com.chute.android.gcchutelisting.util.intent.MainActivityIntentWrapper;
+import com.chute.android.gcchutelisting.util.intent.GalleryListingActivityIntentWrapper;
 import com.chute.sdk.model.GCAccountStore;
 
 import android.app.Activity;
@@ -9,11 +9,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class ChuteListingTutorialActivity extends Activity implements OnClickListener{
+public class GalleryListingTutorialActivity extends Activity implements OnClickListener{
 	 /** Called when the activity is first created. */
 
     @SuppressWarnings("unused")
-    private static final String TAG = ChuteListingTutorialActivity.class.getSimpleName();
+    private static final String TAG = GalleryListingTutorialActivity.class.getSimpleName();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,7 @@ public class ChuteListingTutorialActivity extends Activity implements OnClickLis
 
     @Override
     public void onClick(View v) {
-	final MainActivityIntentWrapper wrapper = new MainActivityIntentWrapper(this);
+	final GalleryListingActivityIntentWrapper wrapper = new GalleryListingActivityIntentWrapper(this);
 	wrapper.startActivity(this);
     }
 }

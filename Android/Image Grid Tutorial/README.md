@@ -121,7 +121,7 @@ chute.assets(getApplicationContext(), new AssetCollectionCallback()).executeAsyn
 </code></pre>
 
 The GCChutes.assets() has GCHttpCallback<GCChuteModel> callback which returns GCChuteModel as a result in its onSuccess() method.
-The GCAssetCollection is retrieved from the GCChuteModel and passed to the adapter which starts loading the GridView after the AsyncTask id finished. 
+The GCAssetCollection is retrieved from the GCChuteModel and passed to the adapter which starts loading the GridView after the AsyncTask is finished. 
 <pre><code>
 // Callback which returns a collection of assets for a given chuteId
     private final class AssetCollectionCallback implements GCHttpCallback<GCChuteModel> {
