@@ -4,7 +4,7 @@ Introduction
 Gallery Listing Tutorial is a tutorial project that shows how to use the Gallery Listing component. It contains Chute SDK library as well as Gallery Listing library.
 This tutorial demonstrates a list of chutes. Chute represents a container for Assets. An Asset is any photo managed by Chute. This app takes the current user ID and displays GCChuteCollection. 
 
-![image1] 
+![image1](https://github.com/chute/chute-tutorials/raw/master/Android/Gallery%20Listing%20Tutorial/screenshots/1.png) ![image2](https://github.com/chute/chute-tutorials/raw/master/Android/Gallery%20Listing%20Tutorial/screenshots/2.png) 
 
 Setup
 ====
@@ -13,7 +13,7 @@ Setup
   [https://github.com/chute/chute-tutorials/tree/master/Android/Project%20Setup](https://github.com/chute/chute-tutorials/tree/master/Android/Project%20Setup) for a complete guide on how to setup the chute SDK.
   
 * Add the Gallery Listing component to your project by either copying all the resources and source code or by adding it as an Android Library project.
-  Gallery Listing component can be found and downloaded at [https://github.com/chute/Chute-Android-Kitchen-Sink/tree/master/Components/Multi-Image%20Picker](https://github.com/chute/Chute-Android-Kitchen-Sink/tree/master/Components/Multi-Image%20Picker).
+  Gallery Listing component can be found and downloaded at [https://github.com/chute/chute-android-components/tree/master/Gallery%20Listing](https://github.com/chute/chute-android-components/tree/master/Gallery%20Listing).
 
 * The next thing you need to do is register the activities and the application class into the AndroidManifest.xml file:
 
