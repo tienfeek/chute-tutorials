@@ -4,7 +4,7 @@ Introduction
 Image Grid Tutorial is a tutorial project that shows how to use the Image Grid component. It contains Chute SDK library as well as Image Grid library.
 This tutorial demonstrates a grid of assets. Asset represents any photo managed by Chute. This app takes a random chute ID and displays GCAssetCollection for the chosen chute. Chute represents a container for assets. 
 
-![image1] 
+![image1](https://github.com/chute/chute-tutorials/raw/master/Android/Image%20Grid%20Tutorial/screenshots/1.png)![image2](https://github.com/chute/chute-tutorials/raw/master/Android/Image%20Grid%20Tutorial/screenshots/2.png) 
 
 Setup
 ====
@@ -13,7 +13,7 @@ Setup
   [https://github.com/chute/chute-tutorials/tree/master/Android/Project%20Setup](https://github.com/chute/chute-tutorials/tree/master/Android/Project%20Setup) for a complete guide on how to setup the chute SDK.
   
 * Add the Image Grid component to your project by either copying all the resources and source code or by adding it as an Android Library project.
-  Image Grid component can be found and downloaded at [https://github.com/chute/Chute-Android-Kitchen-Sink/tree/master/Components/Multi-Image%20Picker](https://github.com/chute/Chute-Android-Kitchen-Sink/tree/master/Components/Multi-Image%20Picker).
+  Image Grid component can be found and downloaded at [https://github.com/chute/chute-android-components/tree/master/Image%20Grid](https://github.com/chute/chute-android-components/tree/master/Image%20Grid).
 
 * The next thing you need to do is register the activities and the application class into the AndroidManifest.xml file:
 
