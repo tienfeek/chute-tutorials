@@ -33,6 +33,7 @@ import com.chute.sdk.model.GCHttpRequestParameters;
 import com.chute.sdk.model.GCLocalAssetModel;
 import com.chute.sdk.parsers.GCCreateParcelsUploadsListParser;
 import com.chute.sdk.utils.GCUtils;
+import com.darko.imagedownloader.FileCache;
 import com.darko.imagedownloader.ImageLoader;
 
 public class UserAvatarActivity extends Activity {
@@ -95,7 +96,7 @@ public class UserAvatarActivity extends Activity {
 	    final int width = 200;
 	    final int height = 200;
 
-//	    tempFileForCroppedImage = FileCache.getFile(data.getData().getPath());
+	    tempFileForCroppedImage = FileCache.getFile(data.getData().getPath());
 	    tempFileForCroppedImage.deleteOnExit();
 	    Log.d(TAG, tempFileForCroppedImage.getPath());
 	    Intent intent = new Intent(this, CropImage.class);
