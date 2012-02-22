@@ -4,6 +4,7 @@ Introduction
 Photo Comments Tutorial is a tutorial project that shows how to use the Photo Comments component. It contains Chute SDK library as well as Photo Comments library. 
 This tutorial demonstrates how to add comments on an Asset. Asset represents any photo managed by Chute. 
 
+![image1](https://github.com/chute/chute-tutorials/raw/master/Android/Photo%20Comments%20Tutorial/screenshots/1.png)![image2](https://github.com/chute/chute-tutorials/raw/master/Android/Photo%20Comments%20Tutorial/screenshots/2.png)![image3](https://github.com/chute/chute-tutorials/raw/master/Android/Photo%20Comments%20Tutorial/screenshots/3.png)
 
 Setup
 ====
