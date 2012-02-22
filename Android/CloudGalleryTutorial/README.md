@@ -4,6 +4,7 @@ Introduction
 Cloud Gallery Tutorial is a tutorial project that shows how to use the Cloud Gallery component. It contains Chute SDK library as well as Cloud Gallery library. 
 This tutorial demonstrates how to display Assets in a gallery. Asset represents any photo managed by Chute. 
 
+![image1](https://github.com/chute/chute-tutorials/raw/master/Android/CloudGalleryTutorial/screenshots/1.png)![image2](https://github.com/chute/chute-tutorials/raw/master/Android/CloudGalleryTutorial/screenshots/2.png)
 
 Setup
 ====
@@ -12,7 +13,7 @@ Setup
   [https://github.com/chute/chute-tutorials/tree/master/Android/Project%20Setup](https://github.com/chute/chute-tutorials/tree/master/Android/Project%20Setup) for a complete guide on how to setup the chute SDK.
   
 * Add the Cloud Gallery component to your project by either copying all the resources and source code or by adding it as an Android Library project.
-  Photo Comments component can be found and downloaded at [https://github.com/chute/chute-android-components/tree/master/Cloud%20Gallery](https://github.com/chute/chute-android-components/tree/master/Cloud%20Gallery).
+  Cloud Gallery component can be found and downloaded at [https://github.com/chute/chute-android-components/tree/master/Cloud%20Gallery](https://github.com/chute/chute-android-components/tree/master/Cloud%20Gallery).
 
 * The next thing you need to do is register the activities and the application class into the AndroidManifest.xml file:
 
