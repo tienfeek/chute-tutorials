@@ -34,7 +34,7 @@ public class PhotoCommentsTutorialActivity extends Activity implements OnClickLi
 	    public void onClick(View v) {
 		PhotoCommentsActivityIntentWrapper wrapper = new PhotoCommentsActivityIntentWrapper(this);
 		wrapper.setChuteId("1946"); // Replace with chute id
-		wrapper.setAssetId("5867"); // Replace with asset id for which to enter
+		wrapper.setAssetId("5868"); // Replace with asset id for which to enter
 					    // and
 					    // view comments
 		wrapper.setChuteName("Chute Name"); // Name of the chute
