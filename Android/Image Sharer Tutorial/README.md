@@ -4,6 +4,7 @@ Introduction
 Image Sharer Tutorial is a tutorial project that shows how to use the Image Sharer component. It contains Chute SDK library as well as Image Sharer library. 
 This tutorial demonstrates how to share a Chute or Asset with Facebook, Twitter or via Email.
 
+![image1](https://github.com/chute/chute-tutorials/raw/master/Android/Image%20Sharer%20Tutorial/screenshots/1.png)![image2](https://github.com/chute/chute-tutorials/raw/master/Android/Image%20Sharer%20Tutorial/screenshots/2.png)![image3](https://github.com/chute/chute-tutorials/raw/master/Android/Image%20Sharer%20Tutorial/screenshots/3.png)![image4](https://github.com/chute/chute-tutorials/raw/master/Android/Image%20Sharer%20Tutorial/screenshots/4.png)![image5](https://github.com/chute/chute-tutorials/raw/master/Android/Image%20Sharer%20Tutorial/screenshots/5.png)
 
 Setup
 ====
