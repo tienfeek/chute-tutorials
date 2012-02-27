@@ -124,6 +124,31 @@ private final class AssetCollectionCallback implements
 	}
 </code></pre>
 
+The GalleryViewFlipper contains GalleryCallback interface which can be used for easy manipulation with assets.
+<pre><code>
+private final class NewGalleryCallback implements GalleryCallback {
+
+		@Override
+		public void triggered(GestureEvent event) {
+			// TODO Auto-generated method stub
+		}
+
+		@Override
+		public void onPhotoChanged(int index, GCAssetModel asset) {
+		}
+
+		@Override
+		public void onPhotoChangeError(PhotoChangeErrorType error) {
+			// TODO Auto-generated method stub
+
+		}
+
+	}
+</code></pre>
+The triggered() method can perform actions on different gestures using the GestureEvent object. The gestures that are listed are: single tap, double tap, swipe left, swipe right, swipe top and swipe bottom.
+The onPhotoChanged() method can be used for various actions that include asset position and GCAssetModel.
+The onPhotoChangeError() method can be used for handling errors such as: no previous item, no next item and general error.  
+
 ## Request execution and callback
 
  Every request can be either:
