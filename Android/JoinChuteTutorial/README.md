@@ -3,6 +3,7 @@ Introduction
 
 Join Chute Tutorial is a tutorial project that shows how to join a chute and how to search for chutes. It contains Chute SDK Library and is targeted towards android developers who want to make their applications social. 
 
+![image1](https://github.com/chute/chute-tutorials/raw/master/Android/JoinChuteTutorial/screenshots/1.png)![image2](https://github.com/chute/chute-tutorials/raw/master/Android/JoinChuteTutorial/screenshots/2.png)![image3](https://github.com/chute/chute-tutorials/raw/master/Android/JoinChuteTutorial/screenshots/3.png)
 
 Setup
 ====
