@@ -12,25 +12,25 @@ import com.chute.sdk.model.GCChuteModel;
 import com.chute.sdk.model.GCHttpRequestParameters;
 import com.chute.sdk.utils.GCConstants;
 
-public class RollsSingleton extends Observable {
+public class ChutesSingleton extends Observable {
 	@SuppressWarnings("unused")
-	private static final String TAG = RollsSingleton.class.getSimpleName();
+	private static final String TAG = ChutesSingleton.class.getSimpleName();
 
-	private static RollsSingleton instance;
+	private static ChutesSingleton instance;
 	public final GCChuteCollection collection;
 	private final HashMap<String, Boolean> refreshAssetsMap = new HashMap<String, Boolean>();
 	private final Context context;
 
-	private RollsSingleton(Context context) {
+	private ChutesSingleton(Context context) {
 		super();
 		this.context = context;
 		collection = new GCChuteCollection();
 		refreshChutes();
 	}
 
-	public static synchronized RollsSingleton getInstance(Context context) {
+	public static synchronized ChutesSingleton getInstance(Context context) {
 		if (instance == null) {
-			instance = new RollsSingleton(context);
+			instance = new ChutesSingleton(context);
 		}
 		return instance;
 	}

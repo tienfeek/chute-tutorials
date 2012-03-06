@@ -2,7 +2,7 @@ package com.chute.android.createchutetutorial.app;
 
 import com.chute.android.createchutetutorial.R;
 import com.chute.android.createchutetutorial.intent.ChutePasswordActivityIntentWrapper;
-import com.chute.android.createchutetutorial.model.RollsSingleton;
+import com.chute.android.createchutetutorial.model.ChutesSingleton;
 import com.chute.sdk.api.GCHttpCallback;
 import com.chute.sdk.api.chute.GCChutes;
 import com.chute.sdk.model.GCChuteModel;
@@ -30,8 +30,12 @@ public class ChutePasswordActivity extends Activity {
 		ChutePasswordActivityIntentWrapper wrapper = new ChutePasswordActivityIntentWrapper(
 				getIntent());
 
-		chuteName.setText("Chute Name: " + wrapper.getChuteName());
-		chutePassword.setText("Chute Password: " + wrapper.getChutePassword());
+		chuteName.setText(getApplicationContext().getResources().getString(
+				R.string.chute_name) + " "
+				+ wrapper.getChuteName());
+		chutePassword.setText(getApplicationContext().getResources().getString(
+				R.string.chute_password) + " "
+				+ wrapper.getChutePassword());
 
 		chute.setName(wrapper.getChuteName());
 		chute.setPassword(wrapper.getChutePassword());
@@ -47,29 +51,39 @@ public class ChutePasswordActivity extends Activity {
 
 		@Override
 		public void onSuccess(GCChuteModel responseData) {
-			RollsSingleton.getInstance(getApplicationContext()).addChute(
+			ChutesSingleton.getInstance(getApplicationContext()).addChute(
 					responseData);
-			Toast.makeText(getApplicationContext(), "Chute Created!",
-					Toast.LENGTH_SHORT).show();
+			Toast.makeText(
+					getApplicationContext(),
+					getApplicationContext().getResources().getString(
+							R.string.chute_created), Toast.LENGTH_SHORT).show();
 		}
 
 		@Override
 		public void onHttpException(GCHttpRequestParameters params,
 				Throwable exception) {
-			// TODO Auto-generated method stub
-
+			Toast.makeText(
+					getApplicationContext(),
+					getApplicationContext().getResources().getString(
+							R.string.http_exception), Toast.LENGTH_SHORT)
+					.show();
 		}
 
 		@Override
 		public void onHttpError(int responseCode, String statusMessage) {
-			// TODO Auto-generated method stub
-
+			Toast.makeText(
+					getApplicationContext(),
+					getApplicationContext().getResources().getString(
+							R.string.http_error), Toast.LENGTH_SHORT).show();
 		}
 
 		@Override
 		public void onParserException(int responseCode, Throwable exception) {
-			// TODO Auto-generated method stub
-
+			Toast.makeText(
+					getApplicationContext(),
+					getApplicationContext().getResources().getString(
+							R.string.parsing_exception), Toast.LENGTH_SHORT)
+					.show();
 		}
 
 	}

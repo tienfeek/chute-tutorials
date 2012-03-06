@@ -6,6 +6,7 @@ import com.chute.android.createchutetutorial.R.id;
 import com.chute.android.createchutetutorial.R.layout;
 import com.chute.android.createchutetutorial.intent.ChuteBasicActivityIntentWrapper;
 import com.chute.android.createchutetutorial.intent.ChutePasswordActivityIntentWrapper;
+import com.chute.android.createchutetutorial.intent.ChutePermissionsActivityIntentWrapper;
 import com.chute.sdk.model.GCAccountStore;
 
 import android.app.Activity;
@@ -63,7 +64,7 @@ public class CreateChuteTutorialActivity extends Activity {
 			final ChutePasswordActivityIntentWrapper wrapper = new ChutePasswordActivityIntentWrapper(
 					CreateChuteTutorialActivity.this);
 			wrapper.setChuteName(Constants.PASSWORD_CHUTE_NAME);
-			wrapper.setChutePassword(Constants.PASSWORD_NAME);
+			wrapper.setChutePassword(Constants.PASSWORD);
 			wrapper.startActivity(CreateChuteTutorialActivity.this);
 		}
 
@@ -74,8 +75,11 @@ public class CreateChuteTutorialActivity extends Activity {
 
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
-
+			ChutePermissionsActivityIntentWrapper wrapper = new ChutePermissionsActivityIntentWrapper(
+					CreateChuteTutorialActivity.this);
+			wrapper.setChuteName(Constants.PERMISSIONS_CHUTE_NAME);
+			wrapper.setChutePassword(Constants.PASSWORD);
+			wrapper.startActivity(CreateChuteTutorialActivity.this);
 		}
 
 	}
