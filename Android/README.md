@@ -1,5 +1,4 @@
 
-
 Introduction
 ====
 
@@ -45,25 +44,6 @@ Shows how to use the Social Gallery component.
 
 ## Image Loader Tutorial
 Shows how to use the SDK ImageLoader.
-
-
-Key Concepts
-========
-
-## Asset
-Any photo managed by Chute.
-
-## Chute
-A container for assets. Chutes can be nested inside of each other.
-
-## GCLocalAssetCollection
-Collection of GCLocalAssetModel.
-
-## GCAssetCollection
-Collection of GCAssetModel.
-
-## GCChuteCollection
-Collection of GCChuteModel.
 
 
 
