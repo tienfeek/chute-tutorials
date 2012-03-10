@@ -1,8 +1,7 @@
 package com.chute.android.createchutetutorial.app;
 
 import com.chute.android.createchutetutorial.R;
-import com.chute.android.createchutetutorial.intent.ChutePermissionsActivityIntentWrapper;
-import com.chute.android.createchutetutorial.model.ChutesSingleton;
+import com.chute.android.createchutetutorial.intent.ChuteActivityIntentWrapper;
 import com.chute.sdk.api.GCHttpCallback;
 import com.chute.sdk.api.chute.GCChutes;
 import com.chute.sdk.model.GCChuteModel;
@@ -14,12 +13,12 @@ import android.text.TextUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ChutePermissionsActivity extends Activity {
+public class ChuteActivity extends Activity {
 
-	public static final String TAG = ChutePermissionsActivity.class
+	public static final String TAG = ChuteActivity.class
 			.getSimpleName();
 	private final GCChuteModel chute = new GCChuteModel();
-	private ChutePermissionsActivityIntentWrapper wrapper;
+	private ChuteActivityIntentWrapper wrapper;
 	private TextView chuteName;
 	private TextView chutePassword;
 	private TextView permissionPhotos;
@@ -29,41 +28,27 @@ public class ChutePermissionsActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.chute_permissions);
+		setContentView(R.layout.chute_activity);
 
-		wrapper = new ChutePermissionsActivityIntentWrapper(getIntent());
+		wrapper = new ChuteActivityIntentWrapper(getIntent());
 
 		chuteName = (TextView) findViewById(R.id.txtName);
-		chuteName.setText(getApplicationContext().getResources().getString(
-				R.string.chute_name) + " "
-				+ wrapper.getChuteName());
-		chute.setName(wrapper.getChuteName());
-
 		chutePassword = (TextView) findViewById(R.id.txtPassword);
-		if (TextUtils.isEmpty(wrapper.getChutePassword())) {
-			chute.setPermissionView(2);
-		} else {
-			chutePassword.setText(getApplicationContext().getResources()
-					.getString(R.string.chute_password) + " "
-					+ wrapper.getChutePassword());
-			chute.setPassword(wrapper.getChutePassword());
-			chute.setPermissionView(4);
-		}
-
 		permissionPhotos = (TextView) findViewById(R.id.txtPermissionPhotos);
-		chute.setPermissionAddPhotos(2);
-		permissionPhotos.setText(getApplicationContext().getResources()
-				.getString(R.string.permission_to_add_photos));
-
 		permissionMembers = (TextView) findViewById(R.id.txtPermissionMembers);
-		chute.setPermissionAddMembers(2);
-		permissionMembers.setText(getApplicationContext().getResources()
-				.getString(R.string.permission_to_add_members));
-
 		permissionComments = (TextView) findViewById(R.id.txtPermissionComments);
-		chute.setPermissionAddComments(2);
-		permissionComments.setText(getApplicationContext().getResources()
-				.getString(R.string.permission_to_wite_comments));
+
+		switch (wrapper.getChuteFlag()) {
+		case 0:
+			displayBasicChute();
+			break;
+		case 1:
+			displayPasswordChute();
+			break;
+		case 2:
+			displayPermissionsChute();
+			break;
+		}
 
 		GCChutes.createChute(getApplicationContext(), chute,
 				new ChutePermissionsCallback()).executeAsync();
@@ -75,8 +60,6 @@ public class ChutePermissionsActivity extends Activity {
 
 		@Override
 		public void onSuccess(GCChuteModel responseData) {
-			ChutesSingleton.getInstance(getApplicationContext()).addChute(
-					responseData);
 			Toast.makeText(
 					getApplicationContext(),
 					getApplicationContext().getResources().getString(
@@ -109,6 +92,59 @@ public class ChutePermissionsActivity extends Activity {
 							R.string.parsing_exception), Toast.LENGTH_SHORT)
 					.show();
 		}
+
+	}
+
+	public void displayBasicChute() {
+		chuteName.setText(getApplicationContext().getResources().getString(
+				R.string.chute_name)
+				+ " " + wrapper.getChuteName());
+
+		chute.setName(wrapper.getChuteName());
+		chute.setPermissionView(2); // without password
+	}
+
+	public void displayPasswordChute() {
+		chuteName.setText(getApplicationContext().getResources().getString(
+				R.string.chute_name)
+				+ " " + wrapper.getChuteName());
+		chutePassword.setText(getApplicationContext().getResources().getString(
+				R.string.chute_password)
+				+ " " + wrapper.getChutePassword());
+
+		chute.setName(wrapper.getChuteName());
+		chute.setPassword(wrapper.getChutePassword());
+		chute.setPermissionView(4);
+	}
+
+	public void displayPermissionsChute() {
+		chuteName.setText(getApplicationContext().getResources().getString(
+				R.string.chute_name)
+				+ " " + wrapper.getChuteName());
+		chute.setName(wrapper.getChuteName());
+
+		if (TextUtils.isEmpty(wrapper.getChutePassword())) {
+			chute.setPermissionView(2);
+		} else {
+			chutePassword.setText(getApplicationContext().getResources()
+					.getString(R.string.chute_password)
+					+ " "
+					+ wrapper.getChutePassword());
+			chute.setPassword(wrapper.getChutePassword());
+			chute.setPermissionView(4);
+		}
+
+		chute.setPermissionAddPhotos(2);
+		permissionPhotos.setText(getApplicationContext().getResources()
+				.getString(R.string.permission_to_add_photos));
+
+		chute.setPermissionAddMembers(2);
+		permissionMembers.setText(getApplicationContext().getResources()
+				.getString(R.string.permission_to_add_members));
+
+		chute.setPermissionAddComments(2);
+		permissionComments.setText(getApplicationContext().getResources()
+				.getString(R.string.permission_to_wite_comments));
 
 	}
 }

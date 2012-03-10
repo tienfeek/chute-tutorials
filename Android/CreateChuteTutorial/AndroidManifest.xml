@@ -23,9 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".app.ChuteBasicActivity" />
-        <activity android:name=".app.ChutePasswordActivity" />
-        <activity android:name=".app.ChutePermissionsActivity" />
+        <activity android:name=".app.ChuteActivity" />
         <activity
             android:name="com.chute.sdk.api.authentication.GCAuthenticationActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
