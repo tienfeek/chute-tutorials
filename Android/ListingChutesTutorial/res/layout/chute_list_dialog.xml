@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+  <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      android:id="@+id/dialogRelative"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:background="@drawable/background_menu" >
+  <LinearLayout
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/linearLayoutHolder"
+    android:layout_width="wrap_content"
+    android:layout_centerInParent="true">
+    <Button
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/buttonInvite" android:text="Invite" style="@style/buttonMenuGray" ></Button>
+    <Button
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/buttonDescription" android:text="Chute Description" style="@style/buttonMenuGray" ></Button>
+    <Button
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/buttonUpdate" android:text="Update" style="@style/buttonMenuGray" ></Button>
+    <Button
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/buttonDelete" android:text="Delete" style="@style/buttonMenuGray" ></Button>
+  </LinearLayout>
+</RelativeLayout>
