@@ -30,6 +30,9 @@
         <activity 
             android:theme="@android:style/Theme.Light.NoTitleBar"
             android:name=".app.ChuteInviteActivity" />
+        <activity 
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:name=".app.ChuteDescriptionActivity" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
