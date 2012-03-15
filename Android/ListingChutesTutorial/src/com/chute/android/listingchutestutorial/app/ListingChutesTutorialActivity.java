@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
@@ -50,6 +51,7 @@ public class ListingChutesTutorialActivity extends GalleryListingActivity {
 
 	public void showDialog(final GCChuteModel model) {
 		final Dialog dialog = new Dialog(this);
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		dialog.setContentView(R.layout.chute_list_dialog);
 		Button invite = (Button) dialog.findViewById(R.id.buttonInvite);
 
@@ -93,7 +95,7 @@ public class ListingChutesTutorialActivity extends GalleryListingActivity {
 
 			@Override
 			public void onClick(View v) {
-				model.setName("New name");
+				model.setName("new");
 				GCChutes.updateChute(getApplicationContext(), model,
 						new ChuteUpdateCallback()).executeAsync();
 				dialog.dismiss();

@@ -15,7 +15,8 @@
     <ListView
         android:id="@+id/listViewChuteInvite"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linearbuttons"
         android:fastScrollEnabled="true" >
 
         <!-- Preview: listitem=@layout/chute_invite_adapter -->
