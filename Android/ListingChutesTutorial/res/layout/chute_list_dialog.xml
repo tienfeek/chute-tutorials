@@ -13,18 +13,18 @@
     <Button
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
-      android:id="@+id/buttonInvite" android:text="Invite" style="@style/buttonMenuGray" ></Button>
+      android:id="@+id/buttonInvite" android:text="@string/btn_invite" style="@style/buttonMenuGray" ></Button>
     <Button
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
-      android:id="@+id/buttonDescription" android:text="Chute Description" style="@style/buttonMenuGray" ></Button>
+      android:id="@+id/buttonDescription" android:text="@string/btn_description" style="@style/buttonMenuGray" ></Button>
     <Button
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
-      android:id="@+id/buttonUpdate" android:text="Update" style="@style/buttonMenuGray" ></Button>
+      android:id="@+id/buttonUpdate" android:text="@string/btn_update" style="@style/buttonMenuGray" ></Button>
     <Button
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
-      android:id="@+id/buttonDelete" android:text="Delete" style="@style/buttonMenuGray" ></Button>
+      android:id="@+id/buttonDelete" android:text="@string/btn_delete" style="@style/buttonMenuGray" ></Button>
   </LinearLayout>
 </RelativeLayout>

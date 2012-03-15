@@ -109,8 +109,10 @@ public class ListingChutesTutorialActivity extends GalleryListingActivity {
 
 		@Override
 		public void onSuccess(GCChuteCollection responseData) {
-			Toast.makeText(getApplicationContext(), "Chute deleted!",
-					Toast.LENGTH_SHORT).show();
+			Toast.makeText(
+					getApplicationContext(),
+					getApplicationContext().getResources().getString(
+							R.string.chute_deleted), Toast.LENGTH_SHORT).show();
 		}
 
 		@Override
@@ -139,8 +141,10 @@ public class ListingChutesTutorialActivity extends GalleryListingActivity {
 
 		@Override
 		public void onSuccess(GCChuteModel responseData) {
-			Toast.makeText(getApplicationContext(), "Chute updated!",
-					Toast.LENGTH_SHORT).show();
+			Toast.makeText(
+					getApplicationContext(),
+					getApplicationContext().getResources().getString(
+							R.string.chute_updated), Toast.LENGTH_SHORT).show();
 		}
 
 		@Override

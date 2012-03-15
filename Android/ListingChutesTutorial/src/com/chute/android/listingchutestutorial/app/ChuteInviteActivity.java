@@ -71,7 +71,7 @@ public class ChuteInviteActivity extends Activity {
 				adapter.notifyDataSetChanged();
 			} catch (Exception e) {
 				Toast.makeText(getApplicationContext(),
-						"Error fetching contact list", Toast.LENGTH_SHORT)
+						getApplicationContext().getResources().getString(R.string.error_fetching_contact_list), Toast.LENGTH_SHORT)
 						.show();
 			}
 			super.onPostExecute(result);
@@ -121,7 +121,7 @@ public class ChuteInviteActivity extends Activity {
 
 		@Override
 		public void onSuccess(String responseData) {
-			Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.invite), Toast.LENGTH_SHORT).show();
 		}
 
 		@Override

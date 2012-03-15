@@ -12,79 +12,133 @@ public class ChuteDescriptionActivity extends Activity {
 
 	public static final String TAG = ChuteDescriptionActivity.class
 			.getSimpleName();
-	
+	private ChuteDescriptionActivityIntentWrapper wrapper;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.chute_description_activity);
-		
-		ChuteDescriptionActivityIntentWrapper wrapper = new ChuteDescriptionActivityIntentWrapper(getIntent());
+
+		wrapper = new ChuteDescriptionActivityIntentWrapper(getIntent());
+
+		init();
+	}
+
+	public void init() {
 		GCChuteModel model = wrapper.getChuteModel();
-		
+
 		TextView chuteId = (TextView) findViewById(R.id.chuteId);
-		chuteId.setText("ID : " + model.getId());
-		
+		chuteId.setText(getApplicationContext().getResources().getString(
+				R.string.id)
+				+ " " + model.getId());
+
 		TextView name = (TextView) findViewById(R.id.name);
-		name.setText("Name : " + model.getName());
-		
+		name.setText(getApplicationContext().getResources().getString(
+				R.string.name)
+				+ " " + model.getName());
+
 		TextView parcelId = (TextView) findViewById(R.id.parcelId);
-		parcelId.setText("Parcel ID : " + model.getRecentParcelId());
-		
+		parcelId.setText(getApplicationContext().getResources().getString(
+				R.string.parcel_id)
+				+ " " + model.getRecentParcelId());
+
 		TextView userId = (TextView) findViewById(R.id.userId);
-		userId.setText("User ID : " + model.getRecentUserId());
-		
+		userId.setText(getApplicationContext().getResources().getString(
+				R.string.user_id)
+				+ " " + model.getRecentUserId());
+
 		TextView password = (TextView) findViewById(R.id.password);
-		password.setText("Password : " + model.getPassword());
-		
+		password.setText(getApplicationContext().getResources().getString(
+				R.string.password)
+				+ " " + model.getPassword());
+
 		TextView user = (TextView) findViewById(R.id.user);
-		user.setText("User : " + model.getUser().toString());
-		
+		user.setText(getApplicationContext().getResources().getString(
+				R.string.user)
+				+ " " + model.getUser().toString());
+
 		TextView membersCount = (TextView) findViewById(R.id.membersCount);
-		membersCount.setText("Members : " + model.getMembersCount());
-		
+		membersCount.setText(getApplicationContext().getResources().getString(
+				R.string.members)
+				+ " " + model.getMembersCount());
+
 		TextView contributorsCount = (TextView) findViewById(R.id.contributorsCount);
-		contributorsCount.setText("Contributors : " + model.getContributorsCount());
-		
+		contributorsCount.setText(getApplicationContext().getResources()
+				.getString(R.string.contributors)
+				+ " "
+				+ model.getContributorsCount());
+
 		TextView recentCount = (TextView) findViewById(R.id.recentCount);
-		recentCount.setText("Recent : " + model.getRecentCount());
-		
+		recentCount.setText(getApplicationContext().getResources().getString(
+				R.string.recent)
+				+ " " + model.getRecentCount());
+
 		TextView createdAt = (TextView) findViewById(R.id.createdAt);
-		createdAt.setText("Created at : " + model.getCreatedAt());
-		
+		createdAt.setText(getApplicationContext().getResources().getString(
+				R.string.created_at)
+				+ " " + model.getCreatedAt());
+
 		TextView updatedAt = (TextView) findViewById(R.id.updatedAt);
-		updatedAt.setText("Updated at : " + model.getUpdatedAt());
-		
+		updatedAt.setText(getApplicationContext().getResources().getString(
+				R.string.updated_at)
+				+ " " + model.getUpdatedAt());
+
 		TextView assetCount = (TextView) findViewById(R.id.assetsCount);
-		assetCount.setText("Assets : " + model.getAssetsCount());
-		
+		assetCount.setText(getApplicationContext().getResources().getString(
+				R.string.assets)
+				+ " " + model.getAssetsCount());
+
 		TextView thumbUrl = (TextView) findViewById(R.id.thumbUrl);
-		thumbUrl.setText("Thumbnail url : " + model.getRecentThumbnailURL());
-		
+		thumbUrl.setText(getApplicationContext().getResources().getString(
+				R.string.thumb_url)
+				+ " " + model.getRecentThumbnailURL());
+
 		TextView shortcut = (TextView) findViewById(R.id.shortcut);
-		shortcut.setText("Shortcut : " + model.getId());
-		
+		shortcut.setText(getApplicationContext().getResources().getString(
+				R.string.shortcut)
+				+ " " + model.getId());
+
 		TextView permissionView = (TextView) findViewById(R.id.permissionView);
-		permissionView.setText("Permission view : " + model.getPermissionView());
-		
+		permissionView.setText(getApplicationContext().getResources()
+				.getString(R.string.permission_view)
+				+ " "
+				+ model.getPermissionView());
+
 		TextView permissionAddMembers = (TextView) findViewById(R.id.permissionAddMembers);
-		permissionAddMembers.setText("Permission to add members : " + model.getPermissionAddMembers());
-		
+		permissionAddMembers.setText(getApplicationContext().getResources()
+				.getString(R.string.permission_add_members)
+				+ " "
+				+ model.getPermissionAddMembers());
+
 		TextView permissionAddPhotos = (TextView) findViewById(R.id.permissionAddPhotos);
-		permissionAddPhotos.setText("Permission to add photos : " + model.getPermissionAddPhotos());
-		
+		permissionAddPhotos.setText(getApplicationContext().getResources()
+				.getString(R.string.permission_add_photos)
+				+ " "
+				+ model.getPermissionAddPhotos());
+
 		TextView permissionAddComments = (TextView) findViewById(R.id.permissionAddComments);
-		permissionAddComments.setText("Permission to add comments : " + model.getPermissionAddComments());
+		permissionAddComments.setText(getApplicationContext().getResources()
+				.getString(R.string.permission_add_comments)
+				+ " "
+				+ model.getPermissionAddComments());
 
 		TextView permissionModerateMembers = (TextView) findViewById(R.id.permissionModerateMembers);
-		permissionModerateMembers.setText("Permission to moderate members : " + model.getPermissionModerateMembers());
-		
+		permissionModerateMembers.setText(getApplicationContext()
+				.getResources().getString(R.string.permission_moderate_members)
+				+ " " + model.getPermissionModerateMembers());
+
 		TextView permissionModeratePhotos = (TextView) findViewById(R.id.permissionModeratePhotos);
-		permissionModeratePhotos.setText("Permission to moderate photos : " + model.getPermissionModeratePhotos());
-		
+		permissionModeratePhotos.setText(getApplicationContext().getResources()
+				.getString(R.string.permission_moderate_photos)
+				+ " "
+				+ model.getPermissionModeratePhotos());
+
 		TextView permissionModerateComments = (TextView) findViewById(R.id.permissionModerateComments);
-		permissionModerateComments.setText("Permission to moderate comments : " + model.getPermissionModerateComments());
-	
+		permissionModerateComments.setText(getApplicationContext()
+				.getResources()
+				.getString(R.string.permission_moderate_comments)
+				+ " " + model.getPermissionModerateComments());
+
 	}
-	
-	
+
 }
