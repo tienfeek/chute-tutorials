@@ -14,7 +14,7 @@ public class ImageLoaderTutorialApp extends Application {
 
 	private static ImageLoader createImageLoader(Context context) {
 		ImageLoader imageLoader = new ImageLoader(context,
-				R.drawable.placeholder);
+				R.drawable.placeholder_image_small);
 		imageLoader.setDefaultImageSize((int) TypedValue.applyDimension(
 				TypedValue.COMPLEX_UNIT_DIP, 75, context.getResources()
 						.getDisplayMetrics()));

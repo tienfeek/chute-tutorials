@@ -12,7 +12,7 @@ public class JoinChuteTutorialApp extends Application {
 	public static final String TAG = JoinChuteTutorialApp.class.getSimpleName();
 	
 	    private static ImageLoader createImageLoader(Context context) {
-		ImageLoader imageLoader = new ImageLoader(context, R.drawable.placeholder);
+		ImageLoader imageLoader = new ImageLoader(context, R.drawable.placeholder_image_small);
 		imageLoader.setDefaultImageSize((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
 			75, context.getResources().getDisplayMetrics()));
 		return imageLoader;

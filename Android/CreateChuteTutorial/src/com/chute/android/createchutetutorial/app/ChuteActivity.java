@@ -10,13 +10,13 @@ import com.chute.sdk.model.GCHttpRequestParameters;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class ChuteActivity extends Activity {
 
-	public static final String TAG = ChuteActivity.class
-			.getSimpleName();
+	public static final String TAG = ChuteActivity.class.getSimpleName();
 	private final GCChuteModel chute = new GCChuteModel();
 	private ChuteActivityIntentWrapper wrapper;
 	private TextView chuteName;
@@ -132,6 +132,7 @@ public class ChuteActivity extends Activity {
 					+ wrapper.getChutePassword());
 			chute.setPassword(wrapper.getChutePassword());
 			chute.setPermissionView(4);
+
 		}
 
 		chute.setPermissionAddPhotos(2);
@@ -147,4 +148,5 @@ public class ChuteActivity extends Activity {
 				.getString(R.string.permission_to_wite_comments));
 
 	}
+
 }
