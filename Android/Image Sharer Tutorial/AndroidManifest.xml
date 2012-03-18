@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.chute.android.gcshareview.app.ShareActivity"
+            android:name="com.chute.android.imagesharer.app.ShareActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.chute.sdk.api.authentication.GCAuthenticationActivity"

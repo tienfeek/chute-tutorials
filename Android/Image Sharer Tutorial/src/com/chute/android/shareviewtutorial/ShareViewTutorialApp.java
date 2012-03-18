@@ -1,6 +1,6 @@
 package com.chute.android.shareviewtutorial;
 
-import com.chute.android.gcshareview.app.ImageSharerApp;
+import com.chute.android.imagesharer.app.ImageSharerApp;
 
 
 public class ShareViewTutorialApp extends ImageSharerApp {

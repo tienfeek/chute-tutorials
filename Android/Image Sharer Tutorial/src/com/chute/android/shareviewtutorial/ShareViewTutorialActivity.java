@@ -1,7 +1,7 @@
 package com.chute.android.shareviewtutorial;
 
-import com.chute.android.gcshareview.intent.ShareActivityIntentWrapper;
-import com.chute.android.gcshareview.util.Constants;
+import com.chute.android.imagesharer.intent.ShareActivityIntentWrapper;
+import com.chute.android.imagesharer.util.Constants;
 
 import android.app.Activity;
 import android.os.Bundle;
