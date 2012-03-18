@@ -66,11 +66,12 @@ If the developer decides to extend the Application class instead of ImageGridApp
 <pre><code>
 public class ImageGridTutorialApp extends Application {
     private static ImageLoader createImageLoader(Context context) {
-	ImageLoader imageLoader = new ImageLoader(context, R.drawable.placeholder);
-	imageLoader.setRequiredSize((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-		75, context.getResources().getDisplayMetrics()));
-	return imageLoader;
-    }
+		ImageLoader imageLoader = new ImageLoader(context, R.drawable.placeholder_image_small);
+		imageLoader.setDefaultImageSize((int) TypedValue.applyDimension(
+				TypedValue.COMPLEX_UNIT_DIP, 75, context.getResources()
+						.getDisplayMetrics()));
+		return imageLoader;
+		}
 
     private ImageLoader mImageLoader;
 
