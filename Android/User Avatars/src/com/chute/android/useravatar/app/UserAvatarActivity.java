@@ -95,8 +95,8 @@ public class UserAvatarActivity extends Activity {
 	if (requestCode == SingleImagePickerIntentWrapper.ACTIVITY_REQUEST_CODE) {
 	    final int width = 200;
 	    final int height = 200;
-
-	    tempFileForCroppedImage = FileCache.getFile(data.getData().getPath());
+	    tempFileForCroppedImage = new FileCache(getApplicationContext()).getFile(data.getData()
+		    .getPath());
 	    tempFileForCroppedImage.deleteOnExit();
 	    Log.d(TAG, tempFileForCroppedImage.getPath());
 	    Intent intent = new Intent(this, CropImage.class);
