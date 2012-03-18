@@ -26,15 +26,15 @@ public class BasicFunctionalitiesDemoActivity extends Activity {
 	GCHearts
 	GCMembership
 	etc...
-	Each of these classes are located inside specific packages inside the api package in the chute sdk project
+	Each of these classes are located inside specific packages inside the api package in the chute sdk project.
 	
 	Each method returns an object implementing the HTTP request interface which has two methods:
-	executeAsync() allows the developer to execute the request asynchronosuly 
-	execute() allows the developer to execute the request in the current thread that call was made.
+	executeAsync() allows the developer to execute the request asynchronously; 
+	execute() allows the developer to execute the request in the current thread that the call was made.
 	
-	each call can be executed with a default parser that returns a chute-specific object or a custom one by adding a custom object implementing GCHttpResponseParser
+	Each call can be executed with a default parser that returns a chute-specific object or a custom one by adding a custom object implementing GCHttpResponseParser.
 	
-	the callback has 4 methods. one of those methods will be called according to the specific outcome of the request
+	The callback has 4 methods. One of those methods will be called according to the specific outcome of the request.
 	
 	*
 	*/
