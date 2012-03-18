@@ -1,8 +1,9 @@
 package com.chute.android.shareviewtutorial;
 
-import com.chute.android.gcshareview.app.GCShareViewApp;
+import com.chute.android.gcshareview.app.ImageSharerApp;
 
-public class ShareViewTutorialApp extends GCShareViewApp {
+
+public class ShareViewTutorialApp extends ImageSharerApp {
 
 	public static final String TAG = ShareViewTutorialApp.class.getSimpleName();
 }

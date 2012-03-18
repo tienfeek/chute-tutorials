@@ -53,7 +53,7 @@ This class is the extended Application class. It is registered inside the "appli
 ShareViewTutorialApp can extend GCShareViewApp like shown in this tutorial:
 
 <pre><code>
-public class ShareViewTutorialApp extends GCShareViewApp {
+public class ShareViewTutorialApp extends ImageSharerApp {
 
 }
 </code></pre>
