@@ -1,19 +1,15 @@
 package com.chute.android.createchutetutorial.app;
 
-import com.chute.android.createchutetutorial.Constants;
-import com.chute.android.createchutetutorial.R;
-import com.chute.android.createchutetutorial.R.id;
-import com.chute.android.createchutetutorial.R.layout;
-import com.chute.android.createchutetutorial.intent.ChuteBasicActivityIntentWrapper;
-import com.chute.android.createchutetutorial.intent.ChutePasswordActivityIntentWrapper;
-import com.chute.android.createchutetutorial.intent.ChutePermissionsActivityIntentWrapper;
-import com.chute.sdk.model.GCAccountStore;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+
+import com.chute.android.createchutetutorial.Constants;
+import com.chute.android.createchutetutorial.R;
+import com.chute.android.createchutetutorial.intent.ChuteActivityIntentWrapper;
+import com.chute.sdk.model.GCAccountStore;
 
 public class CreateChuteTutorialActivity extends Activity {
 
@@ -49,9 +45,10 @@ public class CreateChuteTutorialActivity extends Activity {
 
 		@Override
 		public void onClick(View v) {
-			final ChuteBasicActivityIntentWrapper wrapper = new ChuteBasicActivityIntentWrapper(
+			final ChuteActivityIntentWrapper wrapper = new ChuteActivityIntentWrapper(
 					CreateChuteTutorialActivity.this);
 			wrapper.setChuteName(Constants.BASIC_CHUTE_NAME);
+			wrapper.setChuteFlag(0);
 			wrapper.startActivity(CreateChuteTutorialActivity.this);
 		}
 
@@ -61,10 +58,11 @@ public class CreateChuteTutorialActivity extends Activity {
 
 		@Override
 		public void onClick(View v) {
-			final ChutePasswordActivityIntentWrapper wrapper = new ChutePasswordActivityIntentWrapper(
+			final ChuteActivityIntentWrapper wrapper = new ChuteActivityIntentWrapper(
 					CreateChuteTutorialActivity.this);
 			wrapper.setChuteName(Constants.PASSWORD_CHUTE_NAME);
 			wrapper.setChutePassword(Constants.PASSWORD);
+			wrapper.setChuteFlag(1);
 			wrapper.startActivity(CreateChuteTutorialActivity.this);
 		}
 
@@ -75,10 +73,11 @@ public class CreateChuteTutorialActivity extends Activity {
 
 		@Override
 		public void onClick(View v) {
-			ChutePermissionsActivityIntentWrapper wrapper = new ChutePermissionsActivityIntentWrapper(
+			ChuteActivityIntentWrapper wrapper = new ChuteActivityIntentWrapper(
 					CreateChuteTutorialActivity.this);
 			wrapper.setChuteName(Constants.PERMISSIONS_CHUTE_NAME);
 			wrapper.setChutePassword(Constants.PASSWORD);
+			wrapper.setChuteFlag(2);
 			wrapper.startActivity(CreateChuteTutorialActivity.this);
 		}
 
