@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.chute.android.imagesharer.intent.ShareActivityIntentWrapper;
 import com.chute.android.imagesharer.util.Constants;
@@ -45,13 +46,21 @@ public class ShareViewTutorialActivity extends Activity {
 
 		@Override
 		public void onSuccess(GCAssetCollection responseData) {
-			ShareActivityIntentWrapper wrapper = new ShareActivityIntentWrapper(
-					ShareViewTutorialActivity.this);
-			wrapper.setAssetShareUrl(responseData.get(0).getShareUrl());
-			wrapper.setChuteId(Constants.CHUTE_ID);
-			wrapper.setChuteName(Constants.CHUTE_NAME);
-			wrapper.setChuteShortcut(Constants.CHUTE_SHORTCUT);
-			wrapper.startActivity(ShareViewTutorialActivity.this);
+			if (responseData.size() > 0) {
+				ShareActivityIntentWrapper wrapper = new ShareActivityIntentWrapper(
+						ShareViewTutorialActivity.this);
+				wrapper.setAssetShareUrl(responseData.get(0).getShareUrl());
+				wrapper.setChuteId(Constants.CHUTE_ID);
+				wrapper.setChuteName(Constants.CHUTE_NAME);
+				wrapper.setChuteShortcut(Constants.CHUTE_SHORTCUT);
+				wrapper.startActivity(ShareViewTutorialActivity.this);
+			} else {
+				Toast.makeText(
+						getApplicationContext(),
+						getApplicationContext().getResources().getString(
+								R.string.no_photos_in_this_chute),
+						Toast.LENGTH_SHORT).show();
+			}
 		}
 
 		@Override

@@ -2,6 +2,7 @@ package com.chute.android.assethearttutorial.app;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.chute.android.assethearttutorial.R;
 import com.chute.android.assethearttutorial.view.HeartCheckbox;
@@ -50,7 +51,15 @@ public class AssetHeartTutorialActivity extends Activity {
 
 		@Override
 		public void onSuccess(GCAssetCollection responseData) {
-			gallery.setAssetCollection(responseData);
+			if (responseData.size() > 0) {
+				gallery.setAssetCollection(responseData);
+			} else {
+				Toast.makeText(
+						getApplicationContext(),
+						getApplicationContext().getResources().getString(
+								R.string.no_photos_in_this_chute),
+						Toast.LENGTH_SHORT).show();
+			}
 
 		}
 

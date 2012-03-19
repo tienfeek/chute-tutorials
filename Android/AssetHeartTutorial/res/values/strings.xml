@@ -3,5 +3,6 @@
 
     <string name="hello">Hello World, AssetHeartTutorialActivity!</string>
     <string name="app_name">AssetHeartTutorial</string>
+    <string name="no_photos_in_this_chute">No photos in this chute</string>
 
 </resources>
