@@ -189,24 +189,24 @@ This Activity class contains chute description that represents a GCChuteModel: I
 -asynchronous (it executes in the Background and it is started by calling <code>executeAsync()</code>);
 
  Every request can accept a custom response parser or use the default parser for each request type and a suitable callback which will return an object or a collection depending on the response type
- The callback has 4 possible outcomes
+ The callback has 4 possible outcomes:
 
-	<pre>
+<pre><code>
 	// returns the parsed response according to the parsers return type.
 	
-	<code>public void onSuccess(T responseData); </code>
+	public void onSuccess(T responseData); 
     
 	// it returns an object that will contain the request parameters, the URL, the headers and the Request Type (GET, POST, PUT, DELETE)
 	// this happens if there was a timeout and the request didn't reach the server (usually due to connectivity issues)
     
-	<code>public void onHttpException(GCHttpRequestParameters params, Throwable exception); </code>
+	public void onHttpException(GCHttpRequestParameters params, Throwable exception); 
 	
 	// this happens when the server didn't process the result correctly, it returns a HTTP Status code and an error message
     
-	<code>public void onHttpError(int responseCode, String statusMessage);</code>
+	public void onHttpError(int responseCode, String statusMessage);
 	
 	// This happens when the parser didn't successfully parse the response string, usually this requires adjustments on the client side and it is not recoverable by retries
 	
-	<code>public void onParserException(int responseCode, Throwable exception);</code>
-	</pre>
+	public void onParserException(int responseCode, Throwable exception);
+</code></pre>
 				 				
