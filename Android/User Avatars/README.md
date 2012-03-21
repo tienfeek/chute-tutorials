@@ -2,7 +2,7 @@
 Introduction
 ====
 
-UserAvatars is an Android application which demonstrates how to create an avatar and upload it into a chute. This app includes Chute SDK library, searches for images on the device, displays the images in a grid view, crops the selected image from the grid, uploads it in a chute and displays it. 
+UserAvatars is a tutorial project which demonstrates how to create an avatar and upload it into a chute. This app includes Chute SDK library, searches for images on the device, displays the images in a grid view, crops the selected image from the grid, uploads it in a chute and displays it. 
 
 ![IIMG_Useravatar1](https://github.com/chute/chute-tutorials/raw/master/Android/User%20Avatars/screenshots/IIMG_Useravatar1.png)![IIMG_Useravatar2](https://github.com/chute/chute-tutorials/raw/master/Android/User%20Avatars/screenshots/IIMG_Useravatar2.png)![IIMG_Useravatar3](https://github.com/chute/chute-tutorials/raw/master/Android/User%20Avatars/screenshots/IIMG_Useravatar3.png)![IIMG_Useravatar4](https://github.com/chute/chute-tutorials/raw/master/Android/User%20Avatars/screenshots/IIMG_Useravatar4.png)
 
@@ -43,8 +43,12 @@ Setup
 Usage
 ====
 
-## Starting the Activity
-SingleImagePicker Activity is called when the "Choose Photo" button is clicked. SingleImagePickerIntentWrapper is called, which represents a class that wraps the parameters needed for the intent.
+##UserAvatarApp.java 
+This class is the extended Application class. It is registered inside the "application" tag in the manifest and is used for initializing the utility classes used in the component.
+
+## UserAvatarActivity.java
+This Activity class consists of a Button, ImageView and ProgressBar. 
+When "Choose Photo" button is clicked, SingleImagePickerIntentWrapper starts SingleImagePickerActivity. SingleImagePickerIntentWrapper is called, which represents a class that wraps the parameters needed for the intent.
 <pre><code>
 @Override
 		public void onClick(View v) {
@@ -53,8 +57,8 @@ SingleImagePicker Activity is called when the "Choose Photo" button is clicked. 
 		}
 </code></pre>
 
-## SingleImagePicker Activity
-This Activity consists of GridView filled with images that can be found on the device. When one of the images is clicked, the intent for launching the CropImage activity is defined which does the image manipulation.
+## SingleImagePickerActivity.java
+This Activity class consists of GridView filled with images that can be found on the device. When one of the images is clicked, the intent for launching the CropImage activity is defined which does the image manipulation.
 <pre><code>
         if (requestCode == SingleImagePickerIntentWrapper.ACTIVITY_REQUEST_CODE) {
 	    final int width = 200;
@@ -79,10 +83,10 @@ This Activity consists of GridView filled with images that can be found on the d
 </code></pre>
 
 ## CropImage Activity
-This Activity consists of ImageView and two buttons "Save" and "Discard". The previously selected image from the picker is displayed in the ImageView. 
+This Activity class consists of ImageView and two buttons "Save" and "Discard". The previously selected image from the picker is displayed in the ImageView. 
 On top of the image, this activity draws a rectangle that can change its size and shows which area of the image is about to be cropped.
 When "Save" is clicked, the cropped bitmap is saved to a temporary file, and then uploaded to a chute.
-Initialy the croped temporary file is displayed on the screen.
+Initially the cropped temporary file is displayed on the screen.
 <pre><code> 
 if (requestCode == REQUEST_CROP_IMAGE) {
 	    String imagePath = data.getStringExtra("imagePath");
@@ -93,13 +97,13 @@ if (requestCode == REQUEST_CROP_IMAGE) {
 	}
 </code></pre>
 
-When the upload is finished successfully the uploaded image is pulled from the server and displayed on screen using the ImageLoader component.
+When the upload is successfully finished, the uploaded image is pulled from the server and displayed on screen using the ImageLoader component.
 <pre><code>	
         loader.displayImage(GCUtils.getCustomSizePhotoURL(url, 75, 75), thumb);
 </code></pre>
 
-## SingleImagePickerAdapter
-The Adapter is called using a Cursor object which contains the images inside the DCIM folder on the sdcard.
+## SingleImagePickerAdapter.java
+The Adapter is called using a Cursor object which contains the images inside the DCIM folder on the SDcard.
 <pre><code>
 public static Cursor getMediaPhotos(Context context) {
 		String[] projection = new String[] { MediaStore.Images.Media._ID,

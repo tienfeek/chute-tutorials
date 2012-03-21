@@ -2,7 +2,7 @@ Introduction
 ====
 
 Photo Comments Tutorial is a tutorial project that shows how to use the Photo Comments component. It contains Chute SDK library as well as Photo Comments library. 
-This tutorial demonstrates how to add comments on an Asset. Asset represents any photo managed by Chute. 
+This tutorial demonstrates how to add comments on an Asset. 
 
 ![image1](https://github.com/chute/chute-tutorials/raw/master/Android/Photo%20Comments%20Tutorial/screenshots/1.png)![image2](https://github.com/chute/chute-tutorials/raw/master/Android/Photo%20Comments%20Tutorial/screenshots/2.png)![image3](https://github.com/chute/chute-tutorials/raw/master/Android/Photo%20Comments%20Tutorial/screenshots/3.png)
 
@@ -93,7 +93,7 @@ public class PhotoCommentsTutorialApp extends Application {
 PhotoCommentsTutorialApp can also be neglected by registering PhotoCommentsApp into the manifest instead of PhotoCommentsTutoiralApp if the developer doesn't have the need for extending the Application class.
  
 ##PhotoCommentsTutorialActivity.java 
-This class is an Activity class that contains a "Start Comments" button. When the button is clicked, PhotoCommentsActivityIntentWrapper starts PhotoCommentsActivity. PhotoCommentsActivityIntentWrapper is a wrapper class that wraps the parameters needed for the intent.
+This Activity class contains a "Start Comments" button. When the button is clicked, PhotoCommentsActivityIntentWrapper starts PhotoCommentsActivity. PhotoCommentsActivityIntentWrapper is a wrapper class that wraps the parameters needed for the intent.
 
 <pre><code>
  @Override
@@ -123,7 +123,7 @@ GCComments.get(final Context context, final String chuteId,
 	    final String assetId, final GCHttpResponseParser<T> parser,
 	    final GCHttpCallback<T> callback)
 </code></pre>	
-When Save button is clicked, GCComments.add callback is launched, the adapter is called and the MainActivityIntentWrapper is triggered to start the activity for result.
+When Save button is clicked, <code>GCComments.add(Context context, String chuteId, String assetId, String comment, GCHttpCallback<GCCommentModel> callback)</code> callback is launched, the adapter is called and the MainActivityIntentWrapper is triggered to start the activity for result.
 <pre><code>
  MainActivityIntentWrapper wrapper = new MainActivityIntentWrapper(new Intent());
 		    wrapper.setExtraComments(true);
@@ -131,13 +131,14 @@ When Save button is clicked, GCComments.add callback is launched, the adapter is
 </code></pre>
 
 ##PhotoComments Adapter
-The adapter is used to fill the list of comments with GCCommentCollection. The GCComments.add callback uses GCHttpCallback<GCCommentModel> and calls the method addComment in the adapter which adds the saved comments:
+The adapter is used to fill the list of comments with GCCommentCollection. <code>GCComments.add(Context context, String chuteId, String assetId, String comment, GCHttpCallback<GCCommentModel> callback)</code> callback uses GCHttpCallback<GCCommentModel> and calls the method <code>addComment(GCCommentModel model)</code> in the adapter which adds the saved comments:
 <pre><code>
  public void addComment(GCCommentModel model) {
 	this.collection.add(model);
 	notifyDataSetChanged();
     }
 </code></pre>
+	
 		    
 ## Request execution and callback
 

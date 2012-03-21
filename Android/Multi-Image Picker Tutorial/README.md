@@ -2,7 +2,7 @@ Introduction
 ====
 
 Multi-Image Picker Tutorial is a tutorial project that shows how to use the Multi-Image Picker component. It contains Chute SDK library as well as Multi-Image Picker library. 
-This tutorial demonstrates how to make GCLocalAssetCollection of assets. Asset represents any photo managed by Chute. This app searches for images on the device, displays the images in a grid and creates GCLocalAssetCollection out of the selected images in the grid.
+This tutorial demonstrates how to make GCLocalAssetCollection of assets. It searches for images on the device, displays the images in a grid and creates GCLocalAssetCollection out of the selected images in the grid.
 
 ![image1](https://github.com/chute/chute-tutorials/raw/master/Android/Multi-Image%20Picker%20Tutorial/screenshots/1.png)![image2](https://github.com/chute/chute-tutorials/raw/master/Android/Multi-Image%20Picker%20Tutorial/screenshots/2.png)![image3](https://github.com/chute/chute-tutorials/raw/master/Android/Multi-Image%20Picker%20Tutorial/screenshots/3.png)
 
@@ -91,7 +91,7 @@ public class MultiImagePickerTutorialApp extends Application {
 MultiImagePickerTutorialApp can also be neglected by registering MultiImagePickerApp into the manifest instead of MultiImagePickerTutoiralApp if the developer doesn't have the need for extending the Application class.
  
 ##MultiImagePickerTutorialActivity.java 
-This class is an Activity class that contains a "Select Photos" button. When the button is clicked, ChoosePhotosActivityIntentWrapper starts MultiImagePickerActivity. ChoosePhotosActivityIntentWrapper is a wrapper class that wraps the parameters needed for the intent.
+This Activity class contains a "Select Photos" button. When the button is clicked, ChoosePhotosActivityIntentWrapper starts MultiImagePickerActivity. ChoosePhotosActivityIntentWrapper is a wrapper class that wraps the parameters needed for the intent.
 
 <pre><code>
 @Override

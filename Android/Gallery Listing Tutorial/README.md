@@ -2,7 +2,7 @@ Introduction
 ====
 
 Gallery Listing Tutorial is a tutorial project that shows how to use the Gallery Listing component. It contains Chute SDK library as well as Gallery Listing library.
-This tutorial demonstrates a list of chutes. Chute represents a container for Assets. An Asset is any photo managed by Chute. This app takes the current user ID and displays GCChuteCollection. 
+This tutorial demonstrates a list of chutes. It takes the current user ID and displays GCChuteCollection. 
 
 ![image1](https://github.com/chute/chute-tutorials/raw/master/Android/Gallery%20Listing%20Tutorial/screenshots/1.png) ![image2](https://github.com/chute/chute-tutorials/raw/master/Android/Gallery%20Listing%20Tutorial/screenshots/2.png) 
 
@@ -111,7 +111,7 @@ GCUser.userChutes(getApplicationContext(), GCConstants.CURRENT_USER_ID,
 		new GCChuteCollectionCallback()).executeAsync();
 </code></pre>
 
-GCUser.userChutes() has GCHttpCallback<GCChuteCollection> callback which returns GCChuteCollection as a result in its onSuccess() method.
+<code>GCUser.userChutes(Context context, String userId, GCHttpCallback<GCChuteCollection> callback)</code> has GCHttpCallback<GCChuteCollection> callback which returns GCChuteCollection as a result in its <code>onSuccess(GCChuteCollection responseData)</code> method.
 The GCChuteCollection is passed to the adapter which starts loading the ListView after the AsyncTask is finished.
 
 <pre><code>
@@ -141,4 +141,34 @@ private final class GCChuteCollectionCallback implements GCHttpCallback<GCChuteC
 		    Toast.LENGTH_SHORT).show();
 	}
     }
-</code></pre>   
+</code></pre>  
+
+
+## Request execution and callback
+
+ Every request can be either:
+-synchronous (it executes in the same thread as the <code>execute()</code> method was called
+-asynchronous (it executes in the Background and it is started by calling <code>executeAsync()</code>);
+
+ Every request can accept a custom response parser or use the default parser for each request type and a suitable callback which will return an object or a collection depending on the response type
+ The callback has 4 possible outcomes
+
+	<pre>
+	// returns the parsed response according to the parsers return type.
+	
+	<code>public void onSuccess(T responseData); </code>
+    
+	// it returns an object that will contain the request parameters, the URL, the headers and the Request Type (GET, POST, PUT, DELETE)
+	// this happens if there was a timeout and the request didn't reach the server (usually due to connectivity issues)
+    
+	<code>public void onHttpException(GCHttpRequestParameters params, Throwable exception); </code>
+	
+	// this happens when the server didn't process the result correctly, it returns a HTTP Status code and an error message
+    
+	<code>public void onHttpError(int responseCode, String statusMessage);</code>
+	
+	// This happens when the parser didn't successfully parse the response string, usually this requires adjustments on the client side and it is not recoverable by retries
+	
+	<code>public void onParserException(int responseCode, Throwable exception);</code>
+	</pre>
+				 

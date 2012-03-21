@@ -50,7 +50,7 @@ Usage
 
 ##ShareViewTutorialApp.java 
 This class is the extended Application class. It is registered inside the "application" tag in the manifest and is used for initializing the utility classes used in the component.
-ShareViewTutorialApp can extend GCShareViewApp like shown in this tutorial:
+ShareViewTutorialApp can extend ImageSharerApp like shown in this tutorial:
 
 <pre><code>
 public class ShareViewTutorialApp extends ImageSharerApp {
@@ -60,7 +60,7 @@ public class ShareViewTutorialApp extends ImageSharerApp {
 
 This way the developer can use his own methods and code inside the Application class. 
 
-If the developer decides to extend the Application class instead of GCShareViewApp he must copy the all the code below:
+If the developer decides to extend the Application class instead of ImageSharerApp he must copy the all the code below:
 
 <pre><code>
 public class ShareViewTutorialApp extends Application {
@@ -92,10 +92,10 @@ public class ShareViewTutorialApp extends Application {
 }
 </code></pre>
 
-ShareViewTutorialApp can also be neglected by registering GCSahreViewApp into the manifest instead of ShareViewTutoiralApp if the developer doesn't have the need for extending the Application class.
+ShareViewTutorialApp can also be neglected by registering ImageSharerApp into the manifest instead of ShareViewTutoiralApp if the developer doesn't have the need for extending the Application class.
  
 ##ShareViewTutorialActivity.java
-This class is an Activity class. It consists of a button. When the button is clicked, ShareActivityIntentWrapper starts ShareActivity. ShareActivityIntentWrapper is a wrapper class that wraps the parameters needed for the intent.
+This Activity class consists of a button. When the button is clicked, ShareActivityIntentWrapper starts ShareActivity. ShareActivityIntentWrapper is a wrapper class that wraps the parameters needed for the intent.
 
 <pre><code>
 private final class OnShareClickedListener implements OnClickListener {

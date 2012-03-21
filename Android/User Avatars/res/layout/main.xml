@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:gravity="center"
     android:orientation="vertical" >
 
     <Button
@@ -11,10 +12,11 @@
         android:text="@string/choose_photo" />
 
     <ImageView
+        android:layout_marginTop="10dp"
         android:id="@+id/imageViewThumb"
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:src="@drawable/ic_launcher" android:scaleType="fitXY" android:layout_gravity="center"/>
+        android:src="@drawable/placeholder_image_small" android:scaleType="fitXY" android:layout_gravity="center"/>
 
     <TextView
         android:id="@+id/textViewPath"

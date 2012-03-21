@@ -51,11 +51,11 @@ public class ChuteActivity extends Activity {
 		}
 
 		GCChutes.createChute(getApplicationContext(), chute,
-				new ChutePermissionsCallback()).executeAsync();
+				new CreateChuteCallback()).executeAsync();
 
 	}
 
-	private final class ChutePermissionsCallback implements
+	private final class CreateChuteCallback implements
 			GCHttpCallback<GCChuteModel> {
 
 		@Override
@@ -101,7 +101,7 @@ public class ChuteActivity extends Activity {
 				+ " " + wrapper.getChuteName());
 
 		chute.setName(wrapper.getChuteName());
-		chute.setPermissionView(2); // without password
+		chute.setPermissionView(2); // public chute
 	}
 
 	public void displayPasswordChute() {
@@ -114,7 +114,7 @@ public class ChuteActivity extends Activity {
 
 		chute.setName(wrapper.getChuteName());
 		chute.setPassword(wrapper.getChutePassword());
-		chute.setPermissionView(4);
+		chute.setPermissionView(4); // chute with password
 	}
 
 	public void displayPermissionsChute() {
@@ -124,26 +124,26 @@ public class ChuteActivity extends Activity {
 		chute.setName(wrapper.getChuteName());
 
 		if (TextUtils.isEmpty(wrapper.getChutePassword())) {
-			chute.setPermissionView(2);
+			chute.setPermissionView(2); // public chute
 		} else {
 			chutePassword.setText(getApplicationContext().getResources()
 					.getString(R.string.chute_password)
 					+ " "
 					+ wrapper.getChutePassword());
 			chute.setPassword(wrapper.getChutePassword());
-			chute.setPermissionView(4);
+			chute.setPermissionView(4); // chute with password
 
 		}
 
-		chute.setPermissionAddPhotos(2);
+		chute.setPermissionAddPhotos(2); // public; anyone can add photos
 		permissionPhotos.setText(getApplicationContext().getResources()
 				.getString(R.string.permission_to_add_photos));
 
-		chute.setPermissionAddMembers(2);
+		chute.setPermissionAddMembers(2); // public; anyone can add members
 		permissionMembers.setText(getApplicationContext().getResources()
 				.getString(R.string.permission_to_add_members));
 
-		chute.setPermissionAddComments(2);
+		chute.setPermissionAddComments(2); // public; anyone can add comments
 		permissionComments.setText(getApplicationContext().getResources()
 				.getString(R.string.permission_to_wite_comments));
 

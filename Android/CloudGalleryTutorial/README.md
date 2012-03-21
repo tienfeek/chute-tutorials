@@ -2,7 +2,7 @@ Introduction
 ====
 
 Cloud Gallery Tutorial is a tutorial project that shows how to use the Cloud Gallery component. It contains Chute SDK library as well as Cloud Gallery library. 
-This tutorial demonstrates how to display Assets in a gallery. Asset represents any photo managed by Chute. 
+This tutorial demonstrates how to display Assets in a gallery.
 
 ![image1](https://github.com/chute/chute-tutorials/raw/master/Android/CloudGalleryTutorial/screenshots/1.png)![image2](https://github.com/chute/chute-tutorials/raw/master/Android/CloudGalleryTutorial/screenshots/2.png)
 
@@ -48,9 +48,21 @@ Usage
 
 ##CloudGalleryTutorialApp.java 
 This class is the extended Application class. It is registered inside the "application" tag in the manifest and is used for initializing the utility classes used in the component.
+CloudGalleryTutorialApp can extend CloudGalleryApp like shown in this tutorial:
+
+<pre><code>
+public class CloudGalleryTutorialApp extends CloudGalleryApp {
+
+}
+</code></pre>
+
+This way the developer can use his own methods and code inside the Application class. 
+
+If the developer decides to extend the Application class instead of CloudGalleryApp he must copy the all the code below:
+
 <pre><code>
 public class CloudGalleryTutorialApp extends Application {
-    private static ImageLoader createImageLoader(Context context) {
+   private static ImageLoader createImageLoader(Context context) {
 		ImageLoader imageLoader = new ImageLoader(context, R.drawable.placeholder_image_small);
 		imageLoader.setDefaultImageSize((int) TypedValue.applyDimension(
 				TypedValue.COMPLEX_UNIT_DIP, 75, context.getResources()
@@ -78,8 +90,10 @@ public class CloudGalleryTutorialApp extends Application {
 }
 </code></pre>
 
+CloudGalleryTutorialApp can also be neglected by registering CloudGalleryApp into the manifest instead of CloudGalleryTutoiralApp if the developer doesn't have the need for extending the Application class.
+
 ##CloudGalleryTutorialActivity.java 
-This class is an Activity class that contains a "Start Cloud Gallery" button. When the button is clicked, GalleryActivity is started.
+This Activity class contains a "Start Cloud Gallery" button. When the button is clicked, GalleryActivity is started.
 <pre><code>
 @Override
 		public void onClick(View v) {
@@ -90,14 +104,14 @@ This class is an Activity class that contains a "Start Cloud Gallery" button. Wh
 </code></pre>  
 
 ##GalleryActivity.java
-This activity contains a GalleryViewFlipper view from the Cloud Gallery component.
-Using a Chute ID, the GCChutes.Resources.assets() AsynTask is being executed:
+This activity class contains a GalleryViewFlipper view from the Cloud Gallery component.
+Using a Chute ID, the GCChutes.Resources.assets(Context context, String id, GCHttpCallback<GCAssetCollection> callback) AsynTask is being executed:
 <pre><code>
 GCChutes.Resources.assets(getApplicationContext(), CHUTE_ID,
 				new AssetCollectionCallback()).executeAsync();   
 </code></pre>
 
-GCChutes.Resources.assets() has GCHttpCallback<GCAssetCollection> callback which returns GCAssetCollection as a result in its onSuccess() method.
+<code>GCChutes.Resources.assets(Context context, String id, GCHttpCallback<GCAssetCollection> callback)</code> has GCHttpCallback<GCAssetCollection> callback which returns GCAssetCollection as a result in its <code>onSuccess(GCAssetCollection responseData)</code> method.
 The GCAssetCollection is passed to the GalleryViewFlipper which starts loading the Asset collection after the AsyncTask is finished.
 <pre><code>
 private final class AssetCollectionCallback implements
@@ -146,9 +160,9 @@ private final class NewGalleryCallback implements GalleryCallback {
 
 	}
 </code></pre>
-The triggered() method can perform actions on different gestures using the GestureEvent object. The gestures that are listed are: single tap, double tap, swipe left, swipe right, swipe top and swipe bottom.
-The onPhotoChanged() method can be used for various actions that include asset position and GCAssetModel.
-The onPhotoChangeError() method can be used for handling errors such as: no previous item, no next item and general error.  
+<code>triggered(GestureEvent event)</code> method can perform actions on different gestures using the GestureEvent object. The gestures that are listed are: single tap, double tap, swipe left, swipe right, swipe top and swipe bottom.
+<code>onPhotoChanged(int index, GCAssetModel asset)</code> method can be used for various actions that include asset position and GCAssetModel.
+<code>onPhotoChangeError(PhotoChangeErrorType error)</code> method can be used for handling errors such as: no previous item, no next item and general error.  
 
 ## Request execution and callback
 

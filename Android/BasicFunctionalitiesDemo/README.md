@@ -5,6 +5,7 @@ Introduction
 This demo project shows how to use the basic functionalities of the SDK. It also demonstrates 
 how to use Authentication tutorial in your project.
 
+![image1](https://github.com/chute/chute-tutorials/raw/master/Android/BasicFunctionalitiesDemo/screenshots/1.png)![image2](https://github.com/chute/chute-tutorials/raw/master/Android/BasicFunctionalitiesDemo/screenshots/2.png)![image3](https://github.com/chute/chute-tutorials/raw/master/Android/BasicFunctionalitiesDemo/screenshots/3.png)![image4](https://github.com/chute/chute-tutorials/raw/master/Android/BasicFunctionalitiesDemo/screenshots/4.png)
 
 Setup
 ====
@@ -17,7 +18,7 @@ Setup
 
 * Select Project -> Properties -> Android and add Authentication as a library project.
 
-          ![image1](https://github.com/chute/chute-tutorials/raw/master/Android/BasicFunctionalitiesDemo/screenshots/1.png)
+          ![image5](https://github.com/chute/chute-tutorials/raw/master/Android/BasicFunctionalitiesDemo/screenshots/5.png)
   
 * Register the activity into the AndroidManifest.xml file
 
@@ -34,10 +35,10 @@ Setup
     ```
     
     
-LoginActivity  
+LoginActivity.java  
 ====         
   
-LoginActivity needs to extend BaseLoginActivity from Authentication tutorial. It overrides launchMainAppActivity()
+LoginActivity needs to extend BaseLoginActivity from Authentication tutorial. It overrides <code>launchMainAppActivity()</code>
 method which is responsible for handling the authentication process and starting the BasicFunctionalitiesDemoActivity.
 
 <pre><code>
@@ -53,7 +54,7 @@ method which is responsible for handling the authentication process and starting
 </code></pre>  
 
 
-BasicFunctionalitiesDemoActivity
+BasicFunctionalitiesDemoActivity.java
 ====
 
 This activity demonstrates how to use the basic SDK methods.  

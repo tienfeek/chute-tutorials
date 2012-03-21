@@ -9,7 +9,8 @@ ListingChutesTutorial is a tutorial project that shows how to update a chute, de
 Setup
 ====
 
-* Go through [ProjectSetup.md](https://github.com/chute/photo-picker-plus/blob/master/Android/PhotoPickerPlusTutorial/ProjectSetup.md) for a complete guide on how to setup the chute SDK.
+* Follow the ProjectSetup tutorial that can be found and downloaded at  
+  [https://github.com/chute/chute-tutorials/tree/master/Android/Project%20Setup](https://github.com/chute/chute-tutorials/tree/master/Android/Project%20Setup) for a complete guide on how to setup the chute SDK.
   
 * Add the GalleryListing component to your project by either copying all the resources and source code or by adding it as an Android Library project.
 
@@ -131,7 +132,7 @@ Button description = (Button) dialog
 		});
 </code></pre>
 
-When "Update" button gets clicked, new name is set on the GCChuteModel and <code>GCChutes.update()</code> callback is started. 
+When "Update" button gets clicked, new name is set on the GCChuteModel and <code>GCChutes.update(Context context, GCChuteModel chuteModel, GCHttpCallback<GCChuteModel> callback)</code> callback is started. 
 <pre><code>
 Button update = (Button) dialog.findViewById(R.id.buttonUpdate);
 		update.setOnClickListener(new OnClickListener() {
@@ -145,9 +146,9 @@ Button update = (Button) dialog.findViewById(R.id.buttonUpdate);
 			}
 		});
 </code></pre>
-<code>GCChutes.update()</code> callback returns new updated GCChuteModel in its response data. If the callback succeeds, Toast message appears indicating that the chute has been updated.
+<code>GCChutes.update(Context context, GCChuteModel chuteModel, GCHttpCallback<GCChuteModel> callback)</code> callback returns new updated GCChuteModel in its response data. If the callback succeeds, Toast message appears indicating that the chute has been updated.
 
-When "Delete" button gets clicked, the selected chute ID is passed to the <code>GCChutes.delete()</code> callback. If the callback succeeds, Toast message appears indicating that the selected chute has been deleted.
+When "Delete" button gets clicked, the selected chute ID is passed to the <code>GCChutes.delete(Context context, String id, GCHttpCallback<GCChuteCollection> callback)</code> callback. If the callback succeeds, Toast message appears indicating that the selected chute has been deleted.
 <pre><code>
 Button delete = (Button) dialog.findViewById(R.id.buttonDelete);
 		delete.setOnClickListener(new OnClickListener() {
@@ -163,7 +164,7 @@ Button delete = (Button) dialog.findViewById(R.id.buttonDelete);
 </code></pre>
 
 ##ChuteInviteActivity.java
-This Activity class contains ListView and two buttons. The list is filled with user contacts. When "Ok" button is clicked, <code>GCMembership.invite()</code> callback is executed and the selected contacts are invited to join the chute. 
+This Activity class contains ListView and two buttons. The list is filled with user contacts. When "Ok" button is clicked, <code>GCMembership.invite(Context context, String chuteId, ArrayList<String> emails, GCHttpResponseParser<T> parser, GCHttpCallback<T> callback)</code> callback is executed and the selected contacts are invited to join the chute. 
 If the callback succeeds, Toast message appears indicating the invites have been sent.
 <pre><code>
 private final class OkClickListener implements OnClickListener {
@@ -179,4 +180,33 @@ private final class OkClickListener implements OnClickListener {
 
 ##ChuteDescriptionActivity.java
 This Activity class contains chute description that represents a GCChuteModel: ID, name, parcel ID, user ID, password, user, members, contributors, recent, creation date, updating date, assets, thumbnail URL, shortcut, permission view, permission to add members, permission to add photos, permission to add comments, permission to moderate members, permission to moderate photos and permission to moderate comments.			
- 				
+ 
+ 
+## Request execution and callback
+
+ Every request can be either:
+-synchronous (it executes in the same thread as the <code>execute()</code> method was called
+-asynchronous (it executes in the Background and it is started by calling <code>executeAsync()</code>);
+
+ Every request can accept a custom response parser or use the default parser for each request type and a suitable callback which will return an object or a collection depending on the response type
+ The callback has 4 possible outcomes
+
+	<pre>
+	// returns the parsed response according to the parsers return type.
+	
+	<code>public void onSuccess(T responseData); </code>
+    
+	// it returns an object that will contain the request parameters, the URL, the headers and the Request Type (GET, POST, PUT, DELETE)
+	// this happens if there was a timeout and the request didn't reach the server (usually due to connectivity issues)
+    
+	<code>public void onHttpException(GCHttpRequestParameters params, Throwable exception); </code>
+	
+	// this happens when the server didn't process the result correctly, it returns a HTTP Status code and an error message
+    
+	<code>public void onHttpError(int responseCode, String statusMessage);</code>
+	
+	// This happens when the parser didn't successfully parse the response string, usually this requires adjustments on the client side and it is not recoverable by retries
+	
+	<code>public void onParserException(int responseCode, Throwable exception);</code>
+	</pre>
+				 				

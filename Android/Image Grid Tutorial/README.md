@@ -2,7 +2,7 @@ Introduction
 ====
 
 Image Grid Tutorial is a tutorial project that shows how to use the Image Grid component. It contains Chute SDK library as well as Image Grid library.
-This tutorial demonstrates a grid of assets. Asset represents any photo managed by Chute. This app takes a random chute ID and displays GCAssetCollection for the chosen chute. Chute represents a container for assets. 
+This tutorial demonstrates a grid of assets. It takes a random chute ID and displays GCAssetCollection for the chosen chute.  
 
 ![image1](https://github.com/chute/chute-tutorials/raw/master/Android/Image%20Grid%20Tutorial/screenshots/1.png)![image2](https://github.com/chute/chute-tutorials/raw/master/Android/Image%20Grid%20Tutorial/screenshots/2.png) 
 
@@ -116,12 +116,12 @@ final GCChuteModel chute = new GCChuteModel();
 	chute.setId(wrapper.getChuteId());
 </code></pre>
 
-The newly created chute is given a chute ID and GCChutes.assets() AsyncTask is triggered:
+The newly created chute is given a chute ID and <code>GCChutes.assets(Context context, String id, GCHttpCallback<GCAssetCollection> callback)</code> AsyncTask is triggered:
 <pre><code>
 chute.assets(getApplicationContext(), new AssetCollectionCallback()).executeAsync();
 </code></pre>
 
-The GCChutes.assets() has GCHttpCallback<GCChuteModel> callback which returns GCChuteModel as a result in its onSuccess() method.
+<code>GCChutes.assets(Context context, String id, GCHttpCallback<GCAssetCollection> callback)</code> has GCHttpCallback<GCChuteModel> callback which returns GCChuteModel as a result in its <code>onSuccess(GCChuteModel responseData)</code> method.
 The GCAssetCollection is retrieved from the GCChuteModel and passed to the adapter which starts loading the GridView after the AsyncTask is finished. 
 <pre><code>
 // Callback which returns a collection of assets for a given chuteId
@@ -152,4 +152,34 @@ The GCAssetCollection is retrieved from the GCChuteModel and passed to the adapt
 		    Toast.LENGTH_SHORT).show();
 	}
     }
-</code></pre>    	          
+</code></pre>  
+
+
+## Request execution and callback
+
+ Every request can be either:
+-synchronous (it executes in the same thread as the <code>execute()</code> method was called
+-asynchronous (it executes in the Background and it is started by calling <code>executeAsync()</code>);
+
+ Every request can accept a custom response parser or use the default parser for each request type and a suitable callback which will return an object or a collection depending on the response type
+ The callback has 4 possible outcomes
+
+	<pre>
+	// returns the parsed response according to the parsers return type.
+	
+	<code>public void onSuccess(T responseData); </code>
+    
+	// it returns an object that will contain the request parameters, the URL, the headers and the Request Type (GET, POST, PUT, DELETE)
+	// this happens if there was a timeout and the request didn't reach the server (usually due to connectivity issues)
+    
+	<code>public void onHttpException(GCHttpRequestParameters params, Throwable exception); </code>
+	
+	// this happens when the server didn't process the result correctly, it returns a HTTP Status code and an error message
+    
+	<code>public void onHttpError(int responseCode, String statusMessage);</code>
+	
+	// This happens when the parser didn't successfully parse the response string, usually this requires adjustments on the client side and it is not recoverable by retries
+	
+	<code>public void onParserException(int responseCode, Throwable exception);</code>
+	</pre>
+				   	          

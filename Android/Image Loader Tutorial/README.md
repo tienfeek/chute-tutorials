@@ -105,16 +105,16 @@ private final class OnButtonSdcardClicked implements OnClickListener {
 
 ##LoadImageActivity.java
 This activity class contains an ImageView that displays the image. The image is displayed
-using the ImageLoader that is initialized in the onCreate() method in LoadImageActivity class.
+using the ImageLoader that is initialized in the <code>onCreate()</code> method in LoadImageActivity class.
 <pre><code>
 ImageLoader loader = ImageLoader.getLoader(LoadImageActivity.this);
 </code></pre>
 
-The ImageLoader displays an image using its displayImage() method containing String value representing
+The ImageLoader displays an image using its <code>displayImage(String url, ImageView imageView)</code> method containing String value representing
 the URL as an argument, and ImageView where the image is placed.
 
 If image from SDcard is chosen, String value representing the path of the image is placed as first
-argument in the displayImage() method. The path is located using Cursor object.
+argument in the <code>displayImage(String url, ImageView imageView)</code> method. The path is located using Cursor object.
 <pre><code>
 Cursor cursor = MediaDAO.getMediaPhotos(LoadImageActivity.this);
 			if (cursor != null && cursor.moveToFirst()) {
@@ -125,12 +125,12 @@ Cursor cursor = MediaDAO.getMediaPhotos(LoadImageActivity.this);
 			}
 </code></pre>
 
-If image from URL is chosen, the URL is placed as first argument in the displayImage() method.
+If image from URL is chosen, the URL is placed as first argument in the <code>displayImage(String url, ImageView imageView)</code> method.
 <pre><code>
 loader.displayImage("http://www.sun-protection-and-you.com/images/sun-stroke.jpg", imageView);	
 </code></pre>
 
-If image from Chute URL is chosen, the Chute URL is placed as first argument in the displayImage() method.
+If image from Chute URL is chosen, the Chute URL is placed as first argument in the <code>displayImage(String url, ImageView imageView)</code> method.
 <pre><code>
 loader.displayImage("http://sharedroll.com/hwcybf", imageView);
 </code></pre>							 

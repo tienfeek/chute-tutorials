@@ -2,7 +2,7 @@
 Introduction
 ====
 
-This tutorial will help you successfully log into your Facebook or Twitter account.
+Authentication is a tutorial project that will help you successfully log into your Facebook or Twitter account.
 
 
 Setup

@@ -1,7 +1,7 @@
 Introduction
 ====
 
-Join Chute Tutorial is a tutorial project that shows how to join a chute and how to search for chutes. It contains Chute SDK Library and is targeted towards android developers who want to make their applications social. 
+Join Chute Tutorial is a tutorial project that shows how to join a chute and how to search for chutes. It contains Chute SDK Library.
 
 ![image1](https://github.com/chute/chute-tutorials/raw/master/Android/JoinChuteTutorial/screenshots/1.png)![image2](https://github.com/chute/chute-tutorials/raw/master/Android/JoinChuteTutorial/screenshots/2.png)![image3](https://github.com/chute/chute-tutorials/raw/master/Android/JoinChuteTutorial/screenshots/3.png)
 
@@ -46,9 +46,9 @@ Usage
 This class is the extended Application class. It is registered inside the "application" tag in the manifest and is used for initializing the utility classes used in the tutorial.
 
 ##JoinChuteTutorialActivity.java
-This class is an Activity class that contains two buttons. When "Chute Shortcut" button is clicked, GCMembership.join() AsyncTask is started that tries to join a specific chute using the chutes shortcut.
+This Activity class contains two buttons. When "Chute Shortcut" button is clicked, <code>GCMembership.join(Context context, String chuteId, String password, GCHttpCallback<String> callback)</code> AsyncTask is started that tries to join a specific chute using the chutes shortcut.
 If the callback succeeds, toast message appears indicating that the chute has been joined. 
-Chutes can also require a password that can be added in GCMembership.join().
+Chutes can also require a password that can be added in <code>GCMembership.join(Context context, String chuteId, String password, GCHttpCallback<String> callback)</code>.
 <pre><code>
 private final class ChuteShortcutClickListener implements OnClickListener {
 
@@ -79,14 +79,15 @@ private final class ChuteDomainClickListener implements OnClickListener {
 </code></pre>
 
 ##SearchChutesActivity.java
-This Activity class contains a list of chutes. Using a domain name, GCChutes.search() AsyncTask is started which searches for chutes from a specific URL.
+This Activity class contains a list of chutes. Using a domain name, <code>GCChutes.search(Context context, String domain, GCHttpCallback<GCChuteCollection> callback)</code> AsyncTask is started which searches for chutes from a specific URL.
 <pre><code>
 GCChutes.search(getApplicationContext(), wrapper.getDomain(),
 				new SearchChutesCallback()).executeAsync();
 </code></pre>	
 
-In the onSuccess() method of GCChutes.search() callback, GCChuteCollection is returned, which is passed to the adapter that fills the ListView with chutes.
-When chute is clicked, GCMembership.join() callback is executed, for joining the selected chute.
+In the <code>onSuccess(GCChuteCollection responseData)</code> method of <code>GCChutes.search(Context context, String domain, GCHttpCallback<GCChuteCollection> callback)</code> callback, GCChuteCollection is returned, which is passed to the adapter that fills the ListView with chutes.
+When chute is clicked, <code>GCMembership.join(Context context, String chuteId, String password, GCHttpCallback<String> callback)</code> callback is executed, for joining the selected chute.
+
 
 ## Request execution and callback
 

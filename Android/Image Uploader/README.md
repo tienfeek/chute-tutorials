@@ -2,7 +2,7 @@
 Introduction
 ====
 
-PhotoUpload is an Android application which gets an image from the assets folder and uploads the image in a chute. It includes Chute SDK library.
+ImageUploader is a tutorial project which gets an image from the assets folder and uploads the image in a chute. It includes Chute SDK library.
 
 ![IMGG_Photoupload](https://github.com/chute/chute-tutorials/raw/master/Android/Image%20Uploader/screenshots/IMGG_Photoupload.png)
             
@@ -77,4 +77,34 @@ Another AsyncTask is executed which successfully uploads the image in the chute.
             GCAssets.upload(getApplicationContext(),
 			new GCUploadProgressListenerImplementation(), new GCStringResponse(),
 			new GCHttpUploadCallback(), responseData).executeAsync();
-</code></pre> 				    	    
+</code></pre> 
+
+
+## Request execution and callback
+
+ Every request can be either:
+-synchronous (it executes in the same thread as the <code>execute()</code> method was called
+-asynchronous (it executes in the Background and it is started by calling <code>executeAsync()</code>);
+
+ Every request can accept a custom response parser or use the default parser for each request type and a suitable callback which will return an object or a collection depending on the response type
+ The callback has 4 possible outcomes
+
+	<pre>
+	// returns the parsed response according to the parsers return type.
+	
+	<code>public void onSuccess(T responseData); </code>
+    
+	// it returns an object that will contain the request parameters, the URL, the headers and the Request Type (GET, POST, PUT, DELETE)
+	// this happens if there was a timeout and the request didn't reach the server (usually due to connectivity issues)
+    
+	<code>public void onHttpException(GCHttpRequestParameters params, Throwable exception); </code>
+	
+	// this happens when the server didn't process the result correctly, it returns a HTTP Status code and an error message
+    
+	<code>public void onHttpError(int responseCode, String statusMessage);</code>
+	
+	// This happens when the parser didn't successfully parse the response string, usually this requires adjustments on the client side and it is not recoverable by retries
+	
+	<code>public void onParserException(int responseCode, Throwable exception);</code>
+	</pre>
+				    	    
