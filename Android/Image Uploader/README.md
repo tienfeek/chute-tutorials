@@ -4,7 +4,7 @@ Introduction
 
 ImageUploader is a tutorial project which gets an image from the assets folder and uploads the image in a chute. It includes Chute SDK library.
 
-![IMGG_Photoupload](https://github.com/chute/chute-tutorials/raw/master/Android/Image%20Uploader/screenshots/IMGG_Photoupload.png)
+![image1](https://github.com/chute/chute-tutorials/raw/master/Android/Image%20Uploader/screenshots/1.png)![image2](https://github.com/chute/chute-tutorials/raw/master/Android/Image%20Uploader/screenshots/2.png)
             
 Setup
 ====
