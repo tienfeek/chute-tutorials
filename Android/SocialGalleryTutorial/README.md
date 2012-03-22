@@ -4,7 +4,7 @@ Introduction
 Social Gallery Tutorial is a tutorial project that shows how to use the Social Gallery component.
 It includes SDK library and Social Gallery library. This tutorial enables browsing photos in a gallery, sharing photos, commenting on photos and marking photos as favorite.
 
-![image1](https://github.com/chute/chute-android-components/raw/master/SocialGalleryTutorial/screenshots/1.png)![image2](https://github.com/chute/chute-android-components/raw/master/SocialGalleryTutorial/screenshots/2.png)![image3](https://github.com/chute/chute-android-components/raw/master/SocialGalleryTutorial/screenshots/3.png)![image4](https://github.com/chute/chute-android-components/raw/master/SocialGalleryTutorial/screenshots/4.png)![image5](https://github.com/chute/chute-android-components/raw/master/SocialGalleryTutorial/screenshots/5.png)
+![image1](https://github.com/chute/chute-tutorials/raw/master/Android/SocialGalleryTutorial/screenshots/1.png)![image2](https://github.com/chute/chute-tutorials/raw/master/Android/SocialGalleryTutorial/screenshots/2.png)![image3](https://github.com/chute/chute-tutorials/raw/master/Android/SocialGalleryTutorial/screenshots/3.png)![image4](https://github.com/chute/chute-tutorials/raw/master/Android/SocialGalleryTutorial/screenshots/4.png)![image5](https://github.com/chute/chute-tutorials/raw/master/Android/SocialGalleryTutorial/screenshots/5.png)
 
 Setup
 ====
