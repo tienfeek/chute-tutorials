@@ -127,20 +127,17 @@ public class ChuteInviteActivity extends Activity {
 		@Override
 		public void onHttpException(GCHttpRequestParameters params,
 				Throwable exception) {
-			// TODO Auto-generated method stub
-			
+			Toast.makeText(getApplicationContext(), R.string.http_exception, Toast.LENGTH_SHORT).show();
 		}
 
 		@Override
 		public void onHttpError(int responseCode, String statusMessage) {
-			// TODO Auto-generated method stub
-			
+			Toast.makeText(getApplicationContext(), R.string.http_error, Toast.LENGTH_SHORT).show();
 		}
 
 		@Override
 		public void onParserException(int responseCode, Throwable exception) {
-			// TODO Auto-generated method stub
-			
+			Toast.makeText(getApplicationContext(), R.string.parsing_exception, Toast.LENGTH_SHORT).show();
 		}
 		
 	}

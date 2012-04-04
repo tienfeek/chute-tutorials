@@ -1,4 +1,5 @@
 package com.chute.android.chutelistingtutorial.app;
+
 import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
@@ -16,7 +17,6 @@ import com.chute.android.gcchutelisting.app.GalleryListingActivity;
 import com.chute.sdk.api.GCHttpCallback;
 import com.chute.sdk.api.chute.GCChutes;
 import com.chute.sdk.collections.GCChuteCollection;
-import com.chute.sdk.model.GCAccountStore;
 import com.chute.sdk.model.GCChuteModel;
 import com.chute.sdk.model.GCHttpRequestParameters;
 import com.chute.sdk.parsers.GCChuteListObjectParser;
@@ -112,20 +112,20 @@ public class ChuteListActivity extends GalleryListingActivity {
 		@Override
 		public void onHttpException(GCHttpRequestParameters params,
 				Throwable exception) {
-			// TODO Auto-generated method stub
-
+			Toast.makeText(getApplicationContext(), R.string.http_exception,
+					Toast.LENGTH_SHORT).show();
 		}
 
 		@Override
 		public void onHttpError(int responseCode, String statusMessage) {
-			// TODO Auto-generated method stub
-
+			Toast.makeText(getApplicationContext(), R.string.http_error,
+					Toast.LENGTH_SHORT).show();
 		}
 
 		@Override
 		public void onParserException(int responseCode, Throwable exception) {
-			// TODO Auto-generated method stub
-
+			Toast.makeText(getApplicationContext(), R.string.parsing_exception,
+					Toast.LENGTH_SHORT).show();
 		}
 
 	}
@@ -144,20 +144,20 @@ public class ChuteListActivity extends GalleryListingActivity {
 		@Override
 		public void onHttpException(GCHttpRequestParameters params,
 				Throwable exception) {
-			// TODO Auto-generated method stub
-
+			Toast.makeText(getApplicationContext(), R.string.http_exception,
+					Toast.LENGTH_SHORT).show();
 		}
 
 		@Override
 		public void onHttpError(int responseCode, String statusMessage) {
-			// TODO Auto-generated method stub
-
+			Toast.makeText(getApplicationContext(), R.string.http_exception,
+					Toast.LENGTH_SHORT).show();
 		}
 
 		@Override
 		public void onParserException(int responseCode, Throwable exception) {
-			// TODO Auto-generated method stub
-
+			Toast.makeText(getApplicationContext(), R.string.parsing_exception,
+					Toast.LENGTH_SHORT).show();
 		}
 
 	}

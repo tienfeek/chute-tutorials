@@ -9,128 +9,86 @@
 
     <TextView
         android:id="@+id/chuteId"
-        android:textColor="@color/white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        style="@style/descriptionTxt" />
 
     <TextView
         android:id="@+id/parcelId"
-        android:textColor="@color/white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        style="@style/descriptionTxt" />
 
     <TextView
         android:id="@+id/userId"
-        android:textColor="@color/white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        style="@style/descriptionTxt" />
 
     <TextView
         android:id="@+id/name"
-        android:textColor="@color/white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        style="@style/descriptionTxt" />
 
     <TextView
         android:id="@+id/password"
-        android:textColor="@color/white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        style="@style/descriptionTxt" />
 
     <TextView
         android:id="@+id/user"
-        android:textColor="@color/white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
+        style="@style/descriptionTxt" />
+        
     <TextView
         android:id="@+id/membersCount"
-        android:textColor="@color/white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        style="@style/descriptionTxt" />
 
     <TextView
         android:id="@+id/contributorsCount"
-        android:textColor="@color/white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        style="@style/descriptionTxt" />
 
     <TextView
         android:id="@+id/recentCount"
-        android:textColor="@color/white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        style="@style/descriptionTxt" />
 
     <TextView
         android:id="@+id/createdAt"
-        android:textColor="@color/white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        style="@style/descriptionTxt" />
 
     <TextView
         android:id="@+id/updatedAt"
-        android:textColor="@color/white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        style="@style/descriptionTxt" />
 
     <TextView
         android:id="@+id/assetsCount"
-        android:textColor="@color/white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        style="@style/descriptionTxt" />
 
     <TextView
         android:id="@+id/thumbUrl"
-        android:textColor="@color/white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        style="@style/descriptionTxt" />
 
     <TextView
         android:id="@+id/shortcut"
-        android:textColor="@color/white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        style="@style/descriptionTxt" />
 
     <TextView
         android:id="@+id/permissionView"
-        android:textColor="@color/white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        style="@style/descriptionTxt" />
 
     <TextView
         android:id="@+id/permissionAddMembers"
-        android:textColor="@color/white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        style="@style/descriptionTxt" />
 
     <TextView
         android:id="@+id/permissionAddPhotos"
-        android:textColor="@color/white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        style="@style/descriptionTxt" />
 
     <TextView
         android:id="@+id/permissionAddComments"
-        android:textColor="@color/white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        style="@style/descriptionTxt" />
 
     <TextView
         android:id="@+id/permissionModerateMembers"
-        android:textColor="@color/white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        style="@style/descriptionTxt" />
 
     <TextView
         android:id="@+id/permissionModeratePhotos"
-        android:textColor="@color/white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        style="@style/descriptionTxt" />
 
     <TextView
         android:id="@+id/permissionModerateComments"
-        android:textColor="@color/white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        style="@style/descriptionTxt" />
 
 </LinearLayout>
