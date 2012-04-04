@@ -1,4 +1,4 @@
-package com.chute.android.chutelistingtutorial;
+package com.chute.android.chutelistingtutorial.app;
 
 import com.chute.android.gcchutelisting.app.GalleryListingApp;
 
