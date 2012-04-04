@@ -2,9 +2,9 @@ Introduction
 ====
 
 Gallery Listing Tutorial is a tutorial project that shows how to use the Gallery Listing component. It contains Chute SDK library as well as Gallery Listing library.
-This tutorial demonstrates a list of chutes. It takes the current user ID and displays GCChuteCollection. 
+This tutorial demonstrates a list of chutes. It takes the current user ID and displays GCChuteCollection. This tutorial also shows how to update a chute, delete a chute and invite someone to a chute.
 
-![image1](https://github.com/chute/chute-tutorials/raw/master/Android/Gallery%20Listing%20Tutorial/screenshots/1.png) ![image2](https://github.com/chute/chute-tutorials/raw/master/Android/Gallery%20Listing%20Tutorial/screenshots/2.png) 
+![image1](https://github.com/chute/chute-tutorials/raw/master/Android/Gallery%20Listing%20Tutorial/screenshots/1.png) ![image2](https://github.com/chute/chute-tutorials/raw/master/Android/Gallery%20Listing%20Tutorial/screenshots/2.png)![image3](https://github.com/chute/chute-tutorials/raw/master/Android/Gallery%20Listing%20Tutorial/screenshots/3.png) ![image4](https://github.com/chute/chute-tutorials/raw/master/Android/Gallery%20Listing%20Tutorial/screenshots/4.png) ![image5](https://github.com/chute/chute-tutorials/raw/master/Android/Gallery%20Listing%20Tutorial/screenshots/5.png)![image6](https://github.com/chute/chute-tutorials/raw/master/Android/Gallery%20Listing%20Tutorial/screenshots/6.png)
 
 Setup
 ====
@@ -21,28 +21,41 @@ Setup
          <application
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:name=".GalleryListingTutorialApp"
+        android:name=".app.GalleryListingTutorialApp"
         android:screenOrientation="portrait"
         android:theme="@android:style/Theme.Black.NoTitleBar" >
         <service android:name="com.chute.sdk.api.GCHttpService" />
 
         <activity
             android:label="@string/app_name"
-            android:name=".GalleryListingTutorialActivity" >
+            android:name=".app.GalleryListingTutorialActivity" >
             <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".app.ChuteListActivity"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:screenOrientation="portrait" />
+         <activity 
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:screenOrientation="portrait"
+            android:name=".app.ChuteInviteActivity" />
+        <activity 
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:screenOrientation="portrait"
+            android:name=".app.ChuteDescriptionActivity" />
         <activity
             android:name="com.chute.android.gcchutelisting.app.GalleryListingActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
         <activity
             android:name="com.chute.sdk.api.authentication.GCAuthenticationActivity"
+            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
-     </application>
+        </application>
     ```
     
 Usage
@@ -95,54 +108,104 @@ public class GalleryListingTutorialApp extends Application {
 GalleryListingTutorialApp can also be neglected by registering GalleryListingApp into the manifest instead of GalleryListingTutoiralApp if the developer doesn't have the need for extending the Application class.
    
 ##GalleryListingTutorialActivity.java
-This class is an Activity class that contains a "Show Gallery List" button. When the button is clicked, GalleryListingActivityIntentWrapper starts GalleryListingActivity. GalleryListingActivityIntentWrapper is a wrapper class that wraps the parameters needed for the intent.
+This class is an Activity class that contains a "Show Gallery List" button. When the button is clicked, ChuteListActivity is started.
 
 <pre><code> 
- @Override
-    public void onClick(View v) {
-	final GalleryListingActivityIntentWrapper wrapper = new GalleryListingActivityIntentWrapper(this);
-	wrapper.startActivity(this);
-    }
-</code></pre>  
+Button showList = (Button) findViewById(R.id.btnShowList);
+		showList.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(getApplicationContext(), ChuteListActivity.class);
+				startActivity(intent);
+			}
+		});
+</code></pre> 
 
-GalleryListingActivity contains ListView which is filled with chutes and an AyncTask that gets the chutes for the current user ID.
+##ChuteListActivity.java
+This Activity class extends GalleryListingActivity from GalleryListing component. GalleryListingActivity contains list of chutes. When list item is clicked a dialog with four buttons appears.
+When "Invite" button gets clicked, ChuteInviteActivityIntentWrapper starts ChuteInviteActivity. ChuteInviteActivityIntentWrapper is a wrapper class that wraps the parameters needed for the intent.
+
 <pre><code>
-GCUser.userChutes(getApplicationContext(), GCConstants.CURRENT_USER_ID,
-		new GCChuteCollectionCallback()).executeAsync();
+invite.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				ChuteInviteActivityIntentWrapper wrapper = new ChuteInviteActivityIntentWrapper(
+						ListingChutesTutorialActivity.this);
+				wrapper.setChuteId(model.getId());
+				wrapper.setChuteName(model.getName());
+				wrapper.startActivity(ListingChutesTutorialActivity.this);
+				dialog.dismiss();
+			}
+		});
 </code></pre>
 
-<code>GCUser.userChutes(Context context, String userId, GCHttpCallback<GCChuteCollection> callback)</code> has GCHttpCallback<GCChuteCollection> callback which returns GCChuteCollection as a result in its <code>onSuccess(GCChuteCollection responseData)</code> method.
-The GCChuteCollection is passed to the adapter which starts loading the ListView after the AsyncTask is finished.
-
+When "Description" button gets clicked, ChuteDescriptionActivityIntentWrapper starts ChuteDescriptionActivity.
 <pre><code>
-private final class GCChuteCollectionCallback implements GCHttpCallback<GCChuteCollection> {
+Button description = (Button) dialog
+				.findViewById(R.id.buttonDescription);
+		description.setOnClickListener(new OnClickListener() {
 
-	@Override
-	public void onSuccess(GCChuteCollection responseData) {
-	    adapter = new GalleryListingAdapter(GalleryListingActivity.this, responseData);
-	    listView.setAdapter(adapter);
+			@Override
+			public void onClick(View v) {
+				ChuteDescriptionActivityIntentWrapper wrapper = new ChuteDescriptionActivityIntentWrapper(
+						ListingChutesTutorialActivity.this);
+				wrapper.setChuteModel(model);
+				wrapper.startActivity(ListingChutesTutorialActivity.this);
+			}
+		});
+</code></pre>
+
+When "Update" button gets clicked, new name is set on the GCChuteModel and <code>GCChutes.update(Context context, GCChuteModel chuteModel, GCHttpCallback<GCChuteModel> callback)</code> callback is started. 
+<pre><code>
+Button update = (Button) dialog.findViewById(R.id.buttonUpdate);
+		update.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				model.setName("new");
+				GCChutes.updateChute(getApplicationContext(), model,
+						new ChuteUpdateCallback()).executeAsync();
+				dialog.dismiss();
+			}
+		});
+</code></pre>
+<code>GCChutes.update(Context context, GCChuteModel chuteModel, GCHttpCallback<GCChuteModel> callback)</code> callback returns new updated GCChuteModel in its response data. If the callback succeeds, Toast message appears indicating that the chute has been updated.
+
+When "Delete" button gets clicked, the selected chute ID is passed to the <code>GCChutes.delete(Context context, String id, GCHttpCallback<GCChuteCollection> callback)</code> callback. If the callback succeeds, Toast message appears indicating that the selected chute has been deleted.
+<pre><code>
+Button delete = (Button) dialog.findViewById(R.id.buttonDelete);
+		delete.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				GCChutes.delete(getApplicationContext(), model.getId(),
+						new GCChuteListObjectParser(),
+						new ChuteDeleteCallback()).executeAsync();
+				dialog.dismiss();
+			}
+		});
+</code></pre>
+
+##ChuteInviteActivity.java
+This Activity class contains ListView and two buttons. The list is filled with user contacts. When "Ok" button is clicked, <code>GCMembership.invite(Context context, String chuteId, ArrayList<String> emails, GCHttpResponseParser<T> parser, GCHttpCallback<T> callback)</code> callback is executed and the selected contacts are invited to join the chute. 
+If the callback succeeds, Toast message appears indicating the invites have been sent.
+<pre><code>
+private final class OkClickListener implements OnClickListener {
+
+		@Override
+		public void onClick(View v) {
+			GCMembership.invite(getApplicationContext(), wrapper.getChuteId(), adapter.getSelectedEmailsList(), new GCStringResponse(), new ChuteInviteCallback()).executeAsync();
+			finish();
+		}
+
 	}
+</code></pre>
 
-	@Override
-	public void onHttpException(GCHttpRequestParameters params, Throwable exception) {
-	    Toast.makeText(getApplicationContext(), getString(R.string.http_exception),
-		    Toast.LENGTH_SHORT).show();
-	}
-
-	@Override
-	public void onHttpError(int responseCode, String statusMessage) {
-	    Toast.makeText(getApplicationContext(), getString(R.string.http_error),
-		    Toast.LENGTH_SHORT).show();
-	}
-
-	@Override
-	public void onParserException(int responseCode, Throwable exception) {
-	    Toast.makeText(getApplicationContext(), getString(R.string.parsing_exception),
-		    Toast.LENGTH_SHORT).show();
-	}
-    }
-</code></pre>  
-
+##ChuteDescriptionActivity.java
+This Activity class contains chute description that represents a GCChuteModel: ID, name, parcel ID, user ID, password, user, members, contributors, recent, creation date, updating date, assets, thumbnail URL, shortcut, permission view, permission to add members, permission to add photos, permission to add comments, permission to moderate members, permission to moderate photos and permission to moderate comments.			
+  
 
 ## Request execution and callback
 
