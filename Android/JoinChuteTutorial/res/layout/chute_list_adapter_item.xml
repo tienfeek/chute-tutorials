@@ -13,10 +13,8 @@
 
     <TextView
         android:id="@+id/chuteName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/txtStyle"
         android:layout_gravity="center_vertical"
-        android:textColor="@color/white"
         android:layout_marginLeft="10dp" />
 
 </LinearLayout>

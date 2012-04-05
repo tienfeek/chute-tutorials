@@ -49,7 +49,6 @@ public class LoadImageActivity extends Activity {
 			break;
 		case LoadImageActivityIntentWrapper.TYPE_CHUTE_URL:
 			loader.displayImage("http://sharedroll.com/volvqd", imageView);
-//			loader.displayImage("http://chutedemos.heroku.com", imageView);
 			break;
 		default:
 			break;

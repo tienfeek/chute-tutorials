@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.chute.sdk.api.GCHttpCallback;
 import com.chute.sdk.api.asset.GCAssets;
@@ -87,14 +88,17 @@ public class PhotoUploadActivity extends Activity {
 	@Override
 	public void onHttpException(GCHttpRequestParameters params, Throwable exception) {
 	    Log.d(TAG, "Parcel Create http Error ", exception);
+	    Toast.makeText(getApplicationContext(), R.string.http_exception, Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
 	public void onHttpError(int responseCode, String statusMessage) {
+		Toast.makeText(getApplicationContext(), R.string.http_error, Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
 	public void onParserException(int responseCode, Throwable exception) {
+		Toast.makeText(getApplicationContext(), R.string.parsing_exception, Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
@@ -167,16 +171,19 @@ public class PhotoUploadActivity extends Activity {
 	@Override
 	public void onHttpException(GCHttpRequestParameters params, Throwable exception) {
 	    Log.d(TAG, "Upload callback Create http exception ", exception);
+	    Toast.makeText(getApplicationContext(), R.string.http_exception, Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
 	public void onHttpError(int responseCode, String statusMessage) {
 	    Log.d(TAG, "Upload callback http Error " + statusMessage + " Code " + responseCode);
+	    Toast.makeText(getApplicationContext(), R.string.http_error, Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
 	public void onParserException(int responseCode, Throwable exception) {
 	    Log.d(TAG, "Upload callback Parser Exception  Code " + responseCode, exception);
+	    Toast.makeText(getApplicationContext(), R.string.parsing_exception, Toast.LENGTH_SHORT).show();
 
 	}
     }

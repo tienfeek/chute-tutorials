@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Authentication</string>
-    <string name="facebook">Facebook</string>
-    <string name="twitter">Twitter</string>
-    <string name="success">Success!</string>
-    <string name="login_label">Authenticate with</string>
-    <string name="parsing_exception">Invalid response format</string>
-    <string name="http_exception">Check your internet connection and try again</string>
-    <string name="http_error">Server Problem, Try again</string>
+	<string name="app_name">Authentication</string>
+	<string name="facebook">Facebook</string>
+	<string name="twitter">Twitter</string>
+	<string name="success">Success!</string>
+	<string name="login_label">Authenticate with</string>
+
+	<!-- Toast messages -->
+	<string name="parsing_exception">Invalid response format</string>
+	<string name="http_exception">Check your internet connection and try again	</string>
+	<string name="http_error">Server Problem, Try again</string>
 
 </resources>

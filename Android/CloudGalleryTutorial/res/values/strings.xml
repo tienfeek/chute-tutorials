@@ -4,5 +4,10 @@
     <string name="hello">Hello World, CloudGalleryTutorialActivity!</string>
     <string name="app_name">CloudGalleryTutorial</string>
     <string name="start_gallery">Start Cloud Gallery</string>
+    
+    <!-- Toast messages -->
+    <string name="parsing_exception">Invalid response format</string>
+    <string name="http_exception">"Connection problem, check your connection and try again"</string>
+    <string name="http_error">Server Problem, Try again</string>
 
 </resources>

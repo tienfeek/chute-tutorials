@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <dimen name="itemSize">70dp</dimen>
+
+	<color name="black">#000000</color>
+
 </resources>

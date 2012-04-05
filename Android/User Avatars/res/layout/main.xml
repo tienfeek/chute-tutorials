@@ -10,21 +10,18 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/choose_photo" />
-
-    <ImageView
+    <ImageView
         android:layout_marginTop="10dp"
         android:id="@+id/imageViewThumb"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:src="@drawable/placeholder_image_small" android:scaleType="fitXY" android:layout_gravity="center"/>
-
-    <TextView
+    <TextView
         android:id="@+id/textViewPath"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Path of selected cropped image" />
-
-    <ProgressBar
+    <ProgressBar
         android:id="@+id/progressBarUpload"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="fill_parent"

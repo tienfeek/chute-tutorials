@@ -25,20 +25,17 @@
 
         <Button
             android:id="@+id/btnChuteBasic"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
+            style="@style/btnStyle"
             android:text="@string/basic_chute" />
 
         <Button
             android:id="@+id/btnChutePassword"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
+            style="@style/btnStyle"
             android:text="@string/chute_with_password" />
 
         <Button
             android:id="@+id/btnChutePermissions"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
+            style="@style/btnStyle"
             android:text="@string/chute_with_different_permissions" />
     </LinearLayout>
 
