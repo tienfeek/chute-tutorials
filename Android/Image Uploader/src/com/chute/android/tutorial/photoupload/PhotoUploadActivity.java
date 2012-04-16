@@ -26,6 +26,7 @@ import com.chute.sdk.model.GCAccountStore;
 import com.chute.sdk.model.GCChuteModel;
 import com.chute.sdk.model.GCHttpRequestParameters;
 import com.chute.sdk.model.GCLocalAssetModel;
+import com.chute.sdk.model.response.GCParcelCreateResponse;
 import com.chute.sdk.parsers.GCCreateParcelsUploadsListParser;
 import com.chute.sdk.parsers.base.GCStringResponse;
 
@@ -83,7 +84,7 @@ public class PhotoUploadActivity extends Activity {
 		.executeAsync();
     }
 
-    private final class GCParcelCreateCallback implements GCHttpCallback<GCLocalAssetCollection> {
+    private final class GCParcelCreateCallback implements GCHttpCallback<GCParcelCreateResponse> {
 
 	@Override
 	public void onHttpException(GCHttpRequestParameters params, Throwable exception) {
@@ -102,11 +103,11 @@ public class PhotoUploadActivity extends Activity {
 	}
 
 	@Override
-	public void onSuccess(GCLocalAssetCollection responseData) {
+	public void onSuccess(GCParcelCreateResponse responseData) {
 	    try {
 		GCAssets.upload(getApplicationContext(),
 			new GCUploadProgressListenerImplementation(), new GCStringResponse(),
-			new GCHttpUploadCallback(), responseData).executeAsync();
+			new GCHttpUploadCallback(), responseData.getLocalAssetCollection()).executeAsync();
 	    } catch (Exception e) {
 		Log.w(TAG, "", e);
 	    }
