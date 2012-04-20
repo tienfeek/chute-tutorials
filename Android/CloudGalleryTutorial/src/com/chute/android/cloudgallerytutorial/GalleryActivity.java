@@ -1,14 +1,14 @@
 package com.chute.android.cloudgallerytutorial;
 
+import android.app.Activity;
+import android.os.Bundle;
+import android.widget.Toast;
+
 import com.chute.android.gallery.components.GalleryViewFlipper;
 import com.chute.sdk.api.GCHttpCallback;
 import com.chute.sdk.api.chute.GCChutes;
 import com.chute.sdk.collections.GCAssetCollection;
 import com.chute.sdk.model.GCHttpRequestParameters;
-
-import android.app.Activity;
-import android.os.Bundle;
-import android.widget.Toast;
 
 public class GalleryActivity extends Activity {
 

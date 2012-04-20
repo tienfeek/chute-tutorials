@@ -32,165 +32,179 @@ import com.chute.sdk.parsers.base.GCStringResponse;
 
 public class PhotoUploadActivity extends Activity {
 
-    private static final String TAG = PhotoUploadActivity.class.getSimpleName();
-    private ImageView imageThumb;
-    private ProgressBar pb;
-    private TextView fileText;
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-	super.onCreate(savedInstanceState);
-	setContentView(R.layout.main);
-
-	GCAccountStore.getInstance(this).setUsername("TestUser");
-	// Token For testing purpouses
-	GCAccountStore.getInstance(this).setPassword(
-		"3115093a84aa3c4b696f9e5e0356826085e6c2810e55931ccd4d227ba70cfdbb");
-
-	final Button startUpload = (Button) findViewById(R.id.buttonStartUpload);
-	startUpload.setOnClickListener(new OnUploadClickListener());
-	fileText = (TextView) findViewById(R.id.textView);
-
-	pb = (ProgressBar) findViewById(R.id.progressBar);
-
-	imageThumb = (ImageView) findViewById(R.id.imageView);
-    }
-
-    private final class OnUploadClickListener implements OnClickListener {
-	@Override
-	public void onClick(View v) {
-	    GCLocalAssetModel asset = new GCLocalAssetModel();
-	    try {
-		asset.setFile(FileUtil.copyAsset(getApplicationContext(), "droid4.jpg"));
-	    } catch (IOException e) {
-		Log.w(TAG, "", e);
-	    }
-	    GCLocalAssetCollection assetCollection = new GCLocalAssetCollection();
-	    assetCollection.add(asset);
-
-	    GCChuteModel chuteModel = new GCChuteModel();
-	    chuteModel.setId("1183"); // Test ID for a public chute called
-				      // Upload Test
-	    GCChuteCollection chuteCollection = new GCChuteCollection();
-	    chuteCollection.add(chuteModel);
-
-	    createParcel(assetCollection, chuteCollection);
-	}
-    }
-
-    public void createParcel(GCLocalAssetCollection assets, GCChuteCollection chutes) {
-	GCParcel.create(getApplicationContext(), assets, chutes,
-		new GCCreateParcelsUploadsListParser(), new GCParcelCreateCallback())
-		.executeAsync();
-    }
-
-    private final class GCParcelCreateCallback implements GCHttpCallback<GCParcelCreateResponse> {
+	private static final String TAG = PhotoUploadActivity.class.getSimpleName();
+	private ImageView imageThumb;
+	private ProgressBar pb;
+	private TextView fileText;
 
 	@Override
-	public void onHttpException(GCHttpRequestParameters params, Throwable exception) {
-	    Log.d(TAG, "Parcel Create http Error ", exception);
-	    Toast.makeText(getApplicationContext(), R.string.http_exception, Toast.LENGTH_SHORT)
-		    .show();
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
+
+		GCAccountStore.getInstance(this).setUsername("TestUser");
+		// Token For testing purpouses
+		GCAccountStore
+				.getInstance(this)
+				.setPassword(
+						"3115093a84aa3c4b696f9e5e0356826085e6c2810e55931ccd4d227ba70cfdbb");
+
+		final Button startUpload = (Button) findViewById(R.id.buttonStartUpload);
+		startUpload.setOnClickListener(new OnUploadClickListener());
+		fileText = (TextView) findViewById(R.id.textView);
+
+		pb = (ProgressBar) findViewById(R.id.progressBar);
+
+		imageThumb = (ImageView) findViewById(R.id.imageView);
 	}
 
-	@Override
-	public void onHttpError(int responseCode, String statusMessage) {
-	    Toast.makeText(getApplicationContext(), R.string.http_error, Toast.LENGTH_SHORT).show();
+	private final class OnUploadClickListener implements OnClickListener {
+		@Override
+		public void onClick(View v) {
+			GCLocalAssetModel asset = new GCLocalAssetModel();
+			try {
+				asset.setFile(FileUtil.copyAsset(getApplicationContext(),
+						"droid4.jpg"));
+			} catch (IOException e) {
+				Log.w(TAG, "", e);
+			}
+			GCLocalAssetCollection assetCollection = new GCLocalAssetCollection();
+			assetCollection.add(asset);
+
+			GCChuteModel chuteModel = new GCChuteModel();
+			chuteModel.setId("1183"); // Test ID for a public chute called
+			// Upload Test
+			GCChuteCollection chuteCollection = new GCChuteCollection();
+			chuteCollection.add(chuteModel);
+
+			createParcel(assetCollection, chuteCollection);
+		}
 	}
 
-	@Override
-	public void onParserException(int responseCode, Throwable exception) {
-	    Toast.makeText(getApplicationContext(), R.string.parsing_exception, Toast.LENGTH_SHORT)
-		    .show();
+	public void createParcel(GCLocalAssetCollection assets,
+			GCChuteCollection chutes) {
+		GCParcel.create(getApplicationContext(), assets, chutes,
+				new GCCreateParcelsUploadsListParser(),
+				new GCParcelCreateCallback()).executeAsync();
 	}
 
-	@Override
-	public void onSuccess(GCParcelCreateResponse responseData) {
-	    try {
-		GCAssets.upload(getApplicationContext(),
-			new GCUploadProgressListenerImplementation(), new GCStringResponse(),
-			new GCHttpUploadCallback(), responseData.getLocalAssetCollection())
-			.executeAsync();
-	    } catch (Exception e) {
-		Log.w(TAG, "", e);
-	    }
-	    Log.e(TAG, responseData.toString());
-	}
-    }
-
-    private final class GCUploadProgressListenerImplementation implements GCUploadProgressListener {
-
-	private static final int DELAY = 1000;
-
-	private Timer t;
-	private long total;
-	private long uploaded;
-
-	class ProgressTask extends TimerTask {
-	    @Override
-	    public void run() {
-		int percent = (int) ((uploaded * 100) / total);
-		Log.e(TAG, "Current progress Text" + percent + "%");
-		pb.setProgress(percent);
-	    }
-	}
-
-	@Override
-	public void onUploadStarted(String assetId, final String filepath, final Bitmap thumbnail) {
-	    Log.d(TAG, "Upload started");
-	    t = new Timer();
-	    t.schedule(new ProgressTask(), DELAY, DELAY);
-	    pb.setMax(100);
-	    PhotoUploadActivity.this.runOnUiThread(new Runnable() {
+	private final class GCParcelCreateCallback implements
+			GCHttpCallback<GCParcelCreateResponse> {
 
 		@Override
-		public void run() {
-		    imageThumb.setImageBitmap(thumbnail);
-		    fileText.setText(filepath);
+		public void onHttpException(GCHttpRequestParameters params,
+				Throwable exception) {
+			Log.d(TAG, "Parcel Create http Error ", exception);
+			Toast.makeText(getApplicationContext(), R.string.http_exception,
+					Toast.LENGTH_SHORT).show();
 		}
-	    });
+
+		@Override
+		public void onHttpError(int responseCode, String statusMessage) {
+			Toast.makeText(getApplicationContext(), R.string.http_error,
+					Toast.LENGTH_SHORT).show();
+		}
+
+		@Override
+		public void onParserException(int responseCode, Throwable exception) {
+			Toast.makeText(getApplicationContext(), R.string.parsing_exception,
+					Toast.LENGTH_SHORT).show();
+		}
+
+		@Override
+		public void onSuccess(GCParcelCreateResponse responseData) {
+			try {
+				GCAssets.upload(getApplicationContext(),
+						new GCUploadProgressListenerImplementation(),
+						new GCStringResponse(), new GCHttpUploadCallback(),
+						responseData.getLocalAssetCollection()).executeAsync();
+			} catch (Exception e) {
+				Log.w(TAG, "", e);
+			}
+			Log.e(TAG, responseData.toString());
+		}
 	}
 
-	@Override
-	public void onUploadFinished(String assetId, String filepath) {
-	    Log.d(TAG, "Upload finished");
-	    t.cancel();
+	private final class GCUploadProgressListenerImplementation implements
+			GCUploadProgressListener {
+
+		private static final int DELAY = 1000;
+
+		private Timer t;
+		private long total;
+		private long uploaded;
+
+		class ProgressTask extends TimerTask {
+			@Override
+			public void run() {
+				int percent = (int) ((uploaded * 100) / total);
+				Log.e(TAG, "Current progress Text" + percent + "%");
+				pb.setProgress(percent);
+			}
+		}
+
+		@Override
+		public void onUploadStarted(String assetId, final String filepath,
+				final Bitmap thumbnail) {
+			Log.d(TAG, "Upload started");
+			t = new Timer();
+			t.schedule(new ProgressTask(), DELAY, DELAY);
+			pb.setMax(100);
+			PhotoUploadActivity.this.runOnUiThread(new Runnable() {
+
+				@Override
+				public void run() {
+					imageThumb.setImageBitmap(thumbnail);
+					fileText.setText(filepath);
+				}
+			});
+		}
+
+		@Override
+		public void onUploadFinished(String assetId, String filepath) {
+			Log.d(TAG, "Upload finished");
+			t.cancel();
+		}
+
+		@Override
+		public void onProgress(long total, long uploaded) {
+			this.total = total;
+			this.uploaded = uploaded;
+			Log.d(TAG, "Content Size " + String.valueOf(total));
+			Log.d(TAG, "Current progress " + String.valueOf(uploaded));
+		}
 	}
 
-	@Override
-	public void onProgress(long total, long uploaded) {
-	    this.total = total;
-	    this.uploaded = uploaded;
-	    Log.d(TAG, "Content Size " + String.valueOf(total));
-	    Log.d(TAG, "Current progress " + String.valueOf(uploaded));
-	}
-    }
+	private class GCHttpUploadCallback implements GCHttpCallback<String> {
+		@Override
+		public void onSuccess(String responseData) {
+			Log.e(TAG, responseData);
+		}
 
-    private class GCHttpUploadCallback implements GCHttpCallback<String> {
-	@Override
-	public void onSuccess(String responseData) {
-	    Log.e(TAG, responseData);
-	}
+		@Override
+		public void onHttpException(GCHttpRequestParameters params,
+				Throwable exception) {
+			Log.d(TAG, "Upload callback Create http exception ", exception);
+			Toast.makeText(getApplicationContext(), R.string.http_exception,
+					Toast.LENGTH_SHORT).show();
+		}
 
-	@Override
-	public void onHttpException(GCHttpRequestParameters params, Throwable exception) {
-	    Log.d(TAG, "Upload callback Create http exception ", exception);
-	    Toast.makeText(getApplicationContext(), R.string.http_exception, Toast.LENGTH_SHORT)
-		    .show();
-	}
+		@Override
+		public void onHttpError(int responseCode, String statusMessage) {
+			Log.d(TAG, "Upload callback http Error " + statusMessage + " Code "
+					+ responseCode);
+			Toast.makeText(getApplicationContext(), R.string.http_error,
+					Toast.LENGTH_SHORT).show();
+		}
 
-	@Override
-	public void onHttpError(int responseCode, String statusMessage) {
-	    Log.d(TAG, "Upload callback http Error " + statusMessage + " Code " + responseCode);
-	    Toast.makeText(getApplicationContext(), R.string.http_error, Toast.LENGTH_SHORT).show();
-	}
+		@Override
+		public void onParserException(int responseCode, Throwable exception) {
+			Log.d(TAG,
+					"Upload callback Parser Exception  Code " + responseCode,
+					exception);
+			Toast.makeText(getApplicationContext(), R.string.parsing_exception,
+					Toast.LENGTH_SHORT).show();
 
-	@Override
-	public void onParserException(int responseCode, Throwable exception) {
-	    Log.d(TAG, "Upload callback Parser Exception  Code " + responseCode, exception);
-	    Toast.makeText(getApplicationContext(), R.string.parsing_exception, Toast.LENGTH_SHORT)
-		    .show();
-
+		}
 	}
-    }
 }
