@@ -17,17 +17,21 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.chute.android.photopickerplus.util.Constants;
+import com.chute.android.photopickerplus.util.intent.PhotoActivityIntentWrapper;
+import com.chute.android.photopickerplus.util.intent.PhotoPickerPlusIntentWrapper;
 import com.chute.android.useravatar.R;
 import com.chute.android.useravatar.imagemanipulation.CropImage;
-import com.chute.android.useravatar.intent.SingleImagePickerIntentWrapper;
 import com.chute.android.useravatar.model.UploadModel;
 import com.chute.android.useravatar.parsers.UploadParser;
 import com.chute.sdk.api.GCHttpCallback;
 import com.chute.sdk.api.asset.GCAssets;
 import com.chute.sdk.api.asset.GCUploadProgressListener;
 import com.chute.sdk.api.parcel.GCParcel;
+import com.chute.sdk.collections.GCAccountMediaCollection;
 import com.chute.sdk.collections.GCChuteCollection;
 import com.chute.sdk.collections.GCLocalAssetCollection;
+import com.chute.sdk.model.GCAccountMediaModel;
 import com.chute.sdk.model.GCAccountStore;
 import com.chute.sdk.model.GCChuteModel;
 import com.chute.sdk.model.GCHttpRequestParameters;
@@ -44,6 +48,7 @@ public class UserAvatarActivity extends Activity {
 	private static final String TAG = UserAvatarActivity.class.getSimpleName();
 
 	private static final int REQUEST_CROP_IMAGE = 42;
+	public static int REQUEST_CODE_PP = 1232;
 
 	private ImageView thumb;
 
@@ -85,9 +90,13 @@ public class UserAvatarActivity extends Activity {
 
 		@Override
 		public void onClick(View v) {
-			SingleImagePickerIntentWrapper wrapper = new SingleImagePickerIntentWrapper(
-					getApplicationContext());
-			wrapper.startActivityForResult(UserAvatarActivity.this);
+//			SingleImagePickerIntentWrapper wrapper = new SingleImagePickerIntentWrapper(
+//					getApplicationContext());
+//			wrapper.startActivityForResult(UserAvatarActivity.this);
+			final PhotoPickerPlusIntentWrapper wrapper = new PhotoPickerPlusIntentWrapper(UserAvatarActivity.this);
+			wrapper.setMultiPicker(false);
+			wrapper.setChuteId(CHUTE_TEST_ID);
+			wrapper.startActivityForResult(UserAvatarActivity.this, REQUEST_CODE_PP);
 		}
 	}
 
@@ -97,15 +106,19 @@ public class UserAvatarActivity extends Activity {
 		if (resultCode != Activity.RESULT_OK) {
 			return;
 		}
-		if (requestCode == SingleImagePickerIntentWrapper.ACTIVITY_REQUEST_CODE) {
+		if (requestCode == REQUEST_CODE_PP) {
+			final PhotoActivityIntentWrapper wrapper = new PhotoActivityIntentWrapper(data);
 			final int width = 200;
 			final int height = 200;
-			tempFileForCroppedImage = new FileCache(getApplicationContext())
-					.getFile(data.getData().getPath());
+//			tempFileForCroppedImage = new FileCache(getApplicationContext())
+//					.getFile(data.getData().getPath());
+			tempFileForCroppedImage = new FileCache(getApplicationContext()).getFile(getPath(wrapper.getMediaCollection()));
 			tempFileForCroppedImage.deleteOnExit();
 			Log.d(TAG, tempFileForCroppedImage.getPath());
 			Intent intent = new Intent(this, CropImage.class);
-			intent.setData(data.getData());
+//			intent.setData(data.getData());
+			
+			intent.setData(Uri.fromFile(new File(getPath(wrapper.getMediaCollection()))));
 			intent.putExtra("outputX", width);
 			intent.putExtra("outputY", height);
 			intent.putExtra("aspectX", width);
@@ -248,6 +261,28 @@ public class UserAvatarActivity extends Activity {
 			Toast.makeText(getApplicationContext(), R.string.parsing_exception,
 					Toast.LENGTH_SHORT).show();
 
+		}
+	}
+	
+	public String getPath(GCAccountMediaCollection collection) {
+		GCAccountMediaModel model = collection.get(0);
+		String path = "";
+		    Uri uri = Uri.parse(model.getUrl());
+		    if (uri.getScheme().contentEquals("http")) {
+			// do nothing
+		    } else {
+		 path = uri.getPath();
+		    }
+		return path;
+
+	    }
+	
+	public Uri getUri(GCAccountMediaModel model) {
+		Uri uri = Uri.parse(model.getUrl());
+		if (uri.getScheme().contentEquals("http")) {
+			return Uri.parse(model.getUrl());
+		} else {
+			return Uri.fromFile(new File(uri.getPath()));
 		}
 	}
 }

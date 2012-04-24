@@ -5,6 +5,7 @@ import android.content.Context;
 import android.util.TypedValue;
 
 import com.chute.android.useravatar.R;
+import com.chute.sdk.utils.GCPreferenceUtil;
 import com.darko.imagedownloader.ImageLoader;
 
 public class UserAvatarApp extends Application {
@@ -25,6 +26,7 @@ public class UserAvatarApp extends Application {
     public void onCreate() {
 	super.onCreate();
 	mImageLoader = createImageLoader(this);
+	GCPreferenceUtil.init(getApplicationContext());
     }
 
     @Override

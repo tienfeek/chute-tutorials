@@ -53,6 +53,8 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.chute.android.useravatar.R;
+import com.chute.sdk.utils.GCConstants;
+import com.darko.imagedownloader.ImageLoader;
 
 /**
  * The activity can crop specific region of interest from an image.
@@ -112,7 +114,7 @@ public class CropImage extends MonitoredActivity {
 		mAspectX = 1;
 		mAspectY = 1;
 	    }
-
+	    
 	    mImagePath = intent.getData().getPath();
 
 	    mSaveUri = extras.getParcelable("output");
@@ -125,12 +127,19 @@ public class CropImage extends MonitoredActivity {
 	    mScale = extras.getBoolean("scale", true);
 	    mScaleUp = extras.getBoolean("scaleUpIfNeeded", true);
 	}
+	
+	 if (mBitmap == null) {
+		 if (GCConstants.DEBUG) {
+		 Log.d(TAG, "imagePath = " + mImagePath);
+		 }
+		mBitmap = ImageLoader.getLoader(getApplicationContext()).downloadBitmap(mImagePath);
+	    }
 
-	if (mBitmap == null) {
+//	if (mBitmap == null) {
 	    Log.d(TAG, "finish!!!");
-	    finish();
-	    return;
-	}
+//	    finish();
+//	    return;
+//	}
 
 	// Make UI fullscreen.
 	getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
