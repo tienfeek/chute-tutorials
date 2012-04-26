@@ -150,7 +150,6 @@ public class UserAvatarActivity extends Activity {
 
 		@Override
 		protected Bitmap doInBackground(String... params) {
-			Log.d("debug", "stringot vo doinbackground" + string);
 			return ImageLoader.getLoader(getApplicationContext()).downloadBitmap(string);
 		}
 		
