@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,21 +18,19 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.chute.android.photopickerplus.util.Constants;
 import com.chute.android.photopickerplus.util.intent.PhotoActivityIntentWrapper;
 import com.chute.android.photopickerplus.util.intent.PhotoPickerPlusIntentWrapper;
 import com.chute.android.useravatar.R;
 import com.chute.android.useravatar.imagemanipulation.CropImage;
 import com.chute.android.useravatar.model.UploadModel;
 import com.chute.android.useravatar.parsers.UploadParser;
+import com.chute.android.useravatar.util.AppUtil;
 import com.chute.sdk.api.GCHttpCallback;
 import com.chute.sdk.api.asset.GCAssets;
 import com.chute.sdk.api.asset.GCUploadProgressListener;
 import com.chute.sdk.api.parcel.GCParcel;
-import com.chute.sdk.collections.GCAccountMediaCollection;
 import com.chute.sdk.collections.GCChuteCollection;
 import com.chute.sdk.collections.GCLocalAssetCollection;
-import com.chute.sdk.model.GCAccountMediaModel;
 import com.chute.sdk.model.GCAccountStore;
 import com.chute.sdk.model.GCChuteModel;
 import com.chute.sdk.model.GCHttpRequestParameters;
@@ -90,9 +89,6 @@ public class UserAvatarActivity extends Activity {
 
 		@Override
 		public void onClick(View v) {
-//			SingleImagePickerIntentWrapper wrapper = new SingleImagePickerIntentWrapper(
-//					getApplicationContext());
-//			wrapper.startActivityForResult(UserAvatarActivity.this);
 			final PhotoPickerPlusIntentWrapper wrapper = new PhotoPickerPlusIntentWrapper(UserAvatarActivity.this);
 			wrapper.setMultiPicker(false);
 			wrapper.setChuteId(CHUTE_TEST_ID);
@@ -110,15 +106,20 @@ public class UserAvatarActivity extends Activity {
 			final PhotoActivityIntentWrapper wrapper = new PhotoActivityIntentWrapper(data);
 			final int width = 200;
 			final int height = 200;
+			
+			Uri uri = Uri.parse(wrapper.getMediaCollection().get(0).getUrl());
+			if (uri.getScheme().contentEquals("http")) {
+			new DownloadBitmapTask(uri.toString()).execute();
+			} else {
 //			tempFileForCroppedImage = new FileCache(getApplicationContext())
 //					.getFile(data.getData().getPath());
-			tempFileForCroppedImage = new FileCache(getApplicationContext()).getFile(getPath(wrapper.getMediaCollection()));
+			tempFileForCroppedImage = new FileCache(getApplicationContext()).getFile(uri.getPath());
 			tempFileForCroppedImage.deleteOnExit();
 			Log.d(TAG, tempFileForCroppedImage.getPath());
 			Intent intent = new Intent(this, CropImage.class);
 //			intent.setData(data.getData());
 			
-			intent.setData(Uri.fromFile(new File(getPath(wrapper.getMediaCollection()))));
+			intent.setData(Uri.fromFile(new File(uri.getPath())));
 			intent.putExtra("outputX", width);
 			intent.putExtra("outputY", height);
 			intent.putExtra("aspectX", width);
@@ -130,6 +131,7 @@ public class UserAvatarActivity extends Activity {
 			startActivityForResult(intent, REQUEST_CROP_IMAGE);
 			return;
 		}
+		}
 		if (requestCode == REQUEST_CROP_IMAGE) {
 			String imagePath = data.getStringExtra("imagePath");
 			Bitmap croppedImage = data.getParcelableExtra("image");
@@ -137,6 +139,44 @@ public class UserAvatarActivity extends Activity {
 			path.setText(data.getData().toString());
 			uploadPhoto(data.getData().getPath());
 		}
+	}
+	
+	private class DownloadBitmapTask extends AsyncTask<String, Void, Bitmap> {
+
+		private String string;
+		public DownloadBitmapTask(String string) {
+			this.string = string;
+		}
+
+		@Override
+		protected Bitmap doInBackground(String... params) {
+			Log.d("debug", "stringot vo doinbackground" + string);
+			return ImageLoader.getLoader(getApplicationContext()).downloadBitmap(string);
+		}
+		
+		@Override
+		protected void onPostExecute(Bitmap result) {
+			super.onPostExecute(result);
+			File file = AppUtil.getFilefromBitmap(getApplicationContext(), result);
+			tempFileForCroppedImage = new FileCache(getApplicationContext()).getFile(file.getAbsolutePath());
+			tempFileForCroppedImage.deleteOnExit();
+			Log.d(TAG, tempFileForCroppedImage.getPath());
+			Intent intent = new Intent(getApplicationContext(), CropImage.class);
+			
+			intent.setData(Uri.fromFile(new File(file.getAbsolutePath())));
+			intent.putExtra("outputX", 200);
+			intent.putExtra("outputY", 200);
+			intent.putExtra("aspectX", 200);
+			intent.putExtra("aspectY", 200);
+			intent.putExtra("scale", true);
+			intent.putExtra("noFaceDetection", true);
+
+			intent.putExtra("output", Uri.fromFile(tempFileForCroppedImage));
+			startActivityForResult(intent, REQUEST_CROP_IMAGE);
+			return;
+			
+		}
+		
 	}
 
 	private void uploadPhoto(String imagePath) {
@@ -264,25 +304,4 @@ public class UserAvatarActivity extends Activity {
 		}
 	}
 	
-	public String getPath(GCAccountMediaCollection collection) {
-		GCAccountMediaModel model = collection.get(0);
-		String path = "";
-		    Uri uri = Uri.parse(model.getUrl());
-		    if (uri.getScheme().contentEquals("http")) {
-			// do nothing
-		    } else {
-		 path = uri.getPath();
-		    }
-		return path;
-
-	    }
-	
-	public Uri getUri(GCAccountMediaModel model) {
-		Uri uri = Uri.parse(model.getUrl());
-		if (uri.getScheme().contentEquals("http")) {
-			return Uri.parse(model.getUrl());
-		} else {
-			return Uri.fromFile(new File(uri.getPath()));
-		}
-	}
 }

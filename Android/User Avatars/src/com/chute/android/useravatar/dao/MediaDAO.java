@@ -20,4 +20,5 @@ public class MediaDAO {
 		return context.getContentResolver().query(images, projection, query,
 				null, null);
 	}
+
 }
