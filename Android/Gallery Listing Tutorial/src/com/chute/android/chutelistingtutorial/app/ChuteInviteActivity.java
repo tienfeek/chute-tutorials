@@ -1,23 +1,10 @@
 package com.chute.android.chutelistingtutorial.app;
 
-import java.util.ArrayList;
-
-import com.chute.android.chutelistingtutorial.R;
-import com.chute.android.chutelistingtutorial.adapter.ChuteInviteAdapter;
-import com.chute.android.chutelistingtutorial.dao.ContactsDAO;
-import com.chute.android.chutelistingtutorial.intent.ChuteInviteActivityIntentWrapper;
-import com.chute.sdk.api.GCHttpCallback;
-import com.chute.sdk.api.asset.GCAssets;
-import com.chute.sdk.api.membership.GCMembership;
-import com.chute.sdk.model.GCHttpRequestParameters;
-import com.chute.sdk.parsers.base.GCStringResponse;
-
 import android.app.Activity;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.ContactsContract.CommonDataKinds.Email;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -25,6 +12,15 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.chute.android.chutelistingtutorial.R;
+import com.chute.android.chutelistingtutorial.adapter.ChuteInviteAdapter;
+import com.chute.android.chutelistingtutorial.dao.ContactsDAO;
+import com.chute.android.chutelistingtutorial.intent.ChuteInviteActivityIntentWrapper;
+import com.chute.sdk.api.GCHttpCallback;
+import com.chute.sdk.api.membership.GCMembership;
+import com.chute.sdk.model.GCHttpRequestParameters;
+import com.chute.sdk.parsers.base.GCStringResponse;
 
 public class ChuteInviteActivity extends Activity {
 
@@ -49,7 +45,7 @@ public class ChuteInviteActivity extends Activity {
 		ok.setOnClickListener(new OkClickListener());
 		cancel = (Button) findViewById(R.id.buttonCancel);
 		cancel.setOnClickListener(new CancelClickListener());
-		
+
 		new InviteTask().execute();
 	}
 
