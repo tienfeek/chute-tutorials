@@ -35,6 +35,7 @@ public class LoadImageActivity extends Activity {
 		switch (wrapper.getFilterType()) {
 		case LoadImageActivityIntentWrapper.TYPE_SDCARD:
 			Cursor cursor = MediaDAO.getMediaPhotos(LoadImageActivity.this);
+			startManagingCursor(cursor);
 			if (cursor != null && cursor.moveToFirst()) {
 				String path = cursor.getString(cursor
 						.getColumnIndex(MediaStore.Images.Media.DATA));
