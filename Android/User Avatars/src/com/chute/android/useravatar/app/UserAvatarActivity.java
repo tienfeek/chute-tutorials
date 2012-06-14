@@ -1,7 +1,6 @@
 package com.chute.android.useravatar.app;
 
 import java.io.File;
-import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -16,28 +15,24 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.chute.android.photopickerplus.util.intent.PhotoActivityIntentWrapper;
 import com.chute.android.photopickerplus.util.intent.PhotoPickerPlusIntentWrapper;
 import com.chute.android.useravatar.R;
-import com.chute.android.useravatar.imagemanipulation.CropImage;
-import com.chute.android.useravatar.model.UploadModel;
-import com.chute.android.useravatar.parsers.UploadParser;
 import com.chute.android.useravatar.util.AppUtil;
+import com.chute.android.useravatar.util.intent.CropImageIntentWrapper;
 import com.chute.sdk.api.GCHttpCallback;
 import com.chute.sdk.api.asset.GCAssets;
 import com.chute.sdk.api.asset.GCUploadProgressListener;
-import com.chute.sdk.api.parcel.GCParcel;
+import com.chute.sdk.collections.GCAssetCollection;
 import com.chute.sdk.collections.GCChuteCollection;
 import com.chute.sdk.collections.GCLocalAssetCollection;
 import com.chute.sdk.model.GCAccountStore;
 import com.chute.sdk.model.GCChuteModel;
 import com.chute.sdk.model.GCHttpRequestParameters;
 import com.chute.sdk.model.GCLocalAssetModel;
-import com.chute.sdk.model.response.GCParcelCreateResponse;
-import com.chute.sdk.parsers.GCCreateParcelsUploadsListParser;
 import com.chute.sdk.utils.GCUtils;
+import com.chute.sdk.utils.Logger;
 import com.darko.imagedownloader.FileCache;
 import com.darko.imagedownloader.ImageLoader;
 
@@ -60,6 +55,9 @@ public class UserAvatarActivity extends Activity {
 	private GCChuteModel chuteModel;
 
 	private ImageLoader loader;
+
+	private int width = 200;
+	private int height = 200;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -89,10 +87,12 @@ public class UserAvatarActivity extends Activity {
 
 		@Override
 		public void onClick(View v) {
-			final PhotoPickerPlusIntentWrapper wrapper = new PhotoPickerPlusIntentWrapper(UserAvatarActivity.this);
+			final PhotoPickerPlusIntentWrapper wrapper = new PhotoPickerPlusIntentWrapper(
+					UserAvatarActivity.this);
 			wrapper.setMultiPicker(false);
 			wrapper.setChuteId(CHUTE_TEST_ID);
-			wrapper.startActivityForResult(UserAvatarActivity.this, REQUEST_CODE_PP);
+			wrapper.startActivityForResult(UserAvatarActivity.this,
+					REQUEST_CODE_PP);
 		}
 	}
 
@@ -103,34 +103,32 @@ public class UserAvatarActivity extends Activity {
 			return;
 		}
 		if (requestCode == REQUEST_CODE_PP) {
-			final PhotoActivityIntentWrapper wrapper = new PhotoActivityIntentWrapper(data);
-			final int width = 200;
-			final int height = 200;
-			
+			final PhotoActivityIntentWrapper wrapper = new PhotoActivityIntentWrapper(
+					data);
+
 			Uri uri = Uri.parse(wrapper.getMediaCollection().get(0).getUrl());
 			if (uri.getScheme().contentEquals("http")) {
-			new DownloadBitmapTask(uri.toString()).execute();
+				new DownloadBitmapTask(uri.toString()).execute();
 			} else {
-//			tempFileForCroppedImage = new FileCache(getApplicationContext())
-//					.getFile(data.getData().getPath());
-			tempFileForCroppedImage = new FileCache(getApplicationContext()).getFile(uri.getPath());
-			tempFileForCroppedImage.deleteOnExit();
-			Log.d(TAG, tempFileForCroppedImage.getPath());
-			Intent intent = new Intent(this, CropImage.class);
-//			intent.setData(data.getData());
-			
-			intent.setData(Uri.fromFile(new File(uri.getPath())));
-			intent.putExtra("outputX", width);
-			intent.putExtra("outputY", height);
-			intent.putExtra("aspectX", width);
-			intent.putExtra("aspectY", height);
-			intent.putExtra("scale", true);
-			intent.putExtra("noFaceDetection", true);
+				tempFileForCroppedImage = new FileCache(getApplicationContext())
+						.getFile(uri.getPath());
+				tempFileForCroppedImage.deleteOnExit();
+				Log.d(TAG, tempFileForCroppedImage.getPath());
+				CropImageIntentWrapper cropWrapper = new CropImageIntentWrapper(
+						UserAvatarActivity.this);
+				cropWrapper.setOutputX(width);
+				cropWrapper.setOutputY(height);
+				cropWrapper.setAspectX(width);
+				cropWrapper.setAspectY(height);
+				cropWrapper.setScale(true);
+				cropWrapper.setNoFaceDetection(true);
+				cropWrapper.setUri(Uri.fromFile(new File(uri.getPath())));
+				cropWrapper.setOutput(Uri.fromFile(tempFileForCroppedImage));
+				cropWrapper.startActivityForResult(UserAvatarActivity.this,
+						REQUEST_CROP_IMAGE);
 
-			intent.putExtra("output", Uri.fromFile(tempFileForCroppedImage));
-			startActivityForResult(intent, REQUEST_CROP_IMAGE);
-			return;
-		}
+				return;
+			}
 		}
 		if (requestCode == REQUEST_CROP_IMAGE) {
 			String imagePath = data.getStringExtra("imagePath");
@@ -140,42 +138,47 @@ public class UserAvatarActivity extends Activity {
 			uploadPhoto(data.getData().getPath());
 		}
 	}
-	
+
 	private class DownloadBitmapTask extends AsyncTask<String, Void, Bitmap> {
 
 		private String string;
+
 		public DownloadBitmapTask(String string) {
 			this.string = string;
 		}
 
 		@Override
 		protected Bitmap doInBackground(String... params) {
-			return ImageLoader.getLoader(getApplicationContext()).downloadBitmap(string);
+			return ImageLoader.getLoader(getApplicationContext())
+					.downloadBitmap(string);
 		}
-		
+
 		@Override
 		protected void onPostExecute(Bitmap result) {
 			super.onPostExecute(result);
-			File file = AppUtil.getFilefromBitmap(getApplicationContext(), result);
-			tempFileForCroppedImage = new FileCache(getApplicationContext()).getFile(file.getAbsolutePath());
+			File file = AppUtil.getFilefromBitmap(getApplicationContext(),
+					result);
+			tempFileForCroppedImage = new FileCache(getApplicationContext())
+					.getFile(file.getAbsolutePath());
 			tempFileForCroppedImage.deleteOnExit();
 			Log.d(TAG, tempFileForCroppedImage.getPath());
-			Intent intent = new Intent(getApplicationContext(), CropImage.class);
-			
-			intent.setData(Uri.fromFile(new File(file.getAbsolutePath())));
-			intent.putExtra("outputX", 200);
-			intent.putExtra("outputY", 200);
-			intent.putExtra("aspectX", 200);
-			intent.putExtra("aspectY", 200);
-			intent.putExtra("scale", true);
-			intent.putExtra("noFaceDetection", true);
 
-			intent.putExtra("output", Uri.fromFile(tempFileForCroppedImage));
-			startActivityForResult(intent, REQUEST_CROP_IMAGE);
+			CropImageIntentWrapper cropWrapper = new CropImageIntentWrapper(
+					UserAvatarActivity.this);
+			cropWrapper.setOutputX(width);
+			cropWrapper.setOutputY(height);
+			cropWrapper.setAspectX(width);
+			cropWrapper.setAspectY(height);
+			cropWrapper.setScale(true);
+			cropWrapper.setNoFaceDetection(true);
+			cropWrapper.setUri(Uri.fromFile(new File(file.getAbsolutePath())));
+			cropWrapper.setOutput(Uri.fromFile(tempFileForCroppedImage));
+			cropWrapper.startActivityForResult(UserAvatarActivity.this,
+					REQUEST_CROP_IMAGE);
 			return;
-			
+
 		}
-		
+
 	}
 
 	private void uploadPhoto(String imagePath) {
@@ -193,46 +196,46 @@ public class UserAvatarActivity extends Activity {
 
 	private void createParcel(GCLocalAssetCollection assets,
 			GCChuteCollection chutes) {
-		GCParcel.create(getApplicationContext(), assets, chutes,
-				new GCCreateParcelsUploadsListParser(),
-				new GCParcelCreateCallback()).executeAsync();
+		GCAssets.upload(getApplicationContext(),
+				new GCUploadProgressListenerImplementation(),
+				new AssetUploadCallback(), assets, chutes).executeAsync();
 	}
 
-	private final class GCParcelCreateCallback implements
-			GCHttpCallback<GCParcelCreateResponse> {
+	private final class AssetUploadCallback implements
+			GCHttpCallback<GCAssetCollection> {
+
+		@Override
+		public void onSuccess(GCAssetCollection responseData) {
+			Log.d(TAG, responseData.toString());
+			final String url = responseData.get(0).getUrl();
+			UserAvatarActivity.this.runOnUiThread(new Runnable() {
+
+				@Override
+				public void run() {
+					loader.displayImage(
+							GCUtils.getCustomSizePhotoURL(url, 75, 75), thumb);
+				}
+			});
+		}
 
 		@Override
 		public void onHttpException(GCHttpRequestParameters params,
 				Throwable exception) {
-			Log.d(TAG, "Parcel Create http Error ", exception);
-			Toast.makeText(getApplicationContext(), R.string.http_exception,
-					Toast.LENGTH_SHORT).show();
+			Logger.e(TAG, "Upload callback create Http Exception ", exception);
 		}
 
 		@Override
 		public void onHttpError(int responseCode, String statusMessage) {
-			Toast.makeText(getApplicationContext(), R.string.http_error,
-					Toast.LENGTH_SHORT).show();
+			Logger.e(TAG, "Upload callback Http Error " + statusMessage
+					+ " Code " + responseCode);
 		}
 
 		@Override
 		public void onParserException(int responseCode, Throwable exception) {
-			Toast.makeText(getApplicationContext(), R.string.parsing_exception,
-					Toast.LENGTH_SHORT).show();
+			Logger.e(TAG, "Upload callback Parser Exception  Code "
+					+ responseCode, exception);
 		}
 
-		@Override
-		public void onSuccess(GCParcelCreateResponse responseData) {
-			try {
-				GCAssets.upload(getApplicationContext(),
-						new GCUploadProgressListenerImplementation(),
-						new UploadParser(), new GCHttpUploadCallback(),
-						responseData.getLocalAssetCollection()).executeAsync();
-			} catch (Exception e) {
-				Log.w(TAG, "", e);
-			}
-			Log.d(TAG, responseData.toString());
-		}
 	}
 
 	private final class GCUploadProgressListenerImplementation implements
@@ -259,48 +262,4 @@ public class UserAvatarActivity extends Activity {
 		}
 	}
 
-	private class GCHttpUploadCallback implements
-			GCHttpCallback<ArrayList<UploadModel>> {
-		@Override
-		public void onSuccess(ArrayList<UploadModel> responseData) {
-			Log.d(TAG, responseData.toString());
-			final String url = responseData.get(0).getUrl();
-			UserAvatarActivity.this.runOnUiThread(new Runnable() {
-
-				@Override
-				public void run() {
-					loader.displayImage(
-							GCUtils.getCustomSizePhotoURL(url, 75, 75), thumb);
-				}
-			});
-
-		}
-
-		@Override
-		public void onHttpException(GCHttpRequestParameters params,
-				Throwable exception) {
-			Log.d(TAG, "Upload callback Create http exception ", exception);
-			Toast.makeText(getApplicationContext(), R.string.http_exception,
-					Toast.LENGTH_SHORT).show();
-		}
-
-		@Override
-		public void onHttpError(int responseCode, String statusMessage) {
-			Log.d(TAG, "Upload callback http Error " + statusMessage + " Code "
-					+ responseCode);
-			Toast.makeText(getApplicationContext(), R.string.http_error,
-					Toast.LENGTH_SHORT).show();
-		}
-
-		@Override
-		public void onParserException(int responseCode, Throwable exception) {
-			Log.d(TAG,
-					"Upload callback Parser Exception  Code " + responseCode,
-					exception);
-			Toast.makeText(getApplicationContext(), R.string.parsing_exception,
-					Toast.LENGTH_SHORT).show();
-
-		}
-	}
-	
 }
