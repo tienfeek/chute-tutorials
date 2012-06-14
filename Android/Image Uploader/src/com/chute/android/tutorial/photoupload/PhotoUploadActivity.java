@@ -19,16 +19,14 @@ import android.widget.Toast;
 import com.chute.sdk.api.GCHttpCallback;
 import com.chute.sdk.api.asset.GCAssets;
 import com.chute.sdk.api.asset.GCUploadProgressListener;
-import com.chute.sdk.api.parcel.GCParcel;
+import com.chute.sdk.collections.GCAssetCollection;
 import com.chute.sdk.collections.GCChuteCollection;
 import com.chute.sdk.collections.GCLocalAssetCollection;
 import com.chute.sdk.model.GCAccountStore;
+import com.chute.sdk.model.GCAssetModel;
 import com.chute.sdk.model.GCChuteModel;
 import com.chute.sdk.model.GCHttpRequestParameters;
 import com.chute.sdk.model.GCLocalAssetModel;
-import com.chute.sdk.model.response.GCParcelCreateResponse;
-import com.chute.sdk.parsers.GCCreateParcelsUploadsListParser;
-import com.chute.sdk.parsers.base.GCStringResponse;
 
 public class PhotoUploadActivity extends Activity {
 
@@ -76,109 +74,23 @@ public class PhotoUploadActivity extends Activity {
 			// Upload Test
 			GCChuteCollection chuteCollection = new GCChuteCollection();
 			chuteCollection.add(chuteModel);
-
-			createParcel(assetCollection, chuteCollection);
+			uploadPhotos(assetCollection, chuteCollection);
 		}
 	}
 
-	public void createParcel(GCLocalAssetCollection assets,
+	public void uploadPhotos(GCLocalAssetCollection assets,
 			GCChuteCollection chutes) {
-		GCParcel.create(getApplicationContext(), assets, chutes,
-				new GCCreateParcelsUploadsListParser(),
-				new GCParcelCreateCallback()).executeAsync();
+		GCAssets.upload(getApplicationContext(),
+				new GCUploadProgressListenerImplementation(),
+				new UploadCallback(), assets, chutes).executeAsync();
 	}
 
-	private final class GCParcelCreateCallback implements
-			GCHttpCallback<GCParcelCreateResponse> {
+	private final class UploadCallback implements
+			GCHttpCallback<GCAssetCollection> {
 
 		@Override
-		public void onHttpException(GCHttpRequestParameters params,
-				Throwable exception) {
-			Log.d(TAG, "Parcel Create http Error ", exception);
-			Toast.makeText(getApplicationContext(), R.string.http_exception,
-					Toast.LENGTH_SHORT).show();
-		}
-
-		@Override
-		public void onHttpError(int responseCode, String statusMessage) {
-			Toast.makeText(getApplicationContext(), R.string.http_error,
-					Toast.LENGTH_SHORT).show();
-		}
-
-		@Override
-		public void onParserException(int responseCode, Throwable exception) {
-			Toast.makeText(getApplicationContext(), R.string.parsing_exception,
-					Toast.LENGTH_SHORT).show();
-		}
-
-		@Override
-		public void onSuccess(GCParcelCreateResponse responseData) {
-			try {
-				GCAssets.upload(getApplicationContext(),
-						new GCUploadProgressListenerImplementation(),
-						new GCStringResponse(), new GCHttpUploadCallback(),
-						responseData.getLocalAssetCollection()).executeAsync();
-			} catch (Exception e) {
-				Log.w(TAG, "", e);
-			}
+		public void onSuccess(GCAssetCollection responseData) {
 			Log.e(TAG, responseData.toString());
-		}
-	}
-
-	private final class GCUploadProgressListenerImplementation implements
-			GCUploadProgressListener {
-
-		private static final int DELAY = 1000;
-
-		private Timer t;
-		private long total;
-		private long uploaded;
-
-		class ProgressTask extends TimerTask {
-			@Override
-			public void run() {
-				int percent = (int) ((uploaded * 100) / total);
-				Log.e(TAG, "Current progress Text" + percent + "%");
-				pb.setProgress(percent);
-			}
-		}
-
-		@Override
-		public void onUploadStarted(String assetId, final String filepath,
-				final Bitmap thumbnail) {
-			Log.d(TAG, "Upload started");
-			t = new Timer();
-			t.schedule(new ProgressTask(), DELAY, DELAY);
-			pb.setMax(100);
-			PhotoUploadActivity.this.runOnUiThread(new Runnable() {
-
-				@Override
-				public void run() {
-					imageThumb.setImageBitmap(thumbnail);
-					fileText.setText(filepath);
-				}
-			});
-		}
-
-		@Override
-		public void onUploadFinished(String assetId, String filepath) {
-			Log.d(TAG, "Upload finished");
-			t.cancel();
-		}
-
-		@Override
-		public void onProgress(long total, long uploaded) {
-			this.total = total;
-			this.uploaded = uploaded;
-			Log.d(TAG, "Content Size " + String.valueOf(total));
-			Log.d(TAG, "Current progress " + String.valueOf(uploaded));
-		}
-	}
-
-	private class GCHttpUploadCallback implements GCHttpCallback<String> {
-		@Override
-		public void onSuccess(String responseData) {
-			Log.e(TAG, responseData);
 		}
 
 		@Override
@@ -204,7 +116,58 @@ public class PhotoUploadActivity extends Activity {
 					exception);
 			Toast.makeText(getApplicationContext(), R.string.parsing_exception,
 					Toast.LENGTH_SHORT).show();
+		}
 
+	}
+
+	private final class GCUploadProgressListenerImplementation implements
+			GCUploadProgressListener {
+
+		private static final int DELAY = 1000;
+
+		private Timer t;
+		private long total;
+		private long uploaded;
+
+		class ProgressTask extends TimerTask {
+			@Override
+			public void run() {
+				int percent = (int) ((uploaded * 100) / total);
+				Log.e(TAG, "Current progress Text" + percent + "%");
+				pb.setProgress(percent);
+			}
+		}
+
+		@Override
+		public void onProgress(long total, long uploaded) {
+			this.total = total;
+			this.uploaded = uploaded;
+			Log.d(TAG, "Content Size " + String.valueOf(total));
+			Log.d(TAG, "Current progress " + String.valueOf(uploaded));
+		}
+
+		@Override
+		public void onUploadStarted(final GCAssetModel asset,
+				final Bitmap thumbnail) {
+			Log.d(TAG, "Upload started");
+			t = new Timer();
+			t.schedule(new ProgressTask(), DELAY, DELAY);
+			pb.setMax(100);
+			PhotoUploadActivity.this.runOnUiThread(new Runnable() {
+
+				@Override
+				public void run() {
+					imageThumb.setImageBitmap(thumbnail);
+					fileText.setText(asset.getUrl());
+				}
+			});
+		}
+
+		@Override
+		public void onUploadFinished(GCAssetModel assetModel) {
+			Log.d(TAG, "Upload finished");
+			t.cancel();
 		}
 	}
+
 }
