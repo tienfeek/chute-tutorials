@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 
 public class CloudGalleryTutorialActivity extends Activity {
-	
+
 	@SuppressWarnings("unused")
 	private static final String TAG = CloudGalleryTutorialActivity.class.getSimpleName();
 
