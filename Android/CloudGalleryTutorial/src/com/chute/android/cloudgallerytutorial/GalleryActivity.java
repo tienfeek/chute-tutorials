@@ -5,16 +5,19 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.chute.android.gallery.components.GalleryViewFlipper;
-import com.chute.sdk.api.GCHttpCallback;
-import com.chute.sdk.api.chute.GCChutes;
-import com.chute.sdk.collections.GCAssetCollection;
-import com.chute.sdk.model.GCHttpRequestParameters;
+import com.chute.sdk.v2.api.album.GCAlbums;
+import com.chute.sdk.v2.model.AlbumModel;
+import com.chute.sdk.v2.model.AssetModel;
+import com.chute.sdk.v2.model.requests.ListResponseModel;
+import com.dg.libs.rest.callbacks.HttpCallback;
+import com.dg.libs.rest.domain.ResponseStatus;
 
 public class GalleryActivity extends Activity {
 
 	public static final String TAG = GalleryActivity.class.getSimpleName();
-	private static final String CHUTE_ID = "1946";
+	private static final String ALBUM_ID = "1946";
 	private GalleryViewFlipper gallery;
+	private AlbumModel album = new AlbumModel();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -22,37 +25,25 @@ public class GalleryActivity extends Activity {
 		setContentView(R.layout.gallery_activity);
 
 		gallery = (GalleryViewFlipper) findViewById(R.id.galleryId);
-		GCChutes.Resources.assets(getApplicationContext(), CHUTE_ID,
-				new AssetCollectionCallback()).executeAsync();
+		album.setId(ALBUM_ID);
+		GCAlbums.getAllAssets(getApplicationContext(), album,
+				new AlbumAssetsCallback()).executeAsync();
 	}
 
-	private final class AssetCollectionCallback implements
-			GCHttpCallback<GCAssetCollection> {
+	private final class AlbumAssetsCallback implements
+			HttpCallback<ListResponseModel<AssetModel>> {
 
 		@Override
-		public void onSuccess(GCAssetCollection responseData) {
-			gallery.setAssetCollection(responseData);
-		}
-
-		@Override
-		public void onHttpException(GCHttpRequestParameters params,
-				Throwable exception) {
-			Toast.makeText(getApplicationContext(), R.string.http_exception,
-					Toast.LENGTH_SHORT).show();
+		public void onSuccess(ListResponseModel<AssetModel> responseData) {
+			gallery.setAssetCollection(responseData.getData());
 
 		}
 
 		@Override
-		public void onHttpError(int responseCode, String statusMessage) {
+		public void onHttpError(ResponseStatus responseCode) {
 			Toast.makeText(getApplicationContext(), R.string.http_error,
 					Toast.LENGTH_SHORT).show();
-		}
 
-		@Override
-		public void onParserException(int responseCode, Throwable exception) {
-			Toast.makeText(getApplicationContext(), R.string.parsing_exception,
-					Toast.LENGTH_SHORT).show();
 		}
-
 	}
 }

@@ -3,7 +3,8 @@ package com.chute.android.commentstutorial;
 import com.chute.android.comments.util.Constants;
 import com.chute.android.comments.util.intent.PhotoCommentsActivityIntentWrapper;
 import com.chute.android.comments.util.intent.MainActivityIntentWrapper;
-import com.chute.sdk.model.GCAccountStore;
+import com.chute.sdk.v2.model.AccountStore;
+import com.dg.libs.rest.authentication.TokenAuthenticationProvider;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -23,10 +24,11 @@ public class PhotoCommentsTutorialActivity extends Activity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
+		TokenAuthenticationProvider.init(this);
 
-		GCAccountStore account = GCAccountStore
+		AccountStore account = AccountStore
 				.getInstance(getApplicationContext());
-		// Test token, see GCAuthentication activity on how to authenticate
+		// Test token, see AuthenticationActivity on how to authenticate
 		account.setPassword("46b7c778447e18ee5865a83f4202f42a2f85283c47ef24541366509235d8eccf");
 
 		Button startComments = (Button) findViewById(R.id.btnStartComments);
@@ -37,11 +39,11 @@ public class PhotoCommentsTutorialActivity extends Activity implements
 	public void onClick(View v) {
 		PhotoCommentsActivityIntentWrapper wrapper = new PhotoCommentsActivityIntentWrapper(
 				this);
-		wrapper.setChuteId("1946"); // Replace with chute id
+		wrapper.setAlbumId("1946"); // Replace with album id
 		wrapper.setAssetId("5868"); // Replace with asset id for which to enter
 		// and
 		// view comments
-		wrapper.setChuteName("Chute Name"); // Name of the chute
+		wrapper.setAlbumName("Album Name"); // Name of the album
 		wrapper.startActivityForResult(this, Constants.ACTIVITY_FOR_RESULT_KEY);
 	}
 

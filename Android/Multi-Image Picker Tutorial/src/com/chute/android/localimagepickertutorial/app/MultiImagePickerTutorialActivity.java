@@ -1,6 +1,7 @@
 package com.chute.android.localimagepickertutorial.app;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,11 +14,7 @@ import android.widget.Toast;
 
 import com.chute.android.localimagepickertutorial.R;
 import com.chute.android.multiimagepicker.intent.ChoosePhotosActivityIntentWrapper;
-import com.chute.sdk.api.GCHttpCallback;
-import com.chute.sdk.api.asset.GCAssets;
-import com.chute.sdk.collections.GCLocalAssetCollection;
-import com.chute.sdk.model.GCHttpRequestParameters;
-import com.chute.sdk.model.GCLocalAssetModel;
+import com.chute.sdk.v2.model.AssetModel;
 
 public class MultiImagePickerTutorialActivity extends Activity implements
 		OnClickListener {
@@ -44,9 +41,9 @@ public class MultiImagePickerTutorialActivity extends Activity implements
 			if (resultCode == RESULT_OK) {
 				ChoosePhotosActivityIntentWrapper wrapper = new ChoosePhotosActivityIntentWrapper(
 						data);
-				GCLocalAssetCollection localAssetCollection = makeGCLocalAssetCollection(wrapper
+				List<AssetModel> assetList = makeAssetList(wrapper
 						.getAssetPathList());
-				int photosSelected = localAssetCollection.size();
+				int photosSelected = assetList.size();
 				Toast.makeText(getApplicationContext(),
 						photosSelected + " photos selected!",
 						Toast.LENGTH_SHORT).show();
@@ -57,15 +54,14 @@ public class MultiImagePickerTutorialActivity extends Activity implements
 		}
 	}
 
-	public GCLocalAssetCollection makeGCLocalAssetCollection(
-			ArrayList<String> gridSelectedFilePath) {
-		GCLocalAssetCollection collection = new GCLocalAssetCollection();
-		GCLocalAssetModel model = new GCLocalAssetModel();
+	public List<AssetModel> makeAssetList(ArrayList<String> gridSelectedFilePath) {
+		List<AssetModel> list = new ArrayList<AssetModel>();
+		AssetModel asset = new AssetModel();
 		for (String filePath : gridSelectedFilePath) {
-			model.setFile(filePath);
-			collection.add(model);
+			asset.setUrl(filePath);
+			list.add(asset);
 		}
-		return collection;
+		return list;
 	}
 
 }

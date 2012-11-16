@@ -9,22 +9,27 @@ import android.widget.Toast;
 
 import com.chute.android.imagesharer.intent.ShareActivityIntentWrapper;
 import com.chute.android.imagesharer.util.Constants;
-import com.chute.sdk.api.GCHttpCallback;
-import com.chute.sdk.api.chute.GCChutes;
-import com.chute.sdk.collections.GCAssetCollection;
-import com.chute.sdk.model.GCHttpRequestParameters;
+import com.chute.sdk.v2.api.album.GCAlbums;
+import com.chute.sdk.v2.model.AlbumModel;
+import com.chute.sdk.v2.model.AssetModel;
+import com.chute.sdk.v2.model.requests.ListResponseModel;
+import com.dg.libs.rest.authentication.TokenAuthenticationProvider;
+import com.dg.libs.rest.callbacks.HttpCallback;
+import com.dg.libs.rest.domain.ResponseStatus;
 
 public class ShareViewTutorialActivity extends Activity {
 
 	@SuppressWarnings("unused")
 	private static final String TAG = ShareViewTutorialActivity.class
 			.getSimpleName();
+	private AlbumModel album = new AlbumModel();
 
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
+		TokenAuthenticationProvider.init(this);
 
 		Button share = (Button) findViewById(R.id.btnShare);
 		share.setOnClickListener(new OnShareClickListener());
@@ -34,25 +39,25 @@ public class ShareViewTutorialActivity extends Activity {
 
 		@Override
 		public void onClick(View v) {
-			GCChutes.Resources.assets(getApplicationContext(),
-					Constants.CHUTE_ID, new GCChuteModelAssetsCallback())
-					.executeAsync();
+			album.setId(Constants.ALBUM_ID);
+			GCAlbums.getAllAssets(getApplicationContext(), album,
+					new AlbumAssetsCallback()).executeAsync();
 		}
 
 	}
 
-	private final class GCChuteModelAssetsCallback implements
-			GCHttpCallback<GCAssetCollection> {
+	private final class AlbumAssetsCallback implements
+			HttpCallback<ListResponseModel<AssetModel>> {
 
 		@Override
-		public void onSuccess(GCAssetCollection responseData) {
-			if (responseData.size() > 0) {
+		public void onSuccess(ListResponseModel<AssetModel> responseData) {
+			if (responseData.getData().size() > 0) {
 				ShareActivityIntentWrapper wrapper = new ShareActivityIntentWrapper(
 						ShareViewTutorialActivity.this);
-				wrapper.setAssetShareUrl(responseData.get(0).getShareUrl());
-				wrapper.setChuteId(Constants.CHUTE_ID);
-				wrapper.setChuteName(Constants.CHUTE_NAME);
-				wrapper.setChuteShortcut(Constants.CHUTE_SHORTCUT);
+				wrapper.setAssetShareUrl(responseData.getData().get(0).getUrl());
+				wrapper.setAlbumId(Constants.ALBUM_ID);
+				wrapper.setAlbumName(Constants.ALBUM_NAME);
+				wrapper.setAlbumShortcut(Constants.ALBUM_SHORTCUT);
 				wrapper.startActivity(ShareViewTutorialActivity.this);
 			} else {
 				Toast.makeText(
@@ -61,23 +66,14 @@ public class ShareViewTutorialActivity extends Activity {
 								R.string.no_photos_in_this_chute),
 						Toast.LENGTH_SHORT).show();
 			}
-		}
-
-		@Override
-		public void onHttpException(GCHttpRequestParameters params,
-				Throwable exception) {
-			Toast.makeText(getApplicationContext(), R.string.http_exception, Toast.LENGTH_SHORT).show();
 
 		}
 
 		@Override
-		public void onHttpError(int responseCode, String statusMessage) {
-			Toast.makeText(getApplicationContext(), R.string.http_error, Toast.LENGTH_SHORT).show();
-		}
+		public void onHttpError(ResponseStatus responseCode) {
+			Toast.makeText(getApplicationContext(), R.string.http_error,
+					Toast.LENGTH_SHORT).show();
 
-		@Override
-		public void onParserException(int responseCode, Throwable exception) {
-			Toast.makeText(getApplicationContext(), R.string.parsing_exception, Toast.LENGTH_SHORT).show();
 		}
 
 	}

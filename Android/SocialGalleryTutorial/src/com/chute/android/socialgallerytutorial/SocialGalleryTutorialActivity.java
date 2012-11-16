@@ -3,7 +3,7 @@ package com.chute.android.socialgallerytutorial;
 import com.chute.android.socialgallery.R;
 import com.chute.android.socialgallery.util.Constants;
 import com.chute.android.socialgallery.util.intent.SocialGalleryActivityIntentWrapper;
-import com.chute.sdk.model.GCAccountStore;
+import com.chute.sdk.v2.model.AccountStore;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -17,8 +17,8 @@ public class SocialGalleryTutorialActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
-		// Test token, see GCAuthentication activity on how to authenticate
-		GCAccountStore account = GCAccountStore
+		// Test token, see GCAuthenticationActivity on how to authenticate
+		AccountStore account = AccountStore
 				.getInstance(getApplicationContext());
 		account.setPassword("46b7c778447e18ee5865a83f4202f42a2f85283c47ef24541366509235d8eccf");
 
@@ -32,9 +32,9 @@ public class SocialGalleryTutorialActivity extends Activity {
 		public void onClick(View v) {
 			SocialGalleryActivityIntentWrapper wrapper = new SocialGalleryActivityIntentWrapper(
 					SocialGalleryTutorialActivity.this);
-			wrapper.setChuteId(Constants.CHUTE_ID);
-			wrapper.setChuteName(Constants.CHUTE_NAME);
-			wrapper.setChuteShortcut(Constants.CHUTE_SHORTCUT);
+			wrapper.setAlbumId(Constants.ALBUM_ID);
+			wrapper.setAlbumName(Constants.ALBUM_NAME);
+			wrapper.setAlbumShortcut(Constants.ALBUM_SHORTCUT);
 			wrapper.startActivity(SocialGalleryTutorialActivity.this);
 		}
 
