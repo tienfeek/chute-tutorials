@@ -3,7 +3,6 @@ package com.chute.android.commentstutorial;
 import com.chute.android.comments.util.Constants;
 import com.chute.android.comments.util.intent.PhotoCommentsActivityIntentWrapper;
 import com.chute.android.comments.util.intent.MainActivityIntentWrapper;
-import com.chute.sdk.v2.model.AccountStore;
 import com.dg.libs.rest.authentication.TokenAuthenticationProvider;
 
 import android.app.Activity;
@@ -25,11 +24,6 @@ public class PhotoCommentsTutorialActivity extends Activity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		TokenAuthenticationProvider.init(this);
-
-		AccountStore account = AccountStore
-				.getInstance(getApplicationContext());
-		// Test token, see AuthenticationActivity on how to authenticate
-		account.setPassword("46b7c778447e18ee5865a83f4202f42a2f85283c47ef24541366509235d8eccf");
 
 		Button startComments = (Button) findViewById(R.id.btnStartComments);
 		startComments.setOnClickListener(this);

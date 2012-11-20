@@ -1,7 +1,5 @@
 package com.chute.android.cloudgallerytutorial;
 
-import com.dg.libs.rest.authentication.TokenAuthenticationProvider;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,7 +17,6 @@ public class CloudGalleryTutorialActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		TokenAuthenticationProvider.init(this);
 
 		findViewById(R.id.startGallery).setOnClickListener(
 				new OnStartClickListener());

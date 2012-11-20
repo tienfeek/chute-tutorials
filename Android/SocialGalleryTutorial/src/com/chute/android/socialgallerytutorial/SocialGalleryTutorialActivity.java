@@ -3,7 +3,6 @@ package com.chute.android.socialgallerytutorial;
 import com.chute.android.socialgallery.R;
 import com.chute.android.socialgallery.util.Constants;
 import com.chute.android.socialgallery.util.intent.SocialGalleryActivityIntentWrapper;
-import com.chute.sdk.v2.model.AccountStore;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -16,11 +15,6 @@ public class SocialGalleryTutorialActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-
-		// Test token, see GCAuthenticationActivity on how to authenticate
-		AccountStore account = AccountStore
-				.getInstance(getApplicationContext());
-		account.setPassword("46b7c778447e18ee5865a83f4202f42a2f85283c47ef24541366509235d8eccf");
 
 		findViewById(R.id.btnStart).setOnClickListener(
 				new OnStartClickListener());
