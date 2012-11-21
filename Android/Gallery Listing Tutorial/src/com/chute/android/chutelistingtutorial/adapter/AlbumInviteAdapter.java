@@ -5,7 +5,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 import com.chute.android.chutelistingtutorial.R;
-import com.darko.imagedownloader.ImageLoader;
+
+import darko.imagedownloader.ImageLoader;
 
 import android.app.Activity;
 import android.content.ContentUris;
@@ -22,16 +23,16 @@ import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class ChuteInviteAdapter extends CursorAdapter {
+public class AlbumInviteAdapter extends CursorAdapter {
 
-	public static final String TAG = ChuteInviteAdapter.class.getSimpleName();
+	public static final String TAG = AlbumInviteAdapter.class.getSimpleName();
 
 	private static LayoutInflater inflater = null;
 	private ImageLoader loader;
 	private Activity context;
 	public HashMap<Integer, String> tick;
 
-	public ChuteInviteAdapter(Activity context, Cursor c) {
+	public AlbumInviteAdapter(Activity context, Cursor c) {
 		super(context, c);
 		this.context = context;
 		loader = ImageLoader.getLoader(context);
@@ -70,10 +71,12 @@ public class ChuteInviteAdapter extends CursorAdapter {
 				.getColumnIndex(Email.DATA)));
 
 		if (tick.containsKey(cursor.getPosition())) {
-			holder.image.setBackgroundColor(context.getResources().getColor(R.color.orange_backgound));
+			holder.image.setBackgroundColor(context.getResources().getColor(
+					R.color.orange_backgound));
 			holder.tick.setVisibility(View.VISIBLE);
 		} else {
-			holder.image.setBackgroundColor(context.getResources().getColor(R.color.transparent));
+			holder.image.setBackgroundColor(context.getResources().getColor(
+					R.color.transparent));
 			holder.tick.setVisibility(View.GONE);
 		}
 	}
@@ -81,7 +84,7 @@ public class ChuteInviteAdapter extends CursorAdapter {
 	@Override
 	public View newView(Context context, Cursor cursor, ViewGroup parent) {
 		ViewHolder holder;
-		View vi = inflater.inflate(R.layout.chute_invite_adapter, null);
+		View vi = inflater.inflate(R.layout.album_invite_adapter, null);
 		holder = new ViewHolder();
 		holder.image = (ImageView) vi.findViewById(R.id.imageViewThumb);
 		holder.tick = (ImageView) vi.findViewById(R.id.imageViewTick);

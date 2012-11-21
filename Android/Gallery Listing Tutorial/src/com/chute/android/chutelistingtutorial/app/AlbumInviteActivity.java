@@ -14,32 +14,28 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.chute.android.chutelistingtutorial.R;
-import com.chute.android.chutelistingtutorial.adapter.ChuteInviteAdapter;
+import com.chute.android.chutelistingtutorial.adapter.AlbumInviteAdapter;
 import com.chute.android.chutelistingtutorial.dao.ContactsDAO;
-import com.chute.android.chutelistingtutorial.intent.ChuteInviteActivityIntentWrapper;
-import com.chute.sdk.api.GCHttpCallback;
-import com.chute.sdk.api.membership.GCMembership;
-import com.chute.sdk.model.GCHttpRequestParameters;
-import com.chute.sdk.parsers.base.GCStringResponse;
+import com.chute.android.chutelistingtutorial.intent.AlbumInviteActivityIntentWrapper;
 
-public class ChuteInviteActivity extends Activity {
+public class AlbumInviteActivity extends Activity {
 
-	public static final String TAG = ChuteInviteActivity.class.getSimpleName();
+	public static final String TAG = AlbumInviteActivity.class.getSimpleName();
 
 	private ListView list;
-	private ChuteInviteAdapter adapter;
-	private ChuteInviteActivityIntentWrapper wrapper;
+	private AlbumInviteAdapter adapter;
+	private AlbumInviteActivityIntentWrapper wrapper;
 	private Button ok;
 	private Button cancel;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.chute_invite_activity);
+		setContentView(R.layout.album_invite_activity);
 
-		wrapper = new ChuteInviteActivityIntentWrapper(getIntent());
+		wrapper = new AlbumInviteActivityIntentWrapper(getIntent());
 
-		list = (ListView) findViewById(R.id.listViewChuteInvite);
+		list = (ListView) findViewById(R.id.listViewAlbumInvite);
 		list.setEmptyView(findViewById(R.id.progressBarEmpty));
 		ok = (Button) findViewById(R.id.buttonOk);
 		ok.setOnClickListener(new OkClickListener());
@@ -64,7 +60,7 @@ public class ChuteInviteActivity extends Activity {
 		@Override
 		protected void onPostExecute(Cursor result) {
 			try {
-				adapter = new ChuteInviteAdapter(ChuteInviteActivity.this,
+				adapter = new AlbumInviteAdapter(AlbumInviteActivity.this,
 						result);
 				list.setAdapter(adapter);
 				list.setOnItemClickListener(new ListItemClickListener());
@@ -113,42 +109,44 @@ public class ChuteInviteActivity extends Activity {
 
 		@Override
 		public void onClick(View v) {
-			GCMembership.invite(getApplicationContext(), wrapper.getChuteId(),
-					adapter.getSelectedEmailsList(), new GCStringResponse(),
-					new ChuteInviteCallback()).executeAsync();
+			// GCMembership.invite(getApplicationContext(),
+			// wrapper.getChuteId(),
+			// adapter.getSelectedEmailsList(), new GCStringResponse(),
+			// new ChuteInviteCallback()).executeAsync();
 			finish();
 		}
 
 	}
 
-	private final class ChuteInviteCallback implements GCHttpCallback<String> {
-
-		@Override
-		public void onSuccess(String responseData) {
-			Toast.makeText(
-					getApplicationContext(),
-					getApplicationContext().getResources().getString(
-							R.string.invite), Toast.LENGTH_SHORT).show();
-		}
-
-		@Override
-		public void onHttpException(GCHttpRequestParameters params,
-				Throwable exception) {
-			Toast.makeText(getApplicationContext(), R.string.http_exception,
-					Toast.LENGTH_SHORT).show();
-		}
-
-		@Override
-		public void onHttpError(int responseCode, String statusMessage) {
-			Toast.makeText(getApplicationContext(), R.string.http_error,
-					Toast.LENGTH_SHORT).show();
-		}
-
-		@Override
-		public void onParserException(int responseCode, Throwable exception) {
-			Toast.makeText(getApplicationContext(), R.string.parsing_exception,
-					Toast.LENGTH_SHORT).show();
-		}
-
-	}
+	// private final class ChuteInviteCallback implements GCHttpCallback<String>
+	// {
+	//
+	// @Override
+	// public void onSuccess(String responseData) {
+	// Toast.makeText(
+	// getApplicationContext(),
+	// getApplicationContext().getResources().getString(
+	// R.string.invite), Toast.LENGTH_SHORT).show();
+	// }
+	//
+	// @Override
+	// public void onHttpException(GCHttpRequestParameters params,
+	// Throwable exception) {
+	// Toast.makeText(getApplicationContext(), R.string.http_exception,
+	// Toast.LENGTH_SHORT).show();
+	// }
+	//
+	// @Override
+	// public void onHttpError(int responseCode, String statusMessage) {
+	// Toast.makeText(getApplicationContext(), R.string.http_error,
+	// Toast.LENGTH_SHORT).show();
+	// }
+	//
+	// @Override
+	// public void onParserException(int responseCode, Throwable exception) {
+	// Toast.makeText(getApplicationContext(), R.string.parsing_exception,
+	// Toast.LENGTH_SHORT).show();
+	// }
+	//
+	// }
 }

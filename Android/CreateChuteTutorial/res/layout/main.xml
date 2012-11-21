@@ -1,42 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/relative"
-    android:background="@color/black"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="fill_parent"
+    android:background="@color/black" >
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="10dp"
-        android:gravity="center_horizontal"
-        android:text="@string/create_a_chute"
-        android:textColor="@color/white"
-        android:textSize="20dp"
-        android:textStyle="bold" />
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:gravity="center"
-        android:orientation="vertical" >
-
-        <Button
-            android:id="@+id/btnChuteBasic"
-            style="@style/btnStyle"
-            android:text="@string/basic_chute" />
-
-        <Button
-            android:id="@+id/btnChutePassword"
-            style="@style/btnStyle"
-            android:text="@string/chute_with_password" />
-
-        <Button
-            android:id="@+id/btnChutePermissions"
-            style="@style/btnStyle"
-            android:text="@string/chute_with_different_permissions" />
-    </LinearLayout>
+    <Button
+        android:id="@+id/btnCreateAlbum"
+        style="@style/btnStyle"
+        android:layout_centerInParent="true"
+        android:text="@string/create_an_album" />
 
 </RelativeLayout>

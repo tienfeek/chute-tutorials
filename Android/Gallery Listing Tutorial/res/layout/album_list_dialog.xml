@@ -10,10 +10,12 @@
     android:id="@+id/linearLayoutHolder"
     android:layout_width="wrap_content"
     android:layout_centerVertical="true">
+    <!--  
     <Button
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
       android:id="@+id/buttonInvite" android:text="@string/btn_invite" style="@style/buttonMenuGray" ></Button>
+      -->
     <Button
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"

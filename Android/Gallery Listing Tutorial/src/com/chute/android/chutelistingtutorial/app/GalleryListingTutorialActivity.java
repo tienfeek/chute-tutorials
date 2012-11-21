@@ -22,7 +22,7 @@ public class GalleryListingTutorialActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(getApplicationContext(),
-						ChuteListActivity.class);
+						AlbumListActivity.class);
 				startActivity(intent);
 			}
 		});
