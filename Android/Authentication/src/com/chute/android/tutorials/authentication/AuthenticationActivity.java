@@ -9,7 +9,7 @@ public class AuthenticationActivity extends BaseLoginActivity {
     @Override
     public void launchMainAppActivity() {
 	// This method will be responsible for handling the authentication
-	// success or if the user was previously authenticated sucessfully.
+	// success or if the user was previously authenticated successfully.
 	final Intent intent = new Intent(getApplicationContext(), MainAppActivity.class);
 	startActivity(intent);
 	AuthenticationActivity.this.finish();

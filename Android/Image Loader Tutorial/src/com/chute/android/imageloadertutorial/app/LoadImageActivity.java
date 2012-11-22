@@ -5,7 +5,8 @@ import java.io.File;
 import com.chute.android.imageloadertutorial.R;
 import com.chute.android.imageloadertutorial.dao.MediaDAO;
 import com.chute.android.imageloadertutorial.intent.LoadImageActivityIntentWrapper;
-import com.darko.imagedownloader.ImageLoader;
+
+import darko.imagedownloader.ImageLoader;
 
 import android.app.Activity;
 import android.database.Cursor;

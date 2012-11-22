@@ -1,7 +1,10 @@
 package com.chute.android.imageloadertutorial.app;
 
 import com.chute.android.imageloadertutorial.R;
-import com.darko.imagedownloader.ImageLoader;
+import com.dg.libs.rest.authentication.TokenAuthenticationProvider;
+import com.dg.libs.rest.client.BaseRestClient;
+
+import darko.imagedownloader.ImageLoader;
 
 import android.app.Application;
 import android.content.Context;
@@ -26,6 +29,12 @@ public class ImageLoaderTutorialApp extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
+		TokenAuthenticationProvider.init(getApplicationContext());
+		TokenAuthenticationProvider provider = TokenAuthenticationProvider
+				.getInstance();
+		// Test token
+		provider.setToken("46b7c778447e18ee5865a83f4202f42a2f85283c47ef24541366509235d8eccf");
+		BaseRestClient.setDefaultAuthenticationProvider(provider);
 		mImageLoader = createImageLoader(this);
 	}
 

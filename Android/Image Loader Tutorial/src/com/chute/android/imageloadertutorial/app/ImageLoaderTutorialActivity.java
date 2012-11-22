@@ -8,7 +8,6 @@ import android.widget.Button;
 
 import com.chute.android.imageloadertutorial.R;
 import com.chute.android.imageloadertutorial.intent.LoadImageActivityIntentWrapper;
-import com.chute.sdk.model.GCAccountStore;
 
 public class ImageLoaderTutorialActivity extends Activity {
 
@@ -21,11 +20,6 @@ public class ImageLoaderTutorialActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-
-		// Test token, see GCAuthentication activity on how to authenticate
-		GCAccountStore account = GCAccountStore
-				.getInstance(getApplicationContext());
-		account.setPassword("46b7c778447e18ee5865a83f4202f42a2f85283c47ef24541366509235d8eccf");
 
 		btnSdcard = (Button) findViewById(R.id.btnSdcard);
 		btnSdcard.setOnClickListener(new OnButtonSdcardClicked());
