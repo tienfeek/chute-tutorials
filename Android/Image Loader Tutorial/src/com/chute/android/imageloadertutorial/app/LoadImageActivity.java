@@ -4,6 +4,7 @@ import java.io.File;
 
 import com.chute.android.imageloadertutorial.R;
 import com.chute.android.imageloadertutorial.dao.MediaDAO;
+import com.chute.android.imageloadertutorial.intent.Constants;
 import com.chute.android.imageloadertutorial.intent.LoadImageActivityIntentWrapper;
 
 import darko.imagedownloader.ImageLoader;
@@ -45,12 +46,10 @@ public class LoadImageActivity extends Activity {
 			}
 			break;
 		case LoadImageActivityIntentWrapper.TYPE_URL:
-			loader.displayImage(
-					"http://www.sun-protection-and-you.com/images/sun-stroke.jpg",
-					imageView);
+			loader.displayImage(Constants.URL, imageView);
 			break;
 		case LoadImageActivityIntentWrapper.TYPE_CHUTE_URL:
-			loader.displayImage("http://sharedroll.com/volvqd", imageView);
+			loader.displayImage(Constants.CHUTE_URL, imageView);
 			break;
 		default:
 			break;

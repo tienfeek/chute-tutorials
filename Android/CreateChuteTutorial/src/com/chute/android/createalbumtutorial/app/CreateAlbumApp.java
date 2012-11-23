@@ -1,18 +1,18 @@
-package com.chute.android.createchutetutorial.app;
+package com.chute.android.createalbumtutorial.app;
 
 import android.app.Application;
 import android.content.Context;
 import android.util.TypedValue;
 
-import com.chute.android.createchutetutorial.R;
+import com.chute.android.createalbumtutorial.R;
 import com.dg.libs.rest.authentication.TokenAuthenticationProvider;
 import com.dg.libs.rest.client.BaseRestClient;
 
 import darko.imagedownloader.ImageLoader;
 
-public class AlbumChuteApp extends Application {
+public class CreateAlbumApp extends Application {
 
-	public static final String TAG = AlbumChuteApp.class.getSimpleName();
+	public static final String TAG = CreateAlbumApp.class.getSimpleName();
 
 	private static ImageLoader createImageLoader(Context context) {
 		ImageLoader imageLoader = new ImageLoader(context,

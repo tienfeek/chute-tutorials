@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.chute.android.createchutetutorial"
+    package="com.chute.android.createalbumtutorial"
     android:versionCode="1"
     android:versionName="1.0" >
 
     <uses-sdk android:minSdkVersion="7" />
 
     <application
-        android:name=".app.AlbumChuteApp"
+        android:name=".app.CreateAlbumApp"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:screenOrientation="portrait"

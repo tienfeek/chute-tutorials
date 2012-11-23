@@ -1,6 +1,6 @@
-package com.chute.android.createchutetutorial.intent;
+package com.chute.android.createalbumtutorial.intent;
 
-import com.chute.android.createchutetutorial.app.AlbumActivity;
+import com.chute.android.createalbumtutorial.app.AlbumActivity;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,6 +12,7 @@ public class AlbumActivityIntentWrapper {
 			.getSimpleName();
 
 	private static final String KEY_ALBUM_NAME = "albumName";
+	private static final String KEY_ALBUM_ID = "albumId";
 
 	private final Intent intent;
 
@@ -40,6 +41,14 @@ public class AlbumActivityIntentWrapper {
 
 	public void setAlbumName(String name) {
 		intent.putExtra(KEY_ALBUM_NAME, name);
+	}
+
+	public String getAlbumId() {
+		return intent.getExtras().getString(KEY_ALBUM_ID);
+	}
+
+	public void setAlbumId(String id) {
+		intent.putExtra(KEY_ALBUM_ID, id);
 	}
 
 	public void startActivity(Activity context) {

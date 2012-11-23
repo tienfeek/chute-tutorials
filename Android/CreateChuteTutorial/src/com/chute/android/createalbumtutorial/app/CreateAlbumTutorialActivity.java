@@ -1,4 +1,4 @@
-package com.chute.android.createchutetutorial.app;
+package com.chute.android.createalbumtutorial.app;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -6,9 +6,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-import com.chute.android.createchutetutorial.Constants;
-import com.chute.android.createchutetutorial.R;
-import com.chute.android.createchutetutorial.intent.AlbumActivityIntentWrapper;
+import com.chute.android.createalbumtutorial.Constants;
+import com.chute.android.createalbumtutorial.R;
+import com.chute.android.createalbumtutorial.intent.AlbumActivityIntentWrapper;
 
 public class CreateAlbumTutorialActivity extends Activity {
 
@@ -33,7 +33,8 @@ public class CreateAlbumTutorialActivity extends Activity {
 		public void onClick(View v) {
 			final AlbumActivityIntentWrapper wrapper = new AlbumActivityIntentWrapper(
 					CreateAlbumTutorialActivity.this);
-			wrapper.setAlbumName(Constants.BASIC_ALBUM_NAME);
+			wrapper.setAlbumName(Constants.ALBUM_NAME);
+			wrapper.setAlbumId(Constants.ALBUM_ID);
 			wrapper.startActivity(CreateAlbumTutorialActivity.this);
 		}
 

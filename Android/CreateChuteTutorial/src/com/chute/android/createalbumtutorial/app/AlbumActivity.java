@@ -1,17 +1,15 @@
-package com.chute.android.createchutetutorial.app;
+package com.chute.android.createalbumtutorial.app;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.chute.android.createchutetutorial.R;
-import com.chute.android.createchutetutorial.intent.AlbumActivityIntentWrapper;
+import com.chute.android.createalbumtutorial.R;
+import com.chute.android.createalbumtutorial.intent.AlbumActivityIntentWrapper;
 import com.chute.sdk.v2.api.album.GCAlbums;
-import com.chute.sdk.v2.api.comment.GCComments;
 import com.chute.sdk.v2.model.AlbumModel;
 import com.chute.sdk.v2.model.AssetModel;
-import com.chute.sdk.v2.model.CommentModel;
 import com.chute.sdk.v2.model.requests.ResponseModel;
 import com.dg.libs.rest.callbacks.HttpCallback;
 import com.dg.libs.rest.domain.ResponseStatus;
@@ -32,9 +30,9 @@ public class AlbumActivity extends Activity {
 
 		albumName = (TextView) findViewById(R.id.txtName);
 		album.setName(wrapper.getAlbumName());
-		album.setId("1946");
-		AssetModel asset = new AssetModel();
-		asset.setId("5856");
+		album.setId(wrapper.getAlbumId());
+//		AssetModel asset = new AssetModel();
+//		asset.setId("5856");
 		GCAlbums.create(getApplicationContext(), album,
 				new CreateAlbumCallback()).executeAsync();
 
