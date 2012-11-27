@@ -18,8 +18,8 @@
         android:layout_marginBottom="10dp"
         android:orientation="horizontal" >
 
-        <com.chute.android.assethearttutorial.view.HeartCheckbox
-            android:id="@+id/btnHeart"
+        <com.chute.android.assetvotestutorial.view.VoteCheckbox
+            android:id="@+id/btnVote"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp" />

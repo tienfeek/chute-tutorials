@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="hello">Hello World, AssetHeartTutorialActivity!</string>
+    <string name="hello">Hello World, AssetVotesTutorialActivity!</string>
     <string name="app_name">AssetHeartTutorial</string>
     
     <!-- Toast messages -->
-    <string name="no_photos_in_this_chute">No photos in this chute</string>
-    <string name="parsing_exception">Invalid response format</string>
+    <string name="no_photos_in_this_album">No photos in this album</string>
     <string name="http_exception">"Connection problem, check your connection and try again"</string>
-    <string name="http_error">Server Problem, Try again</string>
 
 </resources>
