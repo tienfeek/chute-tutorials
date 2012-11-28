@@ -8,8 +8,11 @@ import android.widget.Toast;
 import com.chute.android.createalbumtutorial.R;
 import com.chute.android.createalbumtutorial.intent.AlbumActivityIntentWrapper;
 import com.chute.sdk.v2.api.album.GCAlbums;
+import com.chute.sdk.v2.api.asset.GCAssets;
+import com.chute.sdk.v2.api.comment.GCComments;
 import com.chute.sdk.v2.model.AlbumModel;
 import com.chute.sdk.v2.model.AssetModel;
+import com.chute.sdk.v2.model.CommentModel;
 import com.chute.sdk.v2.model.requests.ResponseModel;
 import com.dg.libs.rest.callbacks.HttpCallback;
 import com.dg.libs.rest.domain.ResponseStatus;
@@ -29,13 +32,48 @@ public class AlbumActivity extends Activity {
 		wrapper = new AlbumActivityIntentWrapper(getIntent());
 
 		albumName = (TextView) findViewById(R.id.txtName);
-		album.setName(wrapper.getAlbumName());
+//		album.setName(wrapper.getAlbumName());
 		album.setId(wrapper.getAlbumId());
-//		AssetModel asset = new AssetModel();
-//		asset.setId("5856");
-		GCAlbums.create(getApplicationContext(), album,
-				new CreateAlbumCallback()).executeAsync();
+		AssetModel asset = new AssetModel();
+		asset.setId("5857");
+//		GCAssets.Votes.delete(getApplicationContext(), album, asset, new VotesCallback()).executeAsync();
+//		GCComments.create(getApplicationContext(), album, asset, new CommentsCallback()).executeAsync();
+//		GCAlbums.create(getApplicationContext(), album,
+//				new CreateAlbumCallback()).executeAsync();
 
+	}
+	
+	private final class VotesCallback implements HttpCallback<ResponseModel<AssetModel>> {
+
+		@Override
+		public void onSuccess(ResponseModel<AssetModel> responseData) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onHttpError(ResponseStatus responseCode) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
+	
+	private final class CommentsCallback implements HttpCallback<ResponseModel<CommentModel>> {
+
+
+		@Override
+		public void onHttpError(ResponseStatus responseCode) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onSuccess(ResponseModel<CommentModel> responseData) {
+			// TODO Auto-generated method stub
+			
+		}
+		
 	}
 
 	private final class CreateAlbumCallback implements

@@ -6,7 +6,7 @@ import android.util.TypedValue;
 
 import com.chute.android.useravatar.R;
 import com.chute.sdk.utils.GCPreferenceUtil;
-import com.darko.imagedownloader.ImageLoader;
+import darko.imagedownloader.ImageLoader;
 
 public class UserAvatarApp extends Application {
 

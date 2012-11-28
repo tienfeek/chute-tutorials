@@ -27,10 +27,9 @@
             </intent-filter>
         </activity>
 
-        <service android:name="com.chute.sdk.api.GCHttpService" >
-        </service>
+        <service android:name="com.dg.libs.rest.services.HTTPRequestExecutorService" />
 
-        <activity android:name="com.chute.sdk.api.authentication.GCAuthenticationActivity" >
+        <activity android:name="com.chute.sdk.v2.api.authentication.AuthenticationActivity" >
         </activity>
     </application>
 

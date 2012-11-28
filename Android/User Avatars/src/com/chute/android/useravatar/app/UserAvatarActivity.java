@@ -34,8 +34,8 @@ import com.chute.sdk.model.GCHttpRequestParameters;
 import com.chute.sdk.model.GCLocalAssetModel;
 import com.chute.sdk.utils.GCUtils;
 import com.chute.sdk.utils.Logger;
-import com.darko.imagedownloader.FileCache;
-import com.darko.imagedownloader.ImageLoader;
+import darko.imagedownloader.FileCache;
+import darko.imagedownloader.ImageLoader;
 
 public class UserAvatarActivity extends Activity {
 	private static final String CHUTE_TEST_ID = "684";

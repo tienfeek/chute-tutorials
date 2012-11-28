@@ -55,7 +55,7 @@ import android.widget.Toast;
 import com.chute.android.useravatar.R;
 import com.chute.android.useravatar.util.intent.CropImageIntentWrapper;
 import com.chute.sdk.utils.Logger;
-import com.darko.imagedownloader.ImageLoader;
+import darko.imagedownloader.ImageLoader;
 
 /**
  * The activity can crop specific region of interest from an image.

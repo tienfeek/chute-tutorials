@@ -20,22 +20,21 @@
         android:screenOrientation="portrait"
         android:theme="@android:style/Theme.Black.NoTitleBar" >
         <activity
-            android:label="@string/app_name"
             android:name="LoginActivity"
+            android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
-            <intent-filter >
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <service android:name="com.chute.sdk.api.GCHttpService" >
-        </service>
+        <service android:name="com.dg.libs.rest.services.HTTPRequestExecutorService" />
 
         <activity
-            android:name="com.chute.sdk.api.authentication.GCAuthenticationActivity"
+            android:name="com.chute.sdk.v2.api.authentication.AuthenticationActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
