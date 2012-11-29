@@ -13,6 +13,7 @@ import com.chute.sdk.v2.api.comment.GCComments;
 import com.chute.sdk.v2.model.AlbumModel;
 import com.chute.sdk.v2.model.AssetModel;
 import com.chute.sdk.v2.model.CommentModel;
+import com.chute.sdk.v2.model.requests.ListResponseModel;
 import com.chute.sdk.v2.model.requests.ResponseModel;
 import com.dg.libs.rest.callbacks.HttpCallback;
 import com.dg.libs.rest.domain.ResponseStatus;
@@ -36,6 +37,7 @@ public class AlbumActivity extends Activity {
 		album.setId(wrapper.getAlbumId());
 		AssetModel asset = new AssetModel();
 		asset.setId("5857");
+		GCComments.get(getApplicationContext(), album, asset, new CommentsCallback()).executeAsync();
 //		GCAssets.Votes.delete(getApplicationContext(), album, asset, new VotesCallback()).executeAsync();
 //		GCComments.create(getApplicationContext(), album, asset, new CommentsCallback()).executeAsync();
 //		GCAlbums.create(getApplicationContext(), album,
@@ -59,7 +61,7 @@ public class AlbumActivity extends Activity {
 		
 	}
 	
-	private final class CommentsCallback implements HttpCallback<ResponseModel<CommentModel>> {
+	private final class CommentsCallback implements HttpCallback<ListResponseModel<CommentModel>> {
 
 
 		@Override
@@ -69,7 +71,7 @@ public class AlbumActivity extends Activity {
 		}
 
 		@Override
-		public void onSuccess(ResponseModel<CommentModel> responseData) {
+		public void onSuccess(ListResponseModel<CommentModel> responseData) {
 			// TODO Auto-generated method stub
 			
 		}
