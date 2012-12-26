@@ -88,7 +88,7 @@ public class AlbumListActivity extends GalleryListingActivity {
 			@Override
 			public void onClick(View v) {
 				model.setName("new");
-				GCAlbums.edit(getApplicationContext(), model,
+				GCAlbums.update(getApplicationContext(), model,
 						new AlbumUpdateCallback()).executeAsync();
 				dialog.dismiss();
 			}

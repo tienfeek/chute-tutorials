@@ -37,7 +37,7 @@ public class BasicFunctionalitiesDemoActivity extends Activity {
 		 */
 
 		// EXAMPLE: fetch a list of all the albums
-		GCAlbums.all(getApplicationContext(), new AlbumsAllCallback())
+		GCAlbums.list(getApplicationContext(), new AlbumsAllCallback())
 				.executeAsync();
 	}
 

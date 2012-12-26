@@ -40,7 +40,7 @@ public class ShareViewTutorialActivity extends Activity {
 		@Override
 		public void onClick(View v) {
 			album.setId(Constants.ALBUM_ID);
-			GCAlbums.Assets.all(getApplicationContext(), album,
+			GCAlbums.Assets.list(getApplicationContext(), album,
 					new AlbumAssetsCallback()).executeAsync();
 		}
 
