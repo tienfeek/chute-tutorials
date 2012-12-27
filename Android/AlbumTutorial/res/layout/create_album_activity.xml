@@ -1,0 +1,114 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp" >
+
+    <LinearLayout
+        android:id="@+id/textViews"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Album Data"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Id:" />
+
+        <TextView
+            android:id="@+id/txtLinks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Links:" />
+
+        <TextView
+            android:id="@+id/txtCreatedAt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Created at:" />
+
+        <TextView
+            android:id="@+id/txtUpdatedAt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Updated at:" />
+
+        <TextView
+            android:id="@+id/txtShortcut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Shortcut:" />
+
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name:" />
+
+        <TextView
+            android:id="@+id/txtDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description:" />
+
+        <TextView
+            android:id="@+id/txtUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="User:" />
+
+        <TextView
+            android:id="@+id/txtModerateMedia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Moderate media:" />
+
+        <TextView
+            android:id="@+id/txtModerateComments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Moderate comments:" />
+
+        <TextView
+            android:id="@+id/txtCounters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Counters:" />
+    </LinearLayout>
+<!-- 
+    <LinearLayout
+        android:id="@+id/buttons"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/buttonUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Update" >
+        </Button>
+
+        <Button
+            android:id="@+id/buttonOk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Ok" >
+        </Button>
+    </LinearLayout>
+ -->
+</RelativeLayout>
