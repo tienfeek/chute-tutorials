@@ -1,0 +1,52 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp" >
+
+        <TextView
+            android:id="@+id/txtUserCounts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="User Counts"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtViaUpload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="via Upload: " />
+
+        <TextView
+            android:id="@+id/txtviaImport"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="via Import: " />
+
+        <TextView
+            android:id="@+id/txtSourceCounts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:text="Source Counts " />
+
+        <TextView
+            android:id="@+id/txtUploads"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Uploads:" />
+
+        <TextView
+            android:id="@+id/txtImports"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Imports:" />
+
+    </LinearLayout>

@@ -25,7 +25,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.CreateAlbumActivity"></activity>
-        <activity android:name=".activity.GetAlbumActivity"></activity>
+        <activity android:name=".activity.AlbumActivity"></activity>
+         <activity android:name=".activity.AlbumListActivity"></activity>
+        <activity android:name="com.chute.android.gcchutelisting.app.GalleryListingApp"></activity>
          <activity
             android:name="com.chute.sdk.v2.api.authentication.AuthenticationActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar" >

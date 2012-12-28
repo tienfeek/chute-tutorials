@@ -9,25 +9,25 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
  */
 package com.chute.android.albumtutorial.intent;
 
-import com.chute.android.albumtutorial.activity.GetAlbumActivity;
+import com.chute.android.albumtutorial.activity.AssetListActivity;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
-public class GetAlbumActivityIntentWrapper extends IntentWrapper {
+public class AssetListActivityIntentWrapper extends IntentWrapper {
 
 	@SuppressWarnings("unused")
-	private static final String TAG = GetAlbumActivityIntentWrapper.class
+	private static final String TAG = AssetListActivityIntentWrapper.class
 			.getSimpleName();
 
 	private static final String KEY_ALBUM_ID = "albumId";
 
-	public GetAlbumActivityIntentWrapper(Context context) {
-		super(context, GetAlbumActivity.class);
+	public AssetListActivityIntentWrapper(Context context) {
+		super(context, AssetListActivity.class);
 	}
 
-	public GetAlbumActivityIntentWrapper(Intent intent) {
+	public AssetListActivityIntentWrapper(Intent intent) {
 		super(intent);
 	}
 

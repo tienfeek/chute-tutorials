@@ -1,6 +1,7 @@
 package com.chute.android.albumtutorial.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -8,7 +9,7 @@ import android.widget.Button;
 
 import com.chute.android.albumtutorial.R;
 import com.chute.android.albumtutorial.intent.CreateAlbumActivityIntentWrapper;
-import com.chute.android.albumtutorial.intent.GetAlbumActivityIntentWrapper;
+import com.chute.android.albumtutorial.intent.AlbumActivityIntentWrapper;
 
 public class AlbumTutorialActivity extends Activity {
 
@@ -46,7 +47,7 @@ public class AlbumTutorialActivity extends Activity {
 
 		@Override
 		public void onClick(View v) {
-             GetAlbumActivityIntentWrapper wrapper = new GetAlbumActivityIntentWrapper(AlbumTutorialActivity.this);
+             AlbumActivityIntentWrapper wrapper = new AlbumActivityIntentWrapper(AlbumTutorialActivity.this);
              wrapper.setAlbumId("5856");
              wrapper.startActivity(AlbumTutorialActivity.this);
 		}
@@ -57,8 +58,8 @@ public class AlbumTutorialActivity extends Activity {
 
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
-
+             Intent intent  = new Intent(getApplicationContext(), AlbumListActivity.class);
+             startActivity(intent);
 		}
 
 	}
