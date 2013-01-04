@@ -1,4 +1,4 @@
-package com.chute.android.albumtutorial.activity;
+package com.chute.android.albumtutorial.ui.activity;
 
 import com.chute.android.albumtutorial.R;
 import com.chute.android.albumtutorial.intent.CreateAlbumActivityIntentWrapper;
@@ -39,7 +39,7 @@ public class CreateAlbumActivity extends Activity {
 	private CreateAlbumActivityIntentWrapper wrapper;
 	private Button buttonUpdate;
 	private Button buttonOk;
-	
+
 	private String albumId;
 
 	@Override
@@ -71,9 +71,9 @@ public class CreateAlbumActivity extends Activity {
 		relativeLayout.addView(linearLayout, linearParams);
 
 		buttonUpdate = new Button(this);
-		buttonUpdate.setText("Update");
+		buttonUpdate.setText(getResources().getString(R.string.btn_update));
 		buttonOk = new Button(this);
-		buttonOk.setText("Ok");
+		buttonOk.setText(getResources().getString(R.string.btn_ok));
 		android.widget.LinearLayout.LayoutParams buttonParams = new android.widget.LinearLayout.LayoutParams(
 				android.widget.LinearLayout.LayoutParams.WRAP_CONTENT,
 				android.widget.LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -101,42 +101,54 @@ public class CreateAlbumActivity extends Activity {
 
 		@Override
 		public void onSuccess(ResponseModel<AlbumModel> responseData) {
-			Toast.makeText(getApplicationContext(), "Album created!",
+			Toast.makeText(getApplicationContext(),
+					getResources().getString(R.string.txt_album_created),
 					Toast.LENGTH_SHORT).show();
-			id.setText("Id: " + responseData.getData().getId());
-			links.setText("Links: "
+			id.setText(getResources().getString(R.string.txt_id) + " "
+					+ responseData.getData().getId());
+			links.setText(getResources().getString(R.string.txt_links) + " "
 					+ responseData.getData().getLinks().toString());
-			createdAt.setText("Created at: "
-					+ responseData.getData().getCreatedAt());
-			updatedAt.setText("Updated at: "
-					+ responseData.getData().getUpdatedAt());
-			shortcut.setText("Shortcut: "
-					+ responseData.getData().getShortcut());
-			name.setText("Name: " + responseData.getData().getName());
-			description.setText("Description: "
-					+ responseData.getData().getDescription());
-			user.setText("User: " + responseData.getData().getUser().toString());
+			createdAt.setText(getResources().getString(R.string.txt_created_at)
+					+ " " + responseData.getData().getCreatedAt());
+			updatedAt.setText(getResources().getString(R.string.txt_updated_at)
+					+ " " + responseData.getData().getUpdatedAt());
+			shortcut.setText(getResources().getString(R.string.txt_shortcut)
+					+ " " + responseData.getData().getShortcut());
+			name.setText(getResources().getString(R.string.txt_name) + " "
+					+ responseData.getData().getName());
+			description.setText(getResources().getString(
+					R.string.txt_description)
+					+ " " + responseData.getData().getDescription());
+			user.setText(getResources().getString(R.string.txt_user) + " "
+					+ responseData.getData().getUser().toString());
 			moderateComments
-					.setText("Modeate comments: "
+					.setText(getResources().getString(
+							R.string.txt_moderate_comments)
+							+ " "
 							+ (responseData.getData().isModerateComments() == true ? "true"
 									: "false"));
 			moderateMedia
-					.setText("Moderate media: "
+					.setText(getResources().getString(
+							R.string.txt_moderate_media)
+							+ " "
 							+ (responseData.getData().isModerateMedia() == true ? "true"
 									: "false"));
-			counters.setText("Counters: "
-					+ responseData.getData().getCounters().toString());
-			
+			counters.setText(getResources().getString(R.string.txt_counters)
+					+ " " + responseData.getData().getCounters().toString());
+
 			albumId = responseData.getData().getId();
 
 		}
 
 		@Override
 		public void onHttpError(ResponseStatus responseCode) {
-			Toast.makeText(getApplicationContext(),
-					"Error occurred: " + responseCode.getStatusMessage(),
+			Toast.makeText(
+					getApplicationContext(),
+					getResources().getString(R.string.txt_error_occurred) + " "
+							+ responseCode.getStatusMessage(),
 					Toast.LENGTH_SHORT).show();
-			Log.e(TAG, "Error occurred: " + responseCode.getStatusMessage());
+			Log.e(TAG, getResources().getString(R.string.txt_error_occurred)
+					+ " " + responseCode.getStatusMessage());
 		}
 
 	}
@@ -159,40 +171,52 @@ public class CreateAlbumActivity extends Activity {
 
 		@Override
 		public void onSuccess(ResponseModel<AlbumModel> responseData) {
-			Toast.makeText(getApplicationContext(), "Album updated!",
+			Toast.makeText(getApplicationContext(),
+					getResources().getString(R.string.txt_album_updated),
 					Toast.LENGTH_SHORT).show();
-			id.setText("Id: " + responseData.getData().getId());
-			links.setText("Links: "
+			id.setText(getResources().getString(R.string.txt_id) + " "
+					+ responseData.getData().getId());
+			links.setText(getResources().getString(R.string.txt_links) + " "
 					+ responseData.getData().getLinks().toString());
-			createdAt.setText("Created at: "
-					+ responseData.getData().getCreatedAt());
-			updatedAt.setText("Updated at: "
-					+ responseData.getData().getUpdatedAt());
-			shortcut.setText("Shortcut: "
-					+ responseData.getData().getShortcut());
-			name.setText("Name: " + responseData.getData().getName());
-			description.setText("Description: "
-					+ responseData.getData().getDescription());
-			user.setText("User: " + responseData.getData().getUser().toString());
+			createdAt.setText(getResources().getString(R.string.txt_created_at)
+					+ " " + responseData.getData().getCreatedAt());
+			updatedAt.setText(getResources().getString(R.string.txt_updated_at)
+					+ " " + responseData.getData().getUpdatedAt());
+			shortcut.setText(getResources().getString(R.string.txt_shortcut)
+					+ " " + responseData.getData().getShortcut());
+			name.setText(getResources().getString(R.string.txt_name) + " "
+					+ responseData.getData().getName());
+			description.setText(getResources().getString(
+					R.string.txt_description)
+					+ " " + responseData.getData().getDescription());
+			user.setText(getResources().getString(R.string.txt_user) + " "
+					+ responseData.getData().getUser().toString());
 			moderateComments
-					.setText("Modeate comments: "
+					.setText(getResources().getString(
+							R.string.txt_moderate_comments)
+							+ " "
 							+ (responseData.getData().isModerateComments() == true ? "true"
 									: "false"));
 			moderateMedia
-					.setText("Moderate media: "
+					.setText(getResources().getString(
+							R.string.txt_moderate_media)
+							+ " "
 							+ (responseData.getData().isModerateMedia() == true ? "true"
 									: "false"));
-			counters.setText("Counters: "
-					+ responseData.getData().getCounters().toString());
+			counters.setText(getResources().getString(R.string.txt_counters)
+					+ " " + responseData.getData().getCounters().toString());
 
 		}
 
 		@Override
 		public void onHttpError(ResponseStatus responseCode) {
-			Toast.makeText(getApplicationContext(),
-					"Error occurred: " + responseCode.getStatusMessage(),
+			Toast.makeText(
+					getApplicationContext(),
+					getResources().getString(R.string.txt_error_occurred) + " "
+							+ responseCode.getStatusMessage(),
 					Toast.LENGTH_SHORT).show();
-			Log.e(TAG, "Error occurred: " + responseCode.getStatusMessage());
+			Log.e(TAG, getResources().getString(R.string.txt_error_occurred)
+					+ " " + responseCode.getStatusMessage());
 
 		}
 

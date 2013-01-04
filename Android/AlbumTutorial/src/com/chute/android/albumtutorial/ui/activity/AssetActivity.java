@@ -1,4 +1,4 @@
-package com.chute.android.albumtutorial.activity;
+package com.chute.android.albumtutorial.ui.activity;
 
 import com.chute.android.albumtutorial.R;
 import com.chute.android.albumtutorial.intent.AssetActivityIntentWrapper;
@@ -53,7 +53,8 @@ public class AssetActivity extends Activity {
 
 		@Override
 		public void onHttpError(ResponseStatus responseCode) {
-			Log.e(TAG, "Error occured: " + responseCode.getStatusMessage());
+			Log.e(TAG, getResources().getString(R.string.txt_error_occurred)
+					+ " " + responseCode.getStatusMessage());
 		}
 
 	}

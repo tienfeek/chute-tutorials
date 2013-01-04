@@ -9,7 +9,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
  */
 package com.chute.android.albumtutorial.intent;
 
-import com.chute.android.albumtutorial.activity.AlbumActivity;
+import com.chute.android.albumtutorial.ui.activity.AlbumActivity;
 
 import android.app.Activity;
 import android.content.Context;

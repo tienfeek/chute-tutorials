@@ -1,4 +1,4 @@
-package com.chute.android.albumtutorial.activity;
+package com.chute.android.albumtutorial.ui.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -37,7 +37,7 @@ public class AlbumTutorialActivity extends Activity {
 		@Override
 		public void onClick(View v) {
             CreateAlbumActivityIntentWrapper wrapper = new CreateAlbumActivityIntentWrapper(AlbumTutorialActivity.this);
-            wrapper.setAlbumName("Created Album Name");
+            wrapper.setAlbumName("Created Album Name"); 
             wrapper.startActivity(AlbumTutorialActivity.this);
 		}
 

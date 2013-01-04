@@ -1,4 +1,4 @@
-package com.chute.android.albumtutorial.activity;
+package com.chute.android.albumtutorial.ui.activity;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -64,7 +64,8 @@ public class AlbumListActivity extends GalleryListingActivity {
 
 		@Override
 		public void onSuccess(ResponseModel<AlbumModel> responseData) {
-			Toast.makeText(getApplicationContext(), "Album deleted!",
+			Toast.makeText(getApplicationContext(),
+					getResources().getString(R.string.txt_album_deleted),
 					Toast.LENGTH_SHORT).show();
 			// TODO refresh album list
 
@@ -72,7 +73,8 @@ public class AlbumListActivity extends GalleryListingActivity {
 
 		@Override
 		public void onHttpError(ResponseStatus responseCode) {
-			Toast.makeText(getApplicationContext(), "http error",
+			Toast.makeText(getApplicationContext(),
+					getResources().getString(R.string.txt_http_error),
 					Toast.LENGTH_SHORT).show();
 
 		}

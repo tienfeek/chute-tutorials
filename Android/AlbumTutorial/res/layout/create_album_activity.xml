@@ -15,7 +15,7 @@
             android:id="@+id/txtTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Album Data"
+            android:text="@string/txt_album_data"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -24,69 +24,69 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Id:" />
+            android:text="@string/txt_id" />
 
         <TextView
             android:id="@+id/txtLinks"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Links:" />
+            android:text="@string/txt_links" />
 
         <TextView
             android:id="@+id/txtCreatedAt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Created at:" />
+            android:text="@string/txt_created_at" />
 
         <TextView
             android:id="@+id/txtUpdatedAt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Updated at:" />
+            android:text="@string/txt_updated_at" />
 
         <TextView
             android:id="@+id/txtShortcut"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Shortcut:" />
+            android:text="@string/txt_shortcut" />
 
         <TextView
             android:id="@+id/txtName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Name:" />
+            android:text="@string/txt_name" />
 
         <TextView
             android:id="@+id/txtDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Description:" />
+            android:text="@string/txt_description" />
 
         <TextView
             android:id="@+id/txtUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="User:" />
+            android:text="@string/txt_user" />
 
         <TextView
             android:id="@+id/txtModerateMedia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Moderate media:" />
+            android:text="@string/txt_moderate_media" />
 
         <TextView
             android:id="@+id/txtModerateComments"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Moderate comments:" />
+            android:text="@string/txt_moderate_comments" />
 
         <TextView
             android:id="@+id/txtCounters"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Counters:" />
+            android:text="@string/txt_counters" />
     </LinearLayout>
-<!-- 
+    <!--
     <LinearLayout
         android:id="@+id/buttons"
         android:layout_width="fill_parent"
@@ -110,5 +110,6 @@
             android:text="Ok" >
         </Button>
     </LinearLayout>
- -->
+    -->
+
 </RelativeLayout>

@@ -4,5 +4,37 @@
     <string name="app_name">AlbumTutorial</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
+    
+    <!-- UI -->
+    <string name="btn_delete_album">Delete Album</string>
+    <string name="btn_create_album">Create Album</string>
+    <string name="btn_get_album_list">Get Album List</string>
+    <string name="btn_get_album">Get Album</string>
+    <string name="btn_ok">OK</string>
+    <string name="btn_update">Update</string>
+    <string name="txt_user_counts">User Counts</string>
+    <string name="txt_source_counts">Source Counts</string>
+    <string name="txt_via_upload">via Upload:</string>
+    <string name="txt_via_import">via Import:</string>
+    <string name="txt_uploads">Uploads:</string>
+    <string name="txt_imports">Imports:</string>
+    <string name="txt_album_data">Album Data</string>
+    <string name="txt_id">ID:</string>
+    <string name="txt_links">Links:</string>
+    <string name="txt_created_at">Created at:</string>
+    <string name="txt_updated_at">Updated at:</string>
+    <string name="txt_shortcut">Shortcut:</string>
+    <string name="txt_name">Name:</string>
+    <string name="txt_description">Description:</string>
+    <string name="txt_user">User:</string>
+    <string name="txt_moderate_media">Moderate media:</string>
+    <string name="txt_moderate_comments">Moderate comments:</string>
+    <string name="txt_counters">Counters:</string>
+    
+    <string name="txt_error_occurred">Error occurred:</string>
+    <string name="txt_album_created">Album created!</string>
+    <string name="txt_album_deleted">Album deleted!</string>
+    <string name="txt_album_updated">Album updated!</string>
+    <string name="txt_http_error">Server error</string>
 
 </resources>

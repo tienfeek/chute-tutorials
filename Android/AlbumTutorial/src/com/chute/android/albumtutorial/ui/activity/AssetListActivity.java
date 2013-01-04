@@ -1,4 +1,4 @@
-package com.chute.android.albumtutorial.activity;
+package com.chute.android.albumtutorial.ui.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.chute.android.albumtutorial.R;
 import com.chute.android.albumtutorial.intent.AssetListActivityIntentWrapper;
+import com.chute.android.albumtutorial.ui.adapter.AssetListAdapter;
 import com.chute.sdk.v2.api.album.GCAlbums;
 import com.chute.sdk.v2.model.AlbumModel;
 import com.chute.sdk.v2.model.AssetModel;

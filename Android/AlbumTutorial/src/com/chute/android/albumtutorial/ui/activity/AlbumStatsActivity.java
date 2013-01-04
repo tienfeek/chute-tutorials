@@ -1,4 +1,4 @@
-package com.chute.android.albumtutorial.activity;
+package com.chute.android.albumtutorial.ui.activity;
 
 import com.chute.android.albumtutorial.R;
 import com.chute.android.albumtutorial.intent.AlbumStatsActivityIntentWrapper;
@@ -46,19 +46,24 @@ public class AlbumStatsActivity extends Activity {
 
 		@Override
 		public void onSuccess(ResponseModel<StatsModel> responseData) {
-			viaUpload.setText("via Upload: "
+			viaUpload.setText(getResources().getString(R.string.txt_via_upload)
+					+ " "
 					+ responseData.getData().getUserCounts().getViaUpload());
-			viaImport.setText("via Import: "
+			viaImport.setText(getResources().getString(R.string.txt_via_import)
+					+ " "
 					+ responseData.getData().getUserCounts().getViaImport());
-			uploads.setText("Uploads: "
+			uploads.setText(getResources().getString(R.string.txt_uploads)
+					+ " "
 					+ responseData.getData().getSourceCounts().getUploads());
-			imports.setText("Imports: "
+			imports.setText(getResources().getString(R.string.txt_imports)
+					+ " "
 					+ responseData.getData().getSourceCounts().getImports());
 		}
 
 		@Override
 		public void onHttpError(ResponseStatus responseCode) {
-			Log.e(TAG, "Error occurred: " + responseCode.getStatusMessage());
+			Log.e(TAG, getResources().getString(R.string.txt_error_occurred)
+					+ " " + responseCode.getStatusMessage());
 		}
 
 	}
