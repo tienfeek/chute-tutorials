@@ -100,8 +100,10 @@ public class AlbumActivity extends Activity {
 							+ " "
 							+ (responseData.getData().isModerateMedia() == true ? "true"
 									: "false"));
+			if (responseData.getData().getCounters() != null) {
 			counters.setText(getResources().getString(R.string.txt_counters)
 					+ " " + responseData.getData().getCounters().toString());
+			}
 
 			albumId = responseData.getData().getId();
 		}
