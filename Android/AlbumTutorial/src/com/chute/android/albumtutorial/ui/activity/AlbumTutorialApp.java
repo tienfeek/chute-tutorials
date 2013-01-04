@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.util.TypedValue;
 
+import com.chute.android.albumtutorial.Constants;
 import com.chute.android.albumtutorial.R;
 import com.chute.sdk.v2.model.AccountStore;
 import com.dg.libs.rest.authentication.TokenAuthenticationProvider;
@@ -32,7 +33,7 @@ public class AlbumTutorialApp extends Application {
 		TokenAuthenticationProvider.init(getApplicationContext());
 		AccountStore account = AccountStore
 				.getInstance(getApplicationContext());
-		account.setPassword("46b7c778447e18ee5865a83f4202f42a2f85283c47ef24541366509235d8eccf");
+		account.setPassword(Constants.TOKEN);
 		BaseRestClient.setDefaultAuthenticationProvider(account);
 
 		mImageLoader = createImageLoader(this);

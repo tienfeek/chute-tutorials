@@ -1,5 +1,6 @@
 package com.chute.android.albumtutorial.ui.activity;
 
+import com.chute.android.albumtutorial.Constants;
 import com.chute.android.albumtutorial.R;
 import com.chute.android.albumtutorial.intent.AlbumActivityIntentWrapper;
 import com.chute.android.albumtutorial.intent.AlbumStatsActivityIntentWrapper;
@@ -133,7 +134,7 @@ public class AlbumActivity extends Activity {
 			AssetActivityIntentWrapper assetWrapper = new AssetActivityIntentWrapper(
 					AlbumActivity.this);
 			assetWrapper.setAlbumId(albumId);
-			assetWrapper.setAssetId("5858"); // TODO set assetId
+			assetWrapper.setAssetId(Constants.TEST_ASSET_ID); // TODO set assetId
 			assetWrapper.startActivity(AlbumActivity.this);
 			break;
 		case R.id.getAssetList:

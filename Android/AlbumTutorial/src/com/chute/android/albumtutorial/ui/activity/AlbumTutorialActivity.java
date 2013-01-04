@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+import com.chute.android.albumtutorial.Constants;
 import com.chute.android.albumtutorial.R;
 import com.chute.android.albumtutorial.intent.CreateAlbumActivityIntentWrapper;
 import com.chute.android.albumtutorial.intent.AlbumActivityIntentWrapper;
@@ -36,9 +37,10 @@ public class AlbumTutorialActivity extends Activity {
 
 		@Override
 		public void onClick(View v) {
-            CreateAlbumActivityIntentWrapper wrapper = new CreateAlbumActivityIntentWrapper(AlbumTutorialActivity.this);
-            wrapper.setAlbumName("Created Album Name"); 
-            wrapper.startActivity(AlbumTutorialActivity.this);
+			CreateAlbumActivityIntentWrapper wrapper = new CreateAlbumActivityIntentWrapper(
+					AlbumTutorialActivity.this);
+			wrapper.setAlbumName(Constants.TEST_ALBUM_NAME);
+			wrapper.startActivity(AlbumTutorialActivity.this);
 		}
 
 	}
@@ -47,9 +49,10 @@ public class AlbumTutorialActivity extends Activity {
 
 		@Override
 		public void onClick(View v) {
-             AlbumActivityIntentWrapper wrapper = new AlbumActivityIntentWrapper(AlbumTutorialActivity.this);
-             wrapper.setAlbumId("5856");
-             wrapper.startActivity(AlbumTutorialActivity.this);
+			AlbumActivityIntentWrapper wrapper = new AlbumActivityIntentWrapper(
+					AlbumTutorialActivity.this);
+			wrapper.setAlbumId(Constants.TEST_ALBUM_ID);
+			wrapper.startActivity(AlbumTutorialActivity.this);
 		}
 
 	}
@@ -58,8 +61,9 @@ public class AlbumTutorialActivity extends Activity {
 
 		@Override
 		public void onClick(View v) {
-             Intent intent  = new Intent(getApplicationContext(), AlbumListActivity.class);
-             startActivity(intent);
+			Intent intent = new Intent(getApplicationContext(),
+					AlbumListActivity.class);
+			startActivity(intent);
 		}
 
 	}
