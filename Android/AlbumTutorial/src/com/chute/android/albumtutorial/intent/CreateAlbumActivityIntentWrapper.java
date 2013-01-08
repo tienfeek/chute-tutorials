@@ -9,7 +9,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
  */
 package com.chute.android.albumtutorial.intent;
 
-import com.chute.android.albumtutorial.ui.activity.CreateAlbumActivity;
+import com.chute.android.albumtutorial.ui.activity.CreateUpdateAlbumActivity;
 
 import android.app.Activity;
 import android.content.Context;
@@ -24,7 +24,7 @@ public class CreateAlbumActivityIntentWrapper extends IntentWrapper {
 	private static final String KEY_ALBUM_NAME = "albumName";
 
 	public CreateAlbumActivityIntentWrapper(Context context) {
-		super(context, CreateAlbumActivity.class);
+		super(context, CreateUpdateAlbumActivity.class);
 	}
 
 	public CreateAlbumActivityIntentWrapper(Intent intent) {

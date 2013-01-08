@@ -7,7 +7,7 @@
     
     <!-- UI -->
     <string name="btn_delete_album">Delete Album</string>
-    <string name="btn_create_album">Create Album</string>
+    <string name="btn_create_update_album">Create/Update Album</string>
     <string name="btn_get_album_list">Get Album List</string>
     <string name="btn_get_album">Get Album</string>
     <string name="btn_ok">OK</string>
@@ -36,5 +36,11 @@
     <string name="txt_album_deleted">Album deleted!</string>
     <string name="txt_album_updated">Album updated!</string>
     <string name="txt_http_error">Server error</string>
+    <string name="aaaaaaaaaaaaaa">aaaaaaaaaaaaaa</string>
+    <string name="delete_this_album_">Delete this album?</string>
+    <string name="create_album">Create Album</string>
+    <string name="update_album">Update Album</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
 </resources>

@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
@@ -44,15 +43,24 @@ public class AlbumListActivity extends GalleryListingActivity {
 
 	public void showDialog(final AlbumModel model) {
 		final Dialog dialog = new Dialog(this);
-		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		// dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		dialog.setContentView(R.layout.album_list_dialog);
-		Button delete = (Button) dialog.findViewById(R.id.buttonDelete);
+		dialog.setTitle(R.string.delete_this_album_);
+		Button delete = (Button) dialog.findViewById(R.id.buttonYes);
 		delete.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				GCAlbums.delete(getApplicationContext(), model,
 						new AlbumDeleteCallback()).executeAsync();
+				dialog.dismiss();
+			}
+		});
+		Button no = (Button) dialog.findViewById(R.id.buttonNo);
+		no.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
 				dialog.dismiss();
 			}
 		});

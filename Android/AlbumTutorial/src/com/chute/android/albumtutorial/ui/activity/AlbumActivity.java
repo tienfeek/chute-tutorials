@@ -1,42 +1,32 @@
 package com.chute.android.albumtutorial.ui.activity;
 
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.Toast;
+
 import com.chute.android.albumtutorial.Constants;
 import com.chute.android.albumtutorial.R;
 import com.chute.android.albumtutorial.intent.AlbumActivityIntentWrapper;
 import com.chute.android.albumtutorial.intent.AlbumStatsActivityIntentWrapper;
 import com.chute.android.albumtutorial.intent.AssetActivityIntentWrapper;
 import com.chute.android.albumtutorial.intent.AssetListActivityIntentWrapper;
+import com.chute.android.albumtutorial.ui.fragment.AlbumFragment;
 import com.chute.sdk.v2.api.album.GCAlbums;
 import com.chute.sdk.v2.model.AlbumModel;
 import com.chute.sdk.v2.model.requests.ResponseModel;
 import com.dg.libs.rest.callbacks.HttpCallback;
 import com.dg.libs.rest.domain.ResponseStatus;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.widget.TextView;
-import android.widget.Toast;
-
-public class AlbumActivity extends Activity {
+public class AlbumActivity extends FragmentActivity {
 
 	public static final String TAG = AlbumActivity.class.getSimpleName();
 	private AlbumModel album = new AlbumModel();
-	private TextView id;
-	private TextView links;
-	private TextView createdAt;
-	private TextView updatedAt;
-	private TextView shortcut;
-	private TextView name;
-	private TextView description;
-	private TextView user;
-	private TextView moderateComments;
-	private TextView moderateMedia;
-	private TextView counters;
 	private AlbumActivityIntentWrapper wrapper;
+	private AlbumFragment albumFragment;
 
 	String albumId;
 	String assetId;
@@ -44,20 +34,10 @@ public class AlbumActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.create_album_activity);
+		setContentView(R.layout.album_activity);
 
-		id = (TextView) findViewById(R.id.txtId);
-		links = (TextView) findViewById(R.id.txtLinks);
-		createdAt = (TextView) findViewById(R.id.txtCreatedAt);
-		updatedAt = (TextView) findViewById(R.id.txtUpdatedAt);
-		shortcut = (TextView) findViewById(R.id.txtShortcut);
-		name = (TextView) findViewById(R.id.txtName);
-		description = (TextView) findViewById(R.id.txtDescription);
-		user = (TextView) findViewById(R.id.txtUser);
-		moderateComments = (TextView) findViewById(R.id.txtModerateComments);
-		moderateMedia = (TextView) findViewById(R.id.txtModerateMedia);
-		counters = (TextView) findViewById(R.id.txtCounters);
-
+        albumFragment = (AlbumFragment) getSupportFragmentManager().findFragmentById(R.id.fragment);
+        
 		wrapper = new AlbumActivityIntentWrapper(getIntent());
 		album.setId(wrapper.getAlbumId());
 		GCAlbums.get(getApplicationContext(), album, new GetAlbumCallback())
@@ -72,39 +52,7 @@ public class AlbumActivity extends Activity {
 			Toast.makeText(getApplicationContext(),
 					getResources().getString(R.string.txt_album_created),
 					Toast.LENGTH_SHORT).show();
-			id.setText("Id: " + responseData.getData().getId());
-			links.setText(getResources().getString(R.string.txt_links) + " "
-					+ responseData.getData().getLinks().toString());
-			createdAt.setText(getResources().getString(R.string.txt_created_at)
-					+ " " + responseData.getData().getCreatedAt());
-			updatedAt.setText(getResources().getString(R.string.txt_updated_at)
-					+ " " + responseData.getData().getUpdatedAt());
-			shortcut.setText(getResources().getString(R.string.txt_shortcut)
-					+ " " + responseData.getData().getShortcut());
-			name.setText(getResources().getString(R.string.txt_name) + " "
-					+ responseData.getData().getName());
-			description.setText(getResources().getString(
-					R.string.txt_description)
-					+ " " + responseData.getData().getDescription());
-			user.setText(getResources().getString(R.string.txt_user) + " "
-					+ responseData.getData().getUser().toString());
-			moderateComments
-					.setText(getResources().getString(
-							R.string.txt_moderate_comments)
-							+ " "
-							+ (responseData.getData().isModerateComments() == true ? "true"
-									: "false"));
-			moderateMedia
-					.setText(getResources().getString(
-							R.string.txt_moderate_media)
-							+ " "
-							+ (responseData.getData().isModerateMedia() == true ? "true"
-									: "false"));
-			if (responseData.getData().getCounters() != null) {
-			counters.setText(getResources().getString(R.string.txt_counters)
-					+ " " + responseData.getData().getCounters().toString());
-			}
-
+			albumFragment.setAlbumModel(responseData.getData());
 			albumId = responseData.getData().getId();
 		}
 

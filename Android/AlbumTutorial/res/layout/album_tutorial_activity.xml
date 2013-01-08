@@ -14,7 +14,7 @@
             android:id="@+id/buttonCreateAlbum"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="@string/btn_create_album" />
+            android:text="@string/btn_create_update_album" />
 
         <Button
             android:id="@+id/buttonAlbumList"

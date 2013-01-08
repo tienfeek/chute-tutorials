@@ -8,4 +8,5 @@ public class Constants {
 	public static final String TEST_ASSET_ID = "5858";
 	public static final String TEST_ALBUM_ID = "1946";
 	public static final String TEST_ALBUM_NAME = "Album test name";
+	public static String aa = "aaaa";
 }
