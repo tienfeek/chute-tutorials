@@ -42,6 +42,7 @@ public abstract class BaseLoginActivity extends Activity {
 	    facebookLogin.setVisibility(View.GONE);
 	    twitterLogin.setVisibility(View.GONE);
 	    launchMainAppActivity();
+	    this.finish();
 	} else {
 	    facebookLogin.setVisibility(View.VISIBLE);
 	    twitterLogin.setVisibility(View.VISIBLE);
