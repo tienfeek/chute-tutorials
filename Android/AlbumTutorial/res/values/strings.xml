@@ -42,5 +42,7 @@
     <string name="update_album">Update Album</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="add_assets_success">Successfully added assets in this album</string>
+    <string name="remove_assets_success">Successfully removed assets from this album</string>
 
 </resources>

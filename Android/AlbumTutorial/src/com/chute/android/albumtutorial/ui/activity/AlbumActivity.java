@@ -1,5 +1,7 @@
 package com.chute.android.albumtutorial.ui.activity;
 
+import java.util.ArrayList;
+
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -36,8 +38,9 @@ public class AlbumActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.album_activity);
 
-        albumFragment = (AlbumFragment) getSupportFragmentManager().findFragmentById(R.id.fragment);
-        
+		albumFragment = (AlbumFragment) getSupportFragmentManager()
+				.findFragmentById(R.id.fragment);
+
 		wrapper = new AlbumActivityIntentWrapper(getIntent());
 		album.setId(wrapper.getAlbumId());
 		GCAlbums.get(getApplicationContext(), album, new GetAlbumCallback())
@@ -79,12 +82,16 @@ public class AlbumActivity extends FragmentActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+		assetId = "98258725";
+		ArrayList<String> idList = new ArrayList<String>();
+		idList.add(assetId);
 		switch (item.getItemId()) {
 		case R.id.getAsset:
 			AssetActivityIntentWrapper assetWrapper = new AssetActivityIntentWrapper(
 					AlbumActivity.this);
 			assetWrapper.setAlbumId(albumId);
-			assetWrapper.setAssetId(Constants.TEST_ASSET_ID); // TODO set assetId
+			assetWrapper.setAssetId(Constants.TEST_ASSET_ID); // TODO set
+																// assetId
 			assetWrapper.startActivity(AlbumActivity.this);
 			break;
 		case R.id.getAssetList:
@@ -94,9 +101,12 @@ public class AlbumActivity extends FragmentActivity {
 			assetListWrapper.startActivity(AlbumActivity.this);
 			break;
 		case R.id.addAssets:
+			GCAlbums.Assets.add(getApplicationContext(), album, idList,
+					new AddAssetsCallback()).executeAsync();
 			break;
 		case R.id.removeAssets:
-			// TODO
+			GCAlbums.Assets.remove(getApplicationContext(), album, idList,
+					new RemoveAssetsCallback()).executeAsync();
 			break;
 		case R.id.getStats:
 			AlbumStatsActivityIntentWrapper albumStatsWrapper = new AlbumStatsActivityIntentWrapper(
@@ -106,6 +116,38 @@ public class AlbumActivity extends FragmentActivity {
 			break;
 		}
 		return true;
+	}
+
+	private final class AddAssetsCallback implements HttpCallback<Void> {
+
+		@Override
+		public void onHttpError(ResponseStatus responseStatus) {
+			Log.e(TAG, "Error occurred: " + responseStatus.getStatusMessage());
+
+		}
+
+		@Override
+		public void onSuccess(Void responseData) {
+			Toast.makeText(getApplicationContext(),
+					R.string.add_assets_success, Toast.LENGTH_LONG).show();
+		}
+
+	}
+
+	private final class RemoveAssetsCallback implements HttpCallback<Void> {
+
+		@Override
+		public void onHttpError(ResponseStatus responseStatus) {
+			Log.e(TAG, "Error occurred: " + responseStatus.getStatusMessage());
+
+		}
+
+		@Override
+		public void onSuccess(Void responseData) {
+			Toast.makeText(getApplicationContext(),
+					R.string.remove_assets_success, Toast.LENGTH_LONG).show();
+		}
+
 	}
 
 }
