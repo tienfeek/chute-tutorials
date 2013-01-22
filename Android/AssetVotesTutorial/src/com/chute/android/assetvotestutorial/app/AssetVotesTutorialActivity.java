@@ -37,7 +37,7 @@ public class AssetVotesTutorialActivity extends Activity {
 		vote = (VoteCheckbox) findViewById(R.id.btnVote);
 
 		album.setId("1946");
-		GCAlbums.Assets.all(getApplicationContext(), album,
+		GCAlbums.Assets.list(getApplicationContext(), album,
 				new AlbumAssetsCallback()).executeAsync();
 
 	}

@@ -3,8 +3,10 @@ package com.chute.android.assetvotestutorial.model;
 import java.util.Observable;
 
 import com.chute.sdk.v2.api.votes.GCVotes;
+import com.chute.sdk.v2.api.votes.VotesMap;
 import com.chute.sdk.v2.model.AlbumModel;
 import com.chute.sdk.v2.model.AssetModel;
+import com.chute.sdk.v2.model.VoteModel;
 import com.chute.sdk.v2.model.requests.ResponseModel;
 import com.dg.libs.rest.callbacks.HttpCallback;
 import com.dg.libs.rest.domain.ResponseStatus;
@@ -16,9 +18,11 @@ public class VotesSingleton extends Observable {
 	public static final String TAG = VotesSingleton.class.getSimpleName();
 	private static VotesSingleton instance;
 	private final Context context;
-	private AssetModel responseData;
+	private AssetModel responseData = new AssetModel();
 	private AlbumModel album = new AlbumModel();
 	private AssetModel asset = new AssetModel();
+	
+	private VotesMap map;
 
 	private VotesSingleton(Context context) {
 		super();
@@ -41,22 +45,25 @@ public class VotesSingleton extends Observable {
 	}
 
 	public void getVotes() {
-		if (responseData != null) {
+		if (map != null) {
 			setChanged();
-			notifyObservers(responseData);
+			notifyObservers(map);
 		} else {
 			refreshVotes();
 		}
 	}
 
 	private final class VotesGetCallback implements
-			HttpCallback<ResponseModel<AssetModel>> {
+			HttpCallback<ResponseModel<VoteModel>> {
 
 		@Override
-		public void onSuccess(ResponseModel<AssetModel> responseData) {
-			VotesSingleton.this.responseData = responseData.getData();
+		public void onSuccess(ResponseModel<VoteModel> responseData) {
+			String assetId = responseData.getData().getAssetId();
+			map.append(Integer.parseInt(assetId), true);
+//			VotesSingleton.this.responseData.setId(responseData.getData().getAssetId());
 			setChanged();
-			notifyObservers(VotesSingleton.this.responseData);
+//			notifyObservers(VotesSingleton.this.responseData);
+			notifyObservers(map);
 
 		}
 

@@ -15,6 +15,7 @@ import com.chute.sdk.v2.api.votes.GCVotes;
 import com.chute.sdk.v2.api.votes.VotesMap;
 import com.chute.sdk.v2.model.AlbumModel;
 import com.chute.sdk.v2.model.AssetModel;
+import com.chute.sdk.v2.model.VoteModel;
 import com.chute.sdk.v2.model.requests.ResponseModel;
 import com.dg.libs.rest.callbacks.HttpCallback;
 import com.dg.libs.rest.domain.ResponseStatus;
@@ -86,7 +87,7 @@ public class VoteCheckbox extends CheckBox {
 	    asset.setId(assetId);
 	    AlbumModel album = new AlbumModel();
 	    album.setId(albumId);
-	    GCVotes.create(getContext(), album, asset, new VotesCreateCallback()).executeAsync();
+	    GCVotes.vote(getContext(), album, asset, new VotesCreateCallback()).executeAsync();
 	    if (votes == null) {
 		return;
 	    }
@@ -99,10 +100,10 @@ public class VoteCheckbox extends CheckBox {
 	}
     }
     
-    private final class VotesCreateCallback implements HttpCallback<ResponseModel<AssetModel>> {
+    private final class VotesCreateCallback implements HttpCallback<ResponseModel<VoteModel>> {
 
 		@Override
-		public void onSuccess(ResponseModel<AssetModel> responseData) {
+		public void onSuccess(ResponseModel<VoteModel> responseData) {
 			// TODO Auto-generated method stub
 			
 		}
