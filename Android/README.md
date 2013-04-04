@@ -45,6 +45,18 @@ Shows how to use the Social Gallery component.
 ## Image Loader Tutorial
 Shows how to use the SDK ImageLoader.
 
+## Asset Heart Tutorial
+Enables browsing photos in gallery and marking photos as favorite.
+
+## Gallery Listing Tutorial
+Shows how to use the Gallery Listing component.
+
+## Create Chute Tutorial
+Shows how to create a basic chute, chute with password and chute with different permissions.
+
+## Join Chute Tutorial
+Shows how to join a chute and how to search for chutes.
+
 
 
 

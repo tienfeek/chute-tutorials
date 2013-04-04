@@ -1,6 +1,5 @@
 package com.chute.android.socialgallerytutorial;
 
-import com.chute.android.socialgallery.R;
 import com.chute.android.socialgallery.util.Constants;
 import com.chute.android.socialgallery.util.intent.SocialGalleryActivityIntentWrapper;
 import com.chute.sdk.model.GCAccountStore;
