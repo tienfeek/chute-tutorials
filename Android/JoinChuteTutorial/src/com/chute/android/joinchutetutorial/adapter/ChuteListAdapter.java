@@ -4,9 +4,11 @@ import com.chute.android.joinchutetutorial.R;
 import com.chute.sdk.collections.GCChuteCollection;
 import com.chute.sdk.model.GCChuteModel;
 import com.darko.imagedownloader.ImageLoader;
+import com.darko.imagedownloader.ImageLoaderListener;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +16,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class ChuteListAdapter extends BaseAdapter {
+public class ChuteListAdapter extends BaseAdapter implements
+		ImageLoaderListener {
 
 	public static final String TAG = ChuteListAdapter.class.getSimpleName();
 	private final GCChuteCollection collection;
@@ -53,7 +56,8 @@ public class ChuteListAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public View getView(final int position, final View convertView, final ViewGroup parent) {
+	public View getView(final int position, final View convertView,
+			final ViewGroup parent) {
 		View vi = convertView;
 		ViewHolder holder;
 		if (convertView == null) {
@@ -66,8 +70,20 @@ public class ChuteListAdapter extends BaseAdapter {
 			holder = (ViewHolder) vi.getTag();
 		}
 		loader.displayImage(getItem(position).getRecentThumbnailURL(),
-				holder.image);
+				holder.image, this);
 		holder.name.setText(getItem(position).getName());
 		return vi;
+	}
+
+	@Override
+	public void onImageLoadingComplete(String url, Bitmap bitmap) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onImageLoadingError() {
+		// TODO Auto-generated method stub
+
 	}
 }

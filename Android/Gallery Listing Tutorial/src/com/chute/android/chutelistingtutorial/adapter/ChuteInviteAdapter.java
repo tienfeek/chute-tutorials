@@ -6,11 +6,13 @@ import java.util.Iterator;
 
 import com.chute.android.chutelistingtutorial.R;
 import com.darko.imagedownloader.ImageLoader;
+import com.darko.imagedownloader.ImageLoaderListener;
 
 import android.app.Activity;
 import android.content.ContentUris;
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Email;
@@ -22,7 +24,8 @@ import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class ChuteInviteAdapter extends CursorAdapter {
+public class ChuteInviteAdapter extends CursorAdapter implements
+		ImageLoaderListener {
 
 	public static final String TAG = ChuteInviteAdapter.class.getSimpleName();
 
@@ -59,7 +62,7 @@ public class ChuteInviteAdapter extends CursorAdapter {
 									.getColumnIndex(ContactsContract.CommonDataKinds.Photo.CONTACT_ID))));
 			person = Uri.withAppendedPath(person,
 					ContactsContract.Contacts.Photo.CONTENT_DIRECTORY);
-			loader.displayImage(person.toString(), holder.image);
+			loader.displayImage(person.toString(), holder.image, this);
 		} catch (Exception e) {
 			Log.d(TAG, "", e);
 		}
@@ -70,10 +73,12 @@ public class ChuteInviteAdapter extends CursorAdapter {
 				.getColumnIndex(Email.DATA)));
 
 		if (tick.containsKey(cursor.getPosition())) {
-			holder.image.setBackgroundColor(context.getResources().getColor(R.color.orange_backgound));
+			holder.image.setBackgroundColor(context.getResources().getColor(
+					R.color.orange_backgound));
 			holder.tick.setVisibility(View.VISIBLE);
 		} else {
-			holder.image.setBackgroundColor(context.getResources().getColor(R.color.transparent));
+			holder.image.setBackgroundColor(context.getResources().getColor(
+					R.color.transparent));
 			holder.tick.setVisibility(View.GONE);
 		}
 	}
@@ -106,6 +111,18 @@ public class ChuteInviteAdapter extends CursorAdapter {
 			list.add(cursor.getString(emailIndex));
 		}
 		return list;
+	}
+
+	@Override
+	public void onImageLoadingComplete(String url, Bitmap bitmap) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onImageLoadingError() {
+		// TODO Auto-generated method stub
+
 	}
 
 }

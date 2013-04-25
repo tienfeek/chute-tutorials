@@ -6,15 +6,17 @@ import com.chute.android.imageloadertutorial.R;
 import com.chute.android.imageloadertutorial.dao.MediaDAO;
 import com.chute.android.imageloadertutorial.intent.LoadImageActivityIntentWrapper;
 import com.darko.imagedownloader.ImageLoader;
+import com.darko.imagedownloader.ImageLoaderListener;
 
 import android.app.Activity;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.widget.ImageView;
 
-public class LoadImageActivity extends Activity {
+public class LoadImageActivity extends Activity implements ImageLoaderListener {
 
 	public static final String TAG = LoadImageActivity.class.getSimpleName();
 
@@ -40,20 +42,32 @@ public class LoadImageActivity extends Activity {
 				String path = cursor.getString(cursor
 						.getColumnIndex(MediaStore.Images.Media.DATA));
 				loader.displayImage(Uri.fromFile(new File(path)).toString(),
-						imageView);
+						imageView, this);
 			}
 			break;
 		case LoadImageActivityIntentWrapper.TYPE_URL:
 			loader.displayImage(
 					"http://www.sun-protection-and-you.com/images/sun-stroke.jpg",
-					imageView);
+					imageView, this);
 			break;
 		case LoadImageActivityIntentWrapper.TYPE_CHUTE_URL:
-			loader.displayImage("http://sharedroll.com/volvqd", imageView);
+			loader.displayImage("http://sharedroll.com/volvqd", imageView, this);
 			break;
 		default:
 			break;
 		}
+
+	}
+
+	@Override
+	public void onImageLoadingComplete(String url, Bitmap bitmap) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onImageLoadingError() {
+		// TODO Auto-generated method stub
 
 	}
 }

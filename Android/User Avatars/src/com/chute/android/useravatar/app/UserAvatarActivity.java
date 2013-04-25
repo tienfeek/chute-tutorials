@@ -36,8 +36,9 @@ import com.chute.sdk.utils.GCUtils;
 import com.chute.sdk.utils.Logger;
 import com.darko.imagedownloader.FileCache;
 import com.darko.imagedownloader.ImageLoader;
+import com.darko.imagedownloader.ImageLoaderListener;
 
-public class UserAvatarActivity extends Activity {
+public class UserAvatarActivity extends Activity implements ImageLoaderListener {
 	private static final String CHUTE_TEST_ID = "684";
 
 	private static final String TAG = UserAvatarActivity.class.getSimpleName();
@@ -214,7 +215,8 @@ public class UserAvatarActivity extends Activity {
 				@Override
 				public void run() {
 					loader.displayImage(
-							GCUtils.getCustomSizePhotoURL(url, 75, 75), thumb);
+							GCUtils.getCustomSizePhotoURL(url, 75, 75), thumb,
+							UserAvatarActivity.this);
 				}
 			});
 		}
@@ -260,6 +262,18 @@ public class UserAvatarActivity extends Activity {
 		public void onUploadFinished(GCAssetModel assetModel) {
 			Log.d(TAG, "Upload finished");
 		}
+	}
+
+	@Override
+	public void onImageLoadingComplete(String url, Bitmap bitmap) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onImageLoadingError() {
+		// TODO Auto-generated method stub
+
 	}
 
 }
