@@ -1,8 +1,5 @@
 package com.chute.android.tutorials.authentication;
 
-import com.chute.sdk.v2.api.authentication.AuthenticationFactory.AccountType;
-import com.chute.sdk.v2.model.AccountStore;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,13 +7,15 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+import com.chute.sdk.v2.api.authentication.AuthenticationFactory;
+import com.chute.sdk.v2.api.authentication.TokenAuthenticationProvider;
+import com.chute.sdk.v2.model.enums.AccountType;
+
+
+
 public abstract class BaseLoginActivity extends Activity {
 
 	// Fill with values from your chute developer account
-	private static final String CLIENT_SECRET = "0599436c911d8ee27d34d26c2dde73a1a342a8a0e0b20592ef00f90fe1ca5305";
-	private static final String CLIENT_ID = "4f15d1f138ecef6af9000004";
-	private static final String CALLBACK_URL = "http://tutorials.getchute.com";
-	private static final String PERMISSIONS_SCOPE = "all_resources manage_resources profile resources";
 
 	public static final String TAG = BaseLoginActivity.class.getSimpleName();
 
@@ -36,7 +35,7 @@ public abstract class BaseLoginActivity extends Activity {
 		facebookLogin.setOnClickListener(loginClickListener);
 		twitterLogin.setOnClickListener(loginClickListener);
 
-		if (AccountStore.getInstance(getApplicationContext()).isTokenValid()) {
+		if (TokenAuthenticationProvider.getInstance().isTokenValid()) {
 			facebookLogin.setVisibility(View.GONE);
 			twitterLogin.setVisibility(View.GONE);
 			launchMainAppActivity();
@@ -57,10 +56,9 @@ public abstract class BaseLoginActivity extends Activity {
 	public abstract void launchMainAppActivity();
 
 	protected void launchAuthenticationActivity(AccountType accountType) {
-		AccountStore.getInstance(getApplicationContext())
+		AuthenticationFactory.getInstance()
 				.startAuthenticationActivity(BaseLoginActivity.this,
-						accountType, PERMISSIONS_SCOPE, CALLBACK_URL,
-						CLIENT_ID, CLIENT_SECRET);
+						accountType);
 	}
 
 	@Override
