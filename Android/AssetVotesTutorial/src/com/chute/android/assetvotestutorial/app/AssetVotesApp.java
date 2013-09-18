@@ -5,44 +5,44 @@ import android.content.Context;
 import android.util.TypedValue;
 
 import com.chute.android.assetvotestutorial.R;
-import com.dg.libs.rest.authentication.TokenAuthenticationProvider;
-import com.dg.libs.rest.client.BaseRestClient;
+import com.chute.sdk.v2.api.Chute;
+import com.chute.sdk.v2.api.authentication.AuthConstants;
 
 import darko.imagedownloader.ImageLoader;
 
 public class AssetVotesApp extends Application {
 
-	public static final String TAG = AssetVotesApp.class.getSimpleName();
+  public static final String TAG = AssetVotesApp.class.getSimpleName();
+  
+  /* Test Credentials */
+  final String APP_ID = "4f3c39ff38ecef0c89000003";
+  final String APP_SECRET = "c9a8cb57c52f49384ab6117c4f6483a1a5c5a14c4a50d4cef276a9a13286efc9";
+  final String TOKEN = "f7f1a31c46f95f4085956ae146aa0f3eec1874a9d17ec07de5e22d7c7340da0e";
 
-	private static ImageLoader createImageLoader(Context context) {
-		ImageLoader imageLoader = new ImageLoader(context,
-				R.drawable.placeholder_image_small);
-		imageLoader.setDefaultBitmapSize((int) TypedValue.applyDimension(
-				TypedValue.COMPLEX_UNIT_DIP, 75, context.getResources()
-						.getDisplayMetrics()));
-		return imageLoader;
-	}
+  private static ImageLoader createImageLoader(Context context) {
+    ImageLoader imageLoader = new ImageLoader(context,
+        R.drawable.placeholder_image_small);
+    imageLoader.setDefaultBitmapSize((int) TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_DIP, 75, context.getResources()
+            .getDisplayMetrics()));
+    return imageLoader;
+  }
 
-	private ImageLoader mImageLoader;
+  private ImageLoader mImageLoader;
 
-	@Override
-	public void onCreate() {
-		super.onCreate();
-		TokenAuthenticationProvider.init(getApplicationContext());
-		TokenAuthenticationProvider provider = TokenAuthenticationProvider
-				.getInstance();
-		// Test token
-		provider.setToken("46b7c778447e18ee5865a83f4202f42a2f85283c47ef24541366509235d8eccf");
-		BaseRestClient.setDefaultAuthenticationProvider(provider);
-		mImageLoader = createImageLoader(this);
-	}
+  @Override
+  public void onCreate() {
+    super.onCreate();
+    Chute.init(getApplicationContext(), new AuthConstants(APP_ID, APP_SECRET), TOKEN);
+    mImageLoader = createImageLoader(this);
+  }
 
-	@Override
-	public Object getSystemService(String name) {
-		if (ImageLoader.IMAGE_LOADER_SERVICE.equals(name)) {
-			return mImageLoader;
-		} else {
-			return super.getSystemService(name);
-		}
-	}
+  @Override
+  public Object getSystemService(String name) {
+    if (ImageLoader.IMAGE_LOADER_SERVICE.equals(name)) {
+      return mImageLoader;
+    } else {
+      return super.getSystemService(name);
+    }
+  }
 }

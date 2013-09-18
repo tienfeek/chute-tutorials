@@ -4,7 +4,7 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <com.chute.android.gallery.components.GalleryViewFlipper
+    <com.chute.android.cloudgallery.components.GalleryViewFlipper
         android:id="@+id/galleryId"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />

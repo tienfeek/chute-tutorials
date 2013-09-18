@@ -6,46 +6,41 @@ import android.util.TypedValue;
 
 import com.chute.android.albumtutorial.Constants;
 import com.chute.android.albumtutorial.R;
-import com.chute.sdk.v2.model.AccountStore;
-import com.dg.libs.rest.authentication.TokenAuthenticationProvider;
-import com.dg.libs.rest.client.BaseRestClient;
+import com.chute.sdk.v2.api.Chute;
+import com.chute.sdk.v2.api.authentication.AuthConstants;
 
 import darko.imagedownloader.ImageLoader;
 
 public class AlbumTutorialApp extends Application {
 
-	public static final String TAG = AlbumTutorialApp.class.getSimpleName();
+  public static final String TAG = AlbumTutorialApp.class.getSimpleName();
 
-	private static ImageLoader createImageLoader(Context context) {
-		ImageLoader imageLoader = new ImageLoader(context,
-				R.drawable.placeholder);
-		imageLoader.setDefaultBitmapSize((int) TypedValue.applyDimension(
-				TypedValue.COMPLEX_UNIT_DIP, 75, context.getResources()
-						.getDisplayMetrics()));
-		return imageLoader;
-	}
+  private static ImageLoader createImageLoader(Context context) {
+    ImageLoader imageLoader = new ImageLoader(context,
+        R.drawable.placeholder);
+    imageLoader.setDefaultBitmapSize((int) TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_DIP, 75, context.getResources()
+            .getDisplayMetrics()));
+    return imageLoader;
+  }
 
-	private ImageLoader mImageLoader;
+  private ImageLoader mImageLoader;
 
-	@Override
-	public void onCreate() {
-		super.onCreate();
-		TokenAuthenticationProvider.init(getApplicationContext());
-		AccountStore account = AccountStore
-				.getInstance(getApplicationContext());
-		account.setPassword(Constants.TOKEN);
-		BaseRestClient.setDefaultAuthenticationProvider(account);
+  @Override
+  public void onCreate() {
+    super.onCreate();
+    Chute.init(getApplicationContext(), new AuthConstants(Constants.APP_ID,
+        Constants.APP_SECRET), Constants.TOKEN);
+    mImageLoader = createImageLoader(this);
+  }
 
-		mImageLoader = createImageLoader(this);
-	}
-
-	@Override
-	public Object getSystemService(String name) {
-		if (ImageLoader.IMAGE_LOADER_SERVICE.equals(name)) {
-			return mImageLoader;
-		} else {
-			return super.getSystemService(name);
-		}
-	}
+  @Override
+  public Object getSystemService(String name) {
+    if (ImageLoader.IMAGE_LOADER_SERVICE.equals(name)) {
+      return mImageLoader;
+    } else {
+      return super.getSystemService(name);
+    }
+  }
 
 }
