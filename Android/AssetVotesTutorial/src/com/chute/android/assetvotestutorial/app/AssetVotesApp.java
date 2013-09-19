@@ -5,6 +5,7 @@ import android.content.Context;
 import android.util.TypedValue;
 
 import com.chute.android.assetvotestutorial.R;
+import com.chute.android.assetvotestutorial.util.AssetVotesPreferences;
 import com.chute.sdk.v2.api.Chute;
 import com.chute.sdk.v2.api.authentication.AuthConstants;
 
@@ -35,6 +36,7 @@ public class AssetVotesApp extends Application {
     super.onCreate();
     Chute.init(getApplicationContext(), new AuthConstants(APP_ID, APP_SECRET), TOKEN);
     mImageLoader = createImageLoader(this);
+    AssetVotesPreferences.init(getApplicationContext());
   }
 
   @Override

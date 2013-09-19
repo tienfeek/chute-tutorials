@@ -21,7 +21,6 @@ public class ShareViewTutorialActivity extends Activity {
   @SuppressWarnings("unused")
   private static final String TAG = ShareViewTutorialActivity.class
       .getSimpleName();
-  private AlbumModel album = new AlbumModel();
 
   /** Called when the activity is first created. */
   @Override
@@ -37,6 +36,7 @@ public class ShareViewTutorialActivity extends Activity {
 
     @Override
     public void onClick(View v) {
+      AlbumModel album = new AlbumModel();
       album.setId(Constants.ALBUM_ID);
       GCAssets.list(getApplicationContext(), album,
           new AlbumAssetsCallback()).executeAsync();
@@ -53,9 +53,7 @@ public class ShareViewTutorialActivity extends Activity {
         ShareActivityIntentWrapper wrapper = new ShareActivityIntentWrapper(
             ShareViewTutorialActivity.this);
         wrapper.setAssetShareUrl(responseData.getData().get(0).getUrl());
-        wrapper.setAlbumId(Constants.ALBUM_ID);
         wrapper.setAlbumName(Constants.ALBUM_NAME);
-        wrapper.setAlbumShortcut(Constants.ALBUM_SHORTCUT);
         wrapper.startActivity(ShareViewTutorialActivity.this);
       } else {
         Toast.makeText(
