@@ -20,6 +20,7 @@ public class UserAvatarApp extends Application {
   private static final String TAG = UserAvatarApp.class.getSimpleName();
   final String APP_ID = "4f3c39ff38ecef0c89000003";
   final String APP_SECRET = "c9a8cb57c52f49384ab6117c4f6483a1a5c5a14c4a50d4cef276a9a13286efc9";
+  final String TOKEN = "f7f1a31c46f95f4085956ae146aa0f3eec1874a9d17ec07de5e22d7c7340da0e";
 
   private static ImageLoader createImageLoader(Context context) {
     ImageLoader imageLoader = new ImageLoader(context, R.drawable.placeholder_image_small);
@@ -37,7 +38,7 @@ public class UserAvatarApp extends Application {
     mImageLoader = createImageLoader(this);
     PreferenceUtil.init(getApplicationContext());
     PhotoPickerPreferenceUtil.init(getApplicationContext());
-    Chute.init(this, new AuthConstants(APP_ID, APP_SECRET));
+    Chute.init(this, new AuthConstants(APP_ID, APP_SECRET), TOKEN);
     PhotoPickerConfiguration config = new PhotoPickerConfiguration.Builder(
         getApplicationContext())
         .build();

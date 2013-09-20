@@ -22,7 +22,11 @@ import com.chute.android.photopickerplus.util.intent.PhotoPickerPlusIntentWrappe
 import com.chute.android.useravatar.R;
 import com.chute.android.useravatar.util.AppUtil;
 import com.chute.android.useravatar.util.intent.CropImageIntentWrapper;
+import com.chute.sdk.v2.api.Chute;
 import com.chute.sdk.v2.api.asset.GCAssets;
+import com.chute.sdk.v2.api.authentication.AuthConstants;
+import com.chute.sdk.v2.api.authentication.AuthenticationFactory;
+import com.chute.sdk.v2.api.authentication.TokenAuthenticationProvider;
 import com.chute.sdk.v2.api.upload.UploadProgressListener;
 import com.chute.sdk.v2.model.AlbumModel;
 import com.chute.sdk.v2.model.AssetModel;
@@ -36,7 +40,7 @@ import darko.imagedownloader.ImageLoader;
 
 public class UserAvatarActivity extends Activity {
 
-  private static final String CHUTE_TEST_ID = "684";
+  private static final String CHUTE_TEST_ID = "2399241";
 
   private static final String TAG = UserAvatarActivity.class.getSimpleName();
 
