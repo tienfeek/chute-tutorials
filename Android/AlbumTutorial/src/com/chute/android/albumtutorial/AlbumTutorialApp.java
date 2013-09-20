@@ -1,11 +1,11 @@
-package com.chute.android.albumtutorial.ui.activity;
+package com.chute.android.albumtutorial;
 
 import android.app.Application;
 import android.content.Context;
 import android.util.TypedValue;
 
-import com.chute.android.albumtutorial.Constants;
 import com.chute.android.albumtutorial.R;
+import com.chute.android.albumtutorial.util.Constants;
 import com.chute.sdk.v2.api.Chute;
 import com.chute.sdk.v2.api.authentication.AuthConstants;
 
@@ -30,7 +30,7 @@ public class AlbumTutorialApp extends Application {
   public void onCreate() {
     super.onCreate();
     Chute.init(getApplicationContext(), new AuthConstants(Constants.APP_ID,
-        Constants.APP_SECRET), Constants.TOKEN);
+        Constants.APP_SECRET), Constants.TOKEN2);
     mImageLoader = createImageLoader(this);
   }
 
