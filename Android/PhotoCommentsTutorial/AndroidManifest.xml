@@ -10,12 +10,8 @@
         android:name=".PhotoCommentsTutorialApp"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:screenOrientation="portrait"
-        android:theme="@android:style/Theme.Black.NoTitleBar" >
-        <service android:name="com.dg.libs.rest.services.HTTPRequestExecutorService" >
-        </service>
-        <service android:name="com.dg.libs.rest.services.HTTPRequestExecutorService" >
-        </service>
+        android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
+        <service android:name="com.dg.libs.rest.services.HTTPRequestExecutorService" />
 
         <activity
             android:name=".PhotoCommentsTutorialActivity"
@@ -26,14 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.chute.android.comments.app.PhotoCommentsActivity"
-            android:label="@string/app_name" >
-        </activity>
-        <activity
-            android:name="com.chute.sdk.v2.api.authentication.AuthenticationActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar" >
-        </activity>
+        <activity android:name="com.chute.android.comments.activity.PhotoCommentsActivity" />
+        <activity android:name="com.chute.sdk.v2.api.authentication.AuthenticationActivity" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

@@ -8,28 +8,27 @@ import android.view.View.OnClickListener;
 
 public class CloudGalleryTutorialActivity extends Activity {
 
-	@SuppressWarnings("unused")
-	private static final String TAG = CloudGalleryTutorialActivity.class
-			.getSimpleName();
+  @SuppressWarnings("unused")
+  private static final String TAG = CloudGalleryTutorialActivity.class
+      .getSimpleName();
 
-	/** Called when the activity is first created. */
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
 
-		findViewById(R.id.startGallery).setOnClickListener(
-				new OnStartClickListener());
-	}
+    findViewById(R.id.buttonStartCloudGallery).setOnClickListener(
+        new OnStartClickListener());
+  }
 
-	private final class OnStartClickListener implements OnClickListener {
+  private final class OnStartClickListener implements OnClickListener {
 
-		@Override
-		public void onClick(View v) {
-			Intent intent = new Intent(getApplicationContext(),
-					GalleryActivity.class);
-			startActivity(intent);
-		}
+    @Override
+    public void onClick(View v) {
+      Intent intent = new Intent(getApplicationContext(),
+          GalleryActivity.class);
+      startActivity(intent);
+    }
 
-	}
+  }
 }

@@ -13,11 +13,11 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
         <service android:name="com.dg.libs.rest.services.HTTPRequestExecutorService" />
 
         <activity
-            android:name=".ui.activity.AlbumTutorialActivity"
+            android:name="com.chute.android.albumtutorial.activity.AlbumTutorialActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,16 +25,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.AlbumListActivity" >
+        <activity android:name="com.chute.android.albumtutorial.activity.AlbumListActivity" >
         </activity>
-        <activity android:name="com.chute.android.gcchutelisting.app.GalleryListingActivity" >
-        </activity>
-        <activity android:name="com.chute.android.imagegrid.app.ImageGridActivity" >
-        </activity>
-        <activity
-            android:name="com.chute.sdk.v2.api.authentication.AuthenticationActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar" >
-        </activity>
+        <activity android:name="com.chute.android.gallerylisting.activity.GalleryListingActivity" />
+        <activity android:name="com.chute.android.imagegrid.activity.ImageGridActivity" />
+        <activity android:name="com.chute.sdk.v2.api.authentication.AuthenticationActivity" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

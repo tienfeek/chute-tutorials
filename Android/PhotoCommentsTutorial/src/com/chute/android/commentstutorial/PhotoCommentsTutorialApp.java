@@ -1,6 +1,6 @@
 package com.chute.android.commentstutorial;
 
-import com.chute.android.comments.app.PhotoCommentsApp;
+import com.chute.android.comments.PhotoCommentsApp;
 import com.chute.sdk.v2.api.Chute;
 import com.chute.sdk.v2.api.authentication.AuthConstants;
 

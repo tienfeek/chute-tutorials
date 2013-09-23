@@ -7,6 +7,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.araneaapps.android.libs.logger.ALog;
 import com.chute.android.imagesharer.intent.ShareActivityIntentWrapper;
 import com.chute.android.imagesharer.util.Constants;
 import com.chute.sdk.v2.api.asset.GCAssets;
@@ -22,13 +23,12 @@ public class ShareViewTutorialActivity extends Activity {
   private static final String TAG = ShareViewTutorialActivity.class
       .getSimpleName();
 
-  /** Called when the activity is first created. */
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.main);
+    setContentView(R.layout.activity_main);
 
-    Button share = (Button) findViewById(R.id.btnShare);
+    Button share = (Button) findViewById(R.id.buttonShare);
     share.setOnClickListener(new OnShareClickListener());
   }
 
@@ -59,7 +59,7 @@ public class ShareViewTutorialActivity extends Activity {
         Toast.makeText(
             getApplicationContext(),
             getApplicationContext().getResources().getString(
-                R.string.no_photos_in_this_chute),
+                R.string.no_photos_in_this_album),
             Toast.LENGTH_SHORT).show();
       }
 
@@ -67,6 +67,8 @@ public class ShareViewTutorialActivity extends Activity {
 
     @Override
     public void onHttpError(ResponseStatus responseCode) {
+      ALog.d("Http Error: " + responseCode.getStatusCode() + " "
+          + responseCode.getStatusMessage());
       Toast.makeText(getApplicationContext(), R.string.http_error,
           Toast.LENGTH_SHORT).show();
 

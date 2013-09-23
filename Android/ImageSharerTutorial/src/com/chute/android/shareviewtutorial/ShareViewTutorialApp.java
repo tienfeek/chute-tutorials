@@ -1,6 +1,6 @@
 package com.chute.android.shareviewtutorial;
 
-import com.chute.android.imagesharer.app.ImageSharerApp;
+import com.chute.android.imagesharer.ImageSharerApp;
 import com.chute.sdk.v2.api.Chute;
 import com.chute.sdk.v2.api.authentication.AuthConstants;
 

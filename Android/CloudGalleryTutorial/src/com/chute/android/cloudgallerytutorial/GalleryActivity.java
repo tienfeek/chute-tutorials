@@ -22,7 +22,7 @@ public class GalleryActivity extends Activity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.gallery_activity);
+    setContentView(R.layout.activity_gallery);
 
     gallery = (GalleryViewFlipper) findViewById(R.id.galleryId);
     album.setId(ALBUM_ID);

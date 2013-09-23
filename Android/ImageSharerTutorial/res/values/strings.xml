@@ -4,10 +4,11 @@
     <string name="hello">Hello World, ShareViewTutorialActivity!</string>
     <string name="app_name">ShareViewTutorial</string>
     <string name="share_photo">Share Photo</string>
-    <string name="no_photos_in_this_chute">No photos in this chute</string>
+    <string name="no_photos_in_this_album">No photos in this album</string>
 
     <!-- Toast messages -->
     <string name="parsing_exception">Invalid response format</string>
     <string name="http_exception">"Connection problem, check your connection and try again"</string>
     <string name="http_error">Server Problem, Try again</string>
+
 </resources>
