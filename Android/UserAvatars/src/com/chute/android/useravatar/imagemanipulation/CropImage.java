@@ -102,9 +102,9 @@ public class CropImage extends MonitoredActivity {
     mContentResolver = getContentResolver();
 
     requestWindowFeature(Window.FEATURE_NO_TITLE);
-    setContentView(R.layout.cropimage);
+    setContentView(R.layout.activity_crop_image);
 
-    mImageView = (CropImageView) findViewById(R.id.image);
+    mImageView = (CropImageView) findViewById(R.id.viewCropImage);
 
     showStorageToast(this);
 
@@ -145,7 +145,7 @@ public class CropImage extends MonitoredActivity {
     // Make UI fullscreen.
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-    findViewById(R.id.discard).setOnClickListener(
+    findViewById(R.id.buttonDiscard).setOnClickListener(
         new View.OnClickListener() {
 
           public void onClick(View v) {
@@ -154,7 +154,7 @@ public class CropImage extends MonitoredActivity {
           }
         });
 
-    findViewById(R.id.save).setOnClickListener(new View.OnClickListener() {
+    findViewById(R.id.buttonSave).setOnClickListener(new View.OnClickListener() {
 
       public void onClick(View v) {
         onSaveClicked();

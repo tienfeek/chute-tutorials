@@ -10,8 +10,7 @@
         android:name=".SocialGalleryTutorialApp"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:screenOrientation="portrait"
-        android:theme="@android:style/Theme.Black.NoTitleBar" >
+        android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
         <service android:name="com.dg.libs.rest.services.HTTPRequestExecutorService" >
         </service>
 
@@ -24,13 +23,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.chute.android.socialgallery.app.SocialGalleryActivity" />
-        <activity android:name="com.chute.android.imagesharer.app.ShareActivity" />
-        <activity
-            android:name="com.chute.sdk.v2.api.authentication.AuthenticationActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar" >
-        </activity>
-        <activity android:name="com.chute.android.comments.app.PhotoCommentsActivity" />
+        <activity android:name="com.chute.android.socialgallery.activity.SocialGalleryActivity" />
+        <activity android:name="com.chute.android.imagesharer.activity.ShareActivity" />
+        <activity android:name="com.chute.sdk.v2.api.authentication.AuthenticationActivity" />
+        <activity android:name="com.chute.android.comments.activity.PhotoCommentsActivity" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

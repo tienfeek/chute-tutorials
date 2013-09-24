@@ -1,6 +1,6 @@
 package com.chute.android.cloudgallerytutorial;
 
-import com.chute.android.cloudgallery.ui.CloudGalleryApp;
+import com.chute.android.cloudgallery.CloudGalleryApp;
 import com.chute.sdk.v2.api.Chute;
 import com.chute.sdk.v2.api.authentication.AuthConstants;
 

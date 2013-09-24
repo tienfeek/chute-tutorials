@@ -16,5 +16,6 @@
 	<string name="http_exception">Check your internet connection and try again
 	</string>
 	<string name="http_error">Server Problem, Try again</string>
+	<string name="path_of_the_selected_cropped_image">Path of the selected cropped image</string>
 
 </resources>

@@ -7,19 +7,14 @@
     <uses-sdk android:minSdkVersion="7" />
 
     <application
-        android:name=".app.UserAvatarApp"
+        android:name=".UserAvatarApp"
         android:debuggable="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:screenOrientation="portrait"
-        android:theme="@android:style/Theme.Black.NoTitleBar" >
+        android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
         <service android:name="com.dg.libs.rest.services.HTTPRequestExecutorService" />
 
-        <activity
-            android:name=".app.UserAvatarActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        <activity android:name="com.chute.android.useravatar.activity.UserAvatarActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,16 +25,11 @@
             android:name=".imagemanipulation.CropImage"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/crop_label"
-            android:process=":CropImage"
-            android:theme="@android:style/Theme.Black.NoTitleBar" >
+            android:process=":CropImage" >
         </activity>
         <activity android:name="com.chute.android.photopickerplus.ui.activity.ServicesActivity" />
         <activity android:name="com.chute.android.photopickerplus.ui.activity.AssetActivity" />
         <activity android:name="com.chute.sdk.v2.api.authentication.AuthenticationActivity" />
-        <activity
-            android:name="com.chute.sdk.v2.api.authentication.AuthenticationActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar" >
-        </activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

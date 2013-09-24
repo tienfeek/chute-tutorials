@@ -1,6 +1,6 @@
 package com.chute.android.socialgallerytutorial;
 
-import com.chute.android.socialgallery.app.SocialGalleryApp;
+import com.chute.android.socialgallery.SocialGalleryApp;
 import com.chute.sdk.v2.api.Chute;
 import com.chute.sdk.v2.api.authentication.AuthConstants;
 

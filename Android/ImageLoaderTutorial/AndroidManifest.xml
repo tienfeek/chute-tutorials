@@ -7,31 +7,23 @@
     <uses-sdk android:minSdkVersion="7" />
 
     <application
-        android:name=".app.ImageLoaderTutorialApp"
+        android:name=".ImageLoaderTutorialApp"
         android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name" >
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
         <service android:name="com.dg.libs.rest.services.HTTPRequestExecutorService" />
 
         <activity
-            android:name=".app.ImageLoaderTutorialActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Light.NoTitleBar" >
+            android:name="com.chute.android.imageloadertutorial.activity.ImageLoaderTutorialActivity"
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.chute.sdk.v2.api.authentication.AuthenticationActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar" >
-        </activity>
-        <activity
-            android:name=".app.LoadImageActivity"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Light.NoTitleBar" >
-        </activity>
+        <activity android:name="com.chute.sdk.v2.api.authentication.AuthenticationActivity" />
+        <activity android:name="com.chute.android.imageloadertutorial.activity.LoadImageActivity" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
