@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ImageLoaderSample</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="imageSdcard">Display image from SDcard</string>
+    <string name="imageUrl">Display image from URL</string>
+    <string name="imageChuteUrl">Display image from Chute URL</string>
+
+</resources>

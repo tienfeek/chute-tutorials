@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ImageSharerSample</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="share_photo">Share Photo</string>
+    <string name="no_photos_in_this_album">No photos in this album</string>
+
+</resources>

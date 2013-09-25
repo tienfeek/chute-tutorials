@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ImageUploaderSample</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="upload_file">Upload File</string>
+    <string name="press_the_upload_button_to_start_uploading">Press the Upload Button To Start Uploading</string>
+
+</resources>

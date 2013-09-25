@@ -1,0 +1,9 @@
+# cache for current jar dependency. DO NOT EDIT.
+# format is <lastModified> <length> <SHA-1> <path>
+# Encoding is UTF-8
+1380121692000 1982455 aa86a276a0970d7422a58990439d9ff1a12fb1cb /home/olja/Development/workspace/CHUTE/chute-android-components/CloudGallery/libs/chute-sdk-v2-android-2.2.3-SNAPSHOT-with-dependencies.jar
+1380121692000 1982455 aa86a276a0970d7422a58990439d9ff1a12fb1cb /home/olja/Development/workspace/CHUTE/chute-android-components/PhotoComments/libs/chute-sdk-v2-android-2.2.3-SNAPSHOT-with-dependencies.jar
+1380121692000 1982455 aa86a276a0970d7422a58990439d9ff1a12fb1cb /home/olja/Development/workspace/CHUTE/chute-android-components/ImageSharer/libs/chute-sdk-v2-android-2.2.3-SNAPSHOT-with-dependencies.jar
+1380108273000 556198 4a6be13368bb64c5a0b0460632d228a1a915f58f /home/olja/Development/workspace/CHUTE/chute-android-components/ImageSharer/libs/android-support-v4.jar
+1380114043000 556198 4a6be13368bb64c5a0b0460632d228a1a915f58f /home/olja/Development/workspace/CHUTE/chute-android-components/PhotoComments/libs/android-support-v4.jar
+1380116553000 556198 4a6be13368bb64c5a0b0460632d228a1a915f58f /home/olja/Development/workspace/CHUTE/chute-tutorials/Android/SocialGallerySample/libs/android-support-v4.jar

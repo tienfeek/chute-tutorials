@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">AlbumSample</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <!-- UI -->
+    <string name="btn_delete_album">Delete Album</string>
+    <string name="btn_create_update_album">Create Album</string>
+    <string name="btn_get_album_list">Get Album List</string>
+    <string name="btn_get_album">Get Album</string>
+    <string name="btn_ok">OK</string>
+    <string name="txt_error_occurred">Error occurred:</string>
+    <string name="txt_album_created">Album created!</string>
+    <string name="txt_album_deleted">Album deleted!</string>
+    <string name="txt_album_updated">Album updated!</string>
+    <string name="txt_http_error">Server error</string>
+    <string name="toast_images_imported">Images imported</string>
+    <string name="toast_album_delivered">Album delivered</string>
+
+</resources>

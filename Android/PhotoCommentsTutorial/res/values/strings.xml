@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <string name="hello">Hello World, CommentsTutorialActivity!</string>
-    <string name="app_name">CommentsTutorial</string>
-    <string name="comments_added">Comments added!</string>
-    <string name="no_comments_added">No comments added!</string>
-
-</resources>
