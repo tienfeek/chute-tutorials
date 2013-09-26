@@ -50,8 +50,8 @@ public class AlbumSampleApp extends Application {
   @Override
   public void onCreate() {
     super.onCreate();
-    Chute.init(getApplicationContext(), new AuthConstants(Constants.APP_ID,
-        Constants.APP_SECRET), Constants.TOKEN2);
+    Chute.init(getApplicationContext(), new AuthConstants(Constants.CLIENT_ID,
+        Constants.CLIENT_SECRET), Constants.TOKEN);
     mImageLoader = createImageLoader(this);
   }
 

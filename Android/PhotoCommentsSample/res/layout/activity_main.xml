@@ -30,7 +30,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:padding="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:text="@string/start_comments" />
 
 </RelativeLayout>

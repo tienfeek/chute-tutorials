@@ -63,7 +63,7 @@ public class PhotoCommentsSampleActivity extends Activity implements
     PhotoCommentsActivityIntentWrapper wrapper = new PhotoCommentsActivityIntentWrapper(
         this);
     wrapper.setAlbumId("2399241"); // Replace with album id
-    wrapper.setAssetId("338549979"); // Replace with asset id
+    wrapper.setAssetId("600428387"); // Replace with asset id
     wrapper.setAlbumName("Reykjavik"); // Name of the album
     wrapper.startActivityForResult(this, ACTIVITY_FOR_RESULT_KEY);
   }

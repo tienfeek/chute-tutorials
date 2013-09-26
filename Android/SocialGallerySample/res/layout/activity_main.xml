@@ -23,14 +23,15 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="10dp" >
+    android:layout_height="match_parent" >
 
     <Button
         android:id="@+id/buttonStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:text="@string/start_social_gallery" />
 
 </RelativeLayout>

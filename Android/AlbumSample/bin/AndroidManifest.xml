@@ -26,8 +26,8 @@
             </intent-filter>
         </activity>
         <activity android:name="com.chute.tutorials.android.albumsample.activity.AlbumListActivity" />
-        <activity android:name="com.chute.tutorials.android.gallerylisting.activity.GalleryListingActivity" />
-        <activity android:name="com.chute.tutorials.android.imagegrid.activity.ImageGridActivity" />
+        <activity android:name="com.chute.components.android.gallerylisting.activity.GalleryListingActivity" />
+        <activity android:name="com.chute.components.android.imagegrid.activity.ImageGridActivity" />
         <activity android:name="com.chute.sdk.v2.api.authentication.AuthenticationActivity" />
     </application>
 

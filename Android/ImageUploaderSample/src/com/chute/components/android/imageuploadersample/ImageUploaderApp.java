@@ -26,6 +26,7 @@ import android.app.Application;
 import android.content.Context;
 import android.util.TypedValue;
 
+import com.chute.components.android.imageuploadersample.util.Constants;
 import com.chute.sdk.v2.api.Chute;
 import com.chute.sdk.v2.api.authentication.AuthConstants;
 
@@ -35,15 +36,14 @@ public class ImageUploaderApp extends Application {
 
   public static final String TAG = ImageUploaderApp.class.getSimpleName();
   private ImageLoader mImageLoader;
-  private static final String TOKEN = "2459ce0016bdbacd8c3eaa23333b183f0e9d6aa8322ad63fa06eed3d40162844";
-  private static final String CLIENT_ID = "4f3c39ff38ecef0c89000003";
-  private static final String CLIENT_SECRET = "c9a8cb57c52f49384ab6117c4f6483a1a5c5a14c4a50d4cef276a9a13286efc9";
 
   @Override
   public void onCreate() {
     super.onCreate();
     mImageLoader = createImageLoader(this);
-    Chute.init(this, new AuthConstants(CLIENT_ID, CLIENT_SECRET));
+    // Test constants, fill in using credentials from your chute app
+    Chute.init(this, new AuthConstants(Constants.CLIENT_ID, Constants.CLIENT_SECRET),
+        Constants.TOKEN);
   }
 
   private static ImageLoader createImageLoader(Context context) {

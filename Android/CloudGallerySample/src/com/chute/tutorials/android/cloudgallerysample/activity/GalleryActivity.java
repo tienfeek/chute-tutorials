@@ -24,6 +24,7 @@ package com.chute.tutorials.android.cloudgallerysample.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.chute.components.android.cloudgallery.components.GalleryViewFlipper;

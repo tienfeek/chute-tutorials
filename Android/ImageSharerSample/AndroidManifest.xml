@@ -25,7 +25,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.chute.components.android.imagesharer.activity.ShareActivity" />
+        <activity android:name="com.chute.components.android.imagesharer.activity.ShareActivity" >
+        </activity>
+        <activity android:name="com.chute.components.android.imagesharer.activity.DialogActivity" >
+        </activity>
         <activity android:name="com.chute.sdk.v2.api.authentication.AuthenticationActivity" />
     </application>
 

@@ -8,8 +8,8 @@ int id btnSelectPhotos 0x7f080000
 int id buttonCancel 0x7f080004
 int id buttonOk 0x7f080005
 int id gridView 0x7f080002
-int id imageTick 0x7f080007
 int id imageViewThumb 0x7f080006
+int id imageViewTick 0x7f080007
 int id linearLayoutButtons 0x7f080003
 int id linearLayoutRoot 0x7f080001
 int layout activity_main 0x7f030000

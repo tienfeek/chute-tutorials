@@ -62,7 +62,6 @@ public class UploadActivity extends Activity {
   private ProgressBar pb;
   private ImageLoader imageLoader;
   private TextView fileText;
-  private String filePath;
   private String assetName;
 
   @Override
@@ -105,7 +104,6 @@ public class UploadActivity extends Activity {
       final ArrayList<AlbumModel> chuteCollection = new ArrayList<AlbumModel>();
       chuteCollection.add(chuteModel);
 
-      filePath = asset.getFile().getAbsolutePath();
       assetName = asset.getFile().getName();
       uploadOneStep(asset.getFile().getAbsolutePath(), chuteModel);
 
@@ -131,9 +129,6 @@ public class UploadActivity extends Activity {
     @Override
     public void onSuccess(ListResponseModel<AssetModel> responseData) {
       ALog.d("success = " + responseData.toString());
-      // Bitmap thumbnail =
-      // BitmapFactory.decodeFile(file.getAbsolutePath());
-      // imageThumb.setImageBitmap(thumbnail);
       if (responseData.getData().get(0).getThumbnail() != null) {
         String assetPath = responseData.getData().get(0).getThumbnail();
         imageLoader.displayImage(assetPath, imageThumb, null);
